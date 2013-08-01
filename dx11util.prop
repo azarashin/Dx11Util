@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <PathToDX11>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)</PathToDX11>
+    <PathToDX11Util>$(SolutionDir)\DX11Util\Package</PathToDX11Util>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(PathToDX11)\Include;$(PathToDX11Util)\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(PathToDX11Util)\lib\$(Configuration);$(PathToDX11)\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>DX11Util.lib;d3dx10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="PathToDX11">
+      <Value>$(PathToDX11)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PathToDX11Util">
+      <Value>$(PathToDX11Util)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

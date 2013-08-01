@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DX11Util", "DX11Util\DX11Util.vcxproj", "{A49BB2C4-04E6-4A89-8E24-1F508463BA80}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DXSample", "DXSample\DXSample.vcxproj", "{2D90757B-D373-491E-B280-8E57EB345079}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A49BB2C4-04E6-4A89-8E24-1F508463BA80} = {A49BB2C4-04E6-4A89-8E24-1F508463BA80}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A49BB2C4-04E6-4A89-8E24-1F508463BA80}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A49BB2C4-04E6-4A89-8E24-1F508463BA80}.Debug|Win32.Build.0 = Debug|Win32
+		{A49BB2C4-04E6-4A89-8E24-1F508463BA80}.Release|Win32.ActiveCfg = Release|Win32
+		{A49BB2C4-04E6-4A89-8E24-1F508463BA80}.Release|Win32.Build.0 = Release|Win32
+		{2D90757B-D373-491E-B280-8E57EB345079}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2D90757B-D373-491E-B280-8E57EB345079}.Debug|Win32.Build.0 = Debug|Win32
+		{2D90757B-D373-491E-B280-8E57EB345079}.Release|Win32.ActiveCfg = Release|Win32
+		{2D90757B-D373-491E-B280-8E57EB345079}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
