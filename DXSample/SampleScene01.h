@@ -1,8 +1,8 @@
 #pragma once
 
-#include <DX11Util/Dx11Scene.h>
-#include <DX11Util/Dx11ObjectGUIText.h>
-#include <DX11Util/Dx11EffectGUIStandard.h>
+#include <DX11Util/Core/Dx11Scene.h>
+#include <DX11Util/Object/Dx11ObjectGUIText.h>
+#include <DX11Util/Effect/Dx11EffectGUIStandard.h>
 
 
 class SampleScene01 : public Dx11Scene

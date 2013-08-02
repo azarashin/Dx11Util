@@ -5,12 +5,12 @@
 #include "SampleScene06.h"
 
 
-#include <DX11Util/Dx11CameraSideBySide.h>
-#include <DX11Util/Dx11CameraSideBySideStandard.h>
-#include <DX11Util/Dx11CameraRift.h>
-#include <DX11Util/Dx11LensSideBySide.h>
-#include <DX11Util/Dx11LensSideBySideStandard.h>
-#include <DX11Util/Dx11LensRift.h>
+#include <DX11Util/Camera/Dx11CameraSideBySide.h>
+#include <DX11Util/Camera/Dx11CameraSideBySideStandard.h>
+#include <DX11Util/Camera/Dx11CameraRift.h>
+#include <DX11Util/Lens/Dx11LensSideBySide.h>
+#include <DX11Util/Lens/Dx11LensSideBySideStandard.h>
+#include <DX11Util/Lens/Dx11LensRift.h>
 
 
 

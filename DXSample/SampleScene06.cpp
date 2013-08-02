@@ -1,9 +1,9 @@
 #include "StdAfx.h"
 #include "SampleScene06.h"
 
-#include <DX11Util/Dx11MotionStandard.h>
-#include <DX11Util/Dx11CameraStandard.h>
-#include <DX11Util/Dx11LensStandard.h>
+#include <DX11Util/Motion/Dx11MotionStandard.h>
+#include <DX11Util/Camera/Dx11CameraStandard.h>
+#include <DX11Util/Lens/Dx11LensStandard.h>
 
 
 SampleScene06::SampleScene06(void)

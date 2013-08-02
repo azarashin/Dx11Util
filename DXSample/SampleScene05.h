@@ -1,9 +1,9 @@
 #pragma once
 
-#include <DX11Util/Dx11Scene.h>
-#include <DX11Util/Dx11EffectStandard.h>
-#include <DX11Util/Dx11ObjectGUICanvas.h>
-#include <DX11Util/Dx11CameraStandard.h>
+#include <DX11Util/Core/Dx11Scene.h>
+#include <DX11Util/Effect/Dx11EffectStandard.h>
+#include <DX11Util/Object/Dx11ObjectGUICanvas.h>
+#include <DX11Util/Camera/Dx11CameraStandard.h>
 
 #include <opencv/cv.h>
 #include <opencv/highgui.h>

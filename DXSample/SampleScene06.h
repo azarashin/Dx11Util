@@ -1,9 +1,9 @@
 #pragma once
 
-#include <DX11Util/Dx11Scene.h>
-#include <DX11Util/Dx11ObjectGUIText.h>
-#include <DX11Util/Dx11EffectGUITrans.h>
-#include <DX11Util/Dx11LensStandard.h>
+#include <DX11Util/Core/Dx11Scene.h>
+#include <DX11Util/Object/Dx11ObjectGUIText.h>
+#include <DX11Util/Effect/Dx11EffectGUITrans.h>
+#include <DX11Util/Lens/Dx11LensStandard.h>
 
 
 class SampleScene06 : public Dx11Scene
