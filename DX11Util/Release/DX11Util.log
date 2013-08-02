@@ -1,9 +1,12 @@
-﻿2013/08/02 5:31:51 にビルドを開始しました。
-     1>ノード 2 上のプロジェクト "C:\Users\azarashin\Documents\Visual Studio 2010\Projects\DX11Util\DX11Util\DX11Util.vcxproj" (clean ターゲット)。
-     1>_PrepareForClean:
-         ファイル "Release\DX11Util.lastbuildstate" を削除しています。
-     1>プロジェクト "C:\Users\azarashin\Documents\Visual Studio 2010\Projects\DX11Util\DX11Util\DX11Util.vcxproj" (clean ターゲット) のビルドが完了しました。
-
-ビルドに成功しました。
-
-経過時間 00:00:00.34
+﻿2013/08/02 22:14:11 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\azarashin\Dx11Util\DX11Util\DX11Util.vcxproj" (build ターゲット)。
+     1>InitializeBuildStatus:
+         "AlwaysCreate" が指定されたため "Release\DX11Util.unsuccessfulbuild" を作成しています。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\azarashin\Dx11Util\DX11Util\common /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /IC:\Users\azarashin\Dx11Util\\DX11Util\Package\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt implement\Dx11Camera.cpp implement\Dx11CameraRift.cpp implement\Dx11CameraSideBySide.cpp implement\Dx11CameraSideBySideStandard.cpp implement\Dx11CameraStandard.cpp implement\Dx11DirectionalLight.cpp implement\Dx11Effect.cpp implement\Dx11EffectGUI.cpp implement\Dx11EffectGUICanvas.cpp implement\Dx11EffectGUIStandard.cpp implement\Dx11EffectGUITrans.cpp implement\Dx11EffectSideBySide.cpp implement\Dx11EffectStandard.cpp implement\Dx11Lens.cpp implement\Dx11LensRift.cpp implement\Dx11LensSideBySide.cpp implement\Dx11LensSideBySideStandard.cpp implement\Dx11LensStandard.cpp implement\Dx11Motion.cpp implement\Dx11MotionStandard.cpp implement\Dx11Object.cpp implement\Dx11ObjectParticle.cpp implement\Dx11ObjectGUI.cpp implement\Dx11ObjectGUICanvas.cpp implement\Dx11ObjectGUIStandard.cpp implement\Dx11ObjectGUIText.cpp implement\Dx11ObjectTargetTexture.cpp implement\Dx11Context.cpp implement\Dx11Scene.cpp
+         Dx11Camera.cpp
+         Dx11CameraRift.cpp
+         Dx11CameraSideBySide.cpp
+         Dx11CameraSideBySideStandard.cpp
+         Dx11CameraStandard.cpp
+         Dx11DirectionalLight.cpp

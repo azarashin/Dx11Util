@@ -75,7 +75,7 @@ HRESULT Dx11LensRift::GetMatrix(XMMATRIX* m)
 		smat = XMMatrixTranslation(-shift, 0, 0); 
 	}
 
-	*m = smat * mat; 
+	*m = mat * smat; 
 
 	return ret; 
 }
