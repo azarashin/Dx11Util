@@ -32,6 +32,21 @@
     <Filter Include="source_header\motion">
       <UniqueIdentifier>{8fd1710c-4a3e-4360-94eb-942bad3196c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{5401abdb-4583-4425-8508-f5f21f71d9dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\ASURA">
+      <UniqueIdentifier>{06b471e9-7f17-45a4-a19a-200ff2ca22e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\ASURA\Util">
+      <UniqueIdentifier>{99cd5571-7346-4fcb-897c-95ed545376d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\ASURA\Math">
+      <UniqueIdentifier>{2f9acc5b-2daa-48f6-9bb9-93fa1eae1ff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\ASURA\Graphics">
+      <UniqueIdentifier>{126025ad-4fd2-4dce-87f5-775710aa2111}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -56,219 +71,309 @@
     <None Include="..\shader\gui_trans.sh">
       <Filter>shader</Filter>
     </None>
+    <None Include="ASURA\Math\Matrix.inl">
+      <Filter>external\ASURA\Math</Filter>
+    </None>
+    <None Include="ASURA\Math\Plane.inl">
+      <Filter>external\ASURA\Math</Filter>
+    </None>
+    <None Include="ASURA\Math\Quaternion.inl">
+      <Filter>external\ASURA\Math</Filter>
+    </None>
+    <None Include="ASURA\Math\Vector.inl">
+      <Filter>external\ASURA\Math</Filter>
+    </None>
+    <None Include="ASURA\Math\Bounding.inl">
+      <Filter>external\ASURA\Math</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="implement\Dx11Camera.cpp">
-      <Filter>source_header\camera</Filter>
+    <ClCompile Include="ASURA\Util\asdxModelUtil.cpp">
+      <Filter>external\ASURA\Util</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11CameraStandard.cpp">
-      <Filter>source_header\camera</Filter>
+    <ClCompile Include="ASURA\Util\asTokenizer.cpp">
+      <Filter>external\ASURA\Util</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11CameraRift.cpp">
-      <Filter>source_header\camera</Filter>
+    <ClCompile Include="ASURA\Graphics\asdxShaderUtil.cpp">
+      <Filter>external\ASURA\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11CameraSideBySide.cpp">
-      <Filter>source_header\camera</Filter>
+    <ClCompile Include="ASURA\Graphics\asModelImpl.cpp">
+      <Filter>external\ASURA\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11CameraSideBySideStandard.cpp">
-      <Filter>source_header\camera</Filter>
+    <ClCompile Include="ASURA\Graphics\asModelLoaderX.cpp">
+      <Filter>external\ASURA\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11Context.cpp">
-      <Filter>source_header\core</Filter>
+    <ClCompile Include="ASURA\Graphics\asCamera.cpp">
+      <Filter>external\ASURA\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11DirectionalLight.cpp">
+    <ClCompile Include="implement\__under_construction\Dx11DirectionalLight.cpp">
       <Filter>source_header\__underground</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11Effect.cpp">
-      <Filter>source_header\effect</Filter>
+    <ClCompile Include="implement\Camera\Dx11Camera.cpp">
+      <Filter>source_header\camera</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11EffectViewAround.cpp">
-      <Filter>source_header\effect</Filter>
+    <ClCompile Include="implement\Camera\Dx11CameraRift.cpp">
+      <Filter>source_header\camera</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11EffectGUI.cpp">
-      <Filter>source_header\effect</Filter>
+    <ClCompile Include="implement\Camera\Dx11CameraSideBySide.cpp">
+      <Filter>source_header\camera</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11EffectGUICanvas.cpp">
-      <Filter>source_header\effect</Filter>
+    <ClCompile Include="implement\Camera\Dx11CameraSideBySideStandard.cpp">
+      <Filter>source_header\camera</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11EffectGUIStandard.cpp">
-      <Filter>source_header\effect</Filter>
+    <ClCompile Include="implement\Camera\Dx11CameraStandard.cpp">
+      <Filter>source_header\camera</Filter>
     </ClCompile>
-    <ClCompile Include="implement\Dx11EffectGUITrans.cpp">
-      <Filter>source_header\effect</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11EffectSideBySide.cpp">
-      <Filter>source_header\effect</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11EffectStandard.cpp">
-      <Filter>source_header\effect</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11Lens.cpp">
-      <Filter>source_header\lens</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11LensStandard.cpp">
-      <Filter>source_header\lens</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11LensRift.cpp">
-      <Filter>source_header\lens</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11LensSideBySide.cpp">
-      <Filter>source_header\lens</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11LensSideBySideStandard.cpp">
-      <Filter>source_header\lens</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11Object.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectWaveFront.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectDae.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectDaeStdModel.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectGUI.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectGUICanvas.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectGUIStandard.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectGUIText.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectParticle.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectTargetTexture.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11ObjectViewAround.cpp">
-      <Filter>source_header\object</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11Motion.cpp">
-      <Filter>source_header\motion</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11MotionStandard.cpp">
-      <Filter>source_header\motion</Filter>
-    </ClCompile>
-    <ClCompile Include="implement\Dx11Scene.cpp">
+    <ClCompile Include="implement\Core\Dx11Context.cpp">
       <Filter>source_header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Core\Dx11Scene.cpp">
+      <Filter>source_header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11Effect.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectGUI.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectGUICanvas.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectGUIStandard.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectGUITrans.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectSideBySide.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectStandard.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectViewAround.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11Object.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectDae.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectDaeStdModel.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectGUI.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectGUICanvas.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectGUIStandard.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectGUIText.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectParticle.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectTargetTexture.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectViewAround.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectWaveFront.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Motion\Dx11Motion.cpp">
+      <Filter>source_header\motion</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Motion\Dx11MotionStandard.cpp">
+      <Filter>source_header\motion</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Lens\Dx11Lens.cpp">
+      <Filter>source_header\lens</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Lens\Dx11LensRift.cpp">
+      <Filter>source_header\lens</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Lens\Dx11LensSideBySide.cpp">
+      <Filter>source_header\lens</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Lens\Dx11LensSideBySideStandard.cpp">
+      <Filter>source_header\lens</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Lens\Dx11LensStandard.cpp">
+      <Filter>source_header\lens</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11XObject.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Motion\Dx11XMotion.cpp">
+      <Filter>source_header\motion</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Motion\Dx11XMotionManager.cpp">
+      <Filter>source_header\motion</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11XEffect.cpp">
+      <Filter>source_header\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common\DX11Util\Dx11Camera.h">
-      <Filter>source_header\camera</Filter>
+    <ClInclude Include="ASURA\asDef.h">
+      <Filter>external\ASURA</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11CameraStandard.h">
-      <Filter>source_header\camera</Filter>
+    <ClInclude Include="ASURA\asdxDemoApp.h">
+      <Filter>external\ASURA</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11CameraRift.h">
-      <Filter>source_header\camera</Filter>
+    <ClInclude Include="ASURA\asdxModelUtil.h">
+      <Filter>external\ASURA</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11CameraSideBySide.h">
-      <Filter>source_header\camera</Filter>
+    <ClInclude Include="ASURA\asdxShaderUtil.h">
+      <Filter>external\ASURA</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11CameraSideBySideStandard.h">
-      <Filter>source_header\camera</Filter>
+    <ClInclude Include="ASURA\asMath.h">
+      <Filter>external\ASURA</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11Context.h">
-      <Filter>source_header\core</Filter>
+    <ClInclude Include="ASURA\asModel.h">
+      <Filter>external\ASURA</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11Effect.h">
-      <Filter>source_header\effect</Filter>
+    <ClInclude Include="ASURA\asTimer.h">
+      <Filter>external\ASURA</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11EffectViewAround.h">
-      <Filter>source_header\effect</Filter>
+    <ClInclude Include="ASURA\asTokenizer.h">
+      <Filter>external\ASURA</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11EffectGUI.h">
-      <Filter>source_header\effect</Filter>
+    <ClInclude Include="ASURA\asCamera.h">
+      <Filter>external\ASURA</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11EffectGUICanvas.h">
-      <Filter>source_header\effect</Filter>
+    <ClInclude Include="ASURA\Graphics\asModelImpl.h">
+      <Filter>external\ASURA\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11EffectGUIStandard.h">
-      <Filter>source_header\effect</Filter>
+    <ClInclude Include="ASURA\Graphics\asModelLoaderX.h">
+      <Filter>external\ASURA\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11EffectGUITrans.h">
-      <Filter>source_header\effect</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11Object.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11EffectSideBySide.h">
-      <Filter>source_header\effect</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectDae.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11EffectStandard.h">
-      <Filter>source_header\effect</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectDaeStdModel.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11Index.h">
-      <Filter>source_header\__underground</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUI.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11DirectionalLight.h">
-      <Filter>source_header\__underground</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUICanvas.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11Lens.h">
-      <Filter>source_header\lens</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUIStandard.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11LensStandard.h">
-      <Filter>source_header\lens</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUIText.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11LensRift.h">
-      <Filter>source_header\lens</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectParticle.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11LensSideBySide.h">
-      <Filter>source_header\lens</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectTargetTexture.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11LensSideBySideStandard.h">
-      <Filter>source_header\lens</Filter>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectViewAround.h">
+      <Filter>source_header\object</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11MotionStandard.h">
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectWaveFront.h">
+      <Filter>source_header\object</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Motion\Dx11Motion.h">
       <Filter>source_header\motion</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11Motion.h">
+    <ClInclude Include="common\DX11Util\Motion\Dx11MotionStandard.h">
       <Filter>source_header\motion</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11Object.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Lens\Dx11Lens.h">
+      <Filter>source_header\lens</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectWaveFront.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Lens\Dx11LensRift.h">
+      <Filter>source_header\lens</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectDae.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Lens\Dx11LensSideBySide.h">
+      <Filter>source_header\lens</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectDaeStdModel.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Lens\Dx11LensSideBySideStandard.h">
+      <Filter>source_header\lens</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectGUI.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Lens\Dx11LensStandard.h">
+      <Filter>source_header\lens</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectGUICanvas.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Effect\Dx11Effect.h">
+      <Filter>source_header\effect</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectGUIStandard.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUI.h">
+      <Filter>source_header\effect</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectGUIText.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUICanvas.h">
+      <Filter>source_header\effect</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectParticle.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUIStandard.h">
+      <Filter>source_header\effect</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectTargetTexture.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUITrans.h">
+      <Filter>source_header\effect</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11ObjectViewAround.h">
-      <Filter>source_header\object</Filter>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectSideBySide.h">
+      <Filter>source_header\effect</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11Vertex.h">
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectStandard.h">
+      <Filter>source_header\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectViewAround.h">
+      <Filter>source_header\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Core\Dx11Context.h">
+      <Filter>source_header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Core\Dx11Scene.h">
+      <Filter>source_header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Camera\Dx11Camera.h">
+      <Filter>source_header\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Camera\Dx11CameraRift.h">
+      <Filter>source_header\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Camera\Dx11CameraSideBySide.h">
+      <Filter>source_header\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Camera\Dx11CameraSideBySideStandard.h">
+      <Filter>source_header\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Camera\Dx11CameraStandard.h">
+      <Filter>source_header\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\__under_construction\Dx11DirectionalLight.h">
       <Filter>source_header\__underground</Filter>
     </ClInclude>
-    <ClInclude Include="common\DX11Util\Dx11Scene.h">
-      <Filter>source_header\core</Filter>
+    <ClInclude Include="common\DX11Util\__under_construction\Dx11Index.h">
+      <Filter>source_header\__underground</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\__under_construction\Dx11Vertex.h">
+      <Filter>source_header\__underground</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Motion\Dx11XMotion.h">
+      <Filter>source_header\motion</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Motion\Dx11XMotionManager.h">
+      <Filter>source_header\motion</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Object\Dx11XObject.h">
+      <Filter>source_header\object</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Effect\Dx11XEffect.h">
+      <Filter>source_header\effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
