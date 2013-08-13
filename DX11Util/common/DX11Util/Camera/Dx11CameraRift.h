@@ -39,7 +39,7 @@
 
 #pragma once
 
-#include <DX11Util/Dx11CameraSideBySide.h>
+#include <DX11Util/Camera/Dx11CameraSideBySide.h>
 
 #include <d3d11.h>
 #include <d3dx11.h>

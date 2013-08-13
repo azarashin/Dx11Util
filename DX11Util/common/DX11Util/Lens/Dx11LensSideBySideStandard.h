@@ -48,7 +48,7 @@
 
 #include <vector>
 
-#include <DX11Util/Dx11LensSideBySide.h>
+#include <DX11Util/Lens/Dx11LensSideBySide.h>
 
 
 class Dx11LensSideBySideStandard : public Dx11LensSideBySide

@@ -39,13 +39,13 @@
 
 #pragma once
 
-#include <DX11Util/Dx11ObjectGUI.h>
-#include <DX11Util/Dx11Motion.h>
-#include <DX11Util/Dx11Context.h>
-#include <DX11Util/Dx11Scene.h>
-#include <DX11Util/Dx11ObjectTargetTexture.h>
-#include <DX11Util/Dx11CameraSideBySide.h>
-#include <DX11Util/Dx11LensSideBySide.h>
+#include <DX11Util/Object/Dx11ObjectGUI.h>
+#include <DX11Util/Motion/Dx11Motion.h>
+#include <DX11Util/Core/Dx11Context.h>
+#include <DX11Util/Core/Dx11Scene.h>
+#include <DX11Util/Object/Dx11ObjectTargetTexture.h>
+#include <DX11Util/Camera/Dx11CameraSideBySide.h>
+#include <DX11Util/Lens/Dx11LensSideBySide.h>
 
 
 #include <d3d11.h>

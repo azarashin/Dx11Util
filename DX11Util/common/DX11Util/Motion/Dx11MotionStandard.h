@@ -47,7 +47,7 @@
 
 #include <vector>
 
-#include <DX11Util/Dx11Motion.h>
+#include <DX11Util/Motion/Dx11Motion.h>
 
 class Dx11MotionStandard : public Dx11Motion
 {
@@ -58,12 +58,13 @@ public:
 	virtual HRESULT Setup(); 
 	virtual HRESULT Update(); 
 	virtual HRESULT GetMatrix(XMMATRIX* _mat); 
+	virtual HRESULT GetNumberOfMatrix(int* num); 
 	virtual HRESULT Term(); 
 
 	void SetDirection(XMFLOAT3 pos, XMFLOAT3 front, XMFLOAT3 upper); 
 
 protected:
-	XMMATRIX mat; 
-	XMMATRIX size_mat; 
+	XMFLOAT4X4 mat; 
+	XMFLOAT4X4 size_mat; 
 };
 

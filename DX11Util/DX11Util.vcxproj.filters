@@ -86,6 +86,9 @@
     <None Include="ASURA\Math\Bounding.inl">
       <Filter>external\ASURA\Math</Filter>
     </None>
+    <None Include="..\shader\xfile_notexture.sh">
+      <Filter>shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ASURA\Util\asdxModelUtil.cpp">

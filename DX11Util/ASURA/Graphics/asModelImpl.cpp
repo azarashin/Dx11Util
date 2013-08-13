@@ -626,7 +626,11 @@ Mesh::Mesh()
 	mSkinIndices.clear();
 	mSkinWeights.clear();
 	mIndices.clear();
+#if 0 // azarashin modified...
     mBones.clear();
+#else 
+	ref_bone = -1; 
+#endif
 	mSubsets.clear();
 	mMaterials.clear();
 }
@@ -649,7 +653,11 @@ Mesh::Mesh( const Mesh &mesh )
 	SetSkinIndices( mesh.mSkinIndices );
 	SetSkinWeights( mesh.mSkinWeights );
     SetIndices( mesh.mIndices );
+#if 0 // azarashin modified...
     SetBones( mesh.mBones );
+#else
+	ref_bone = mesh.ref_bone; 
+#endif 
 	SetSubsets( mesh.mSubsets );
 	SetMaterials( mesh.mMaterials );
 }
@@ -671,10 +679,12 @@ Mesh::~Mesh()
 ///---------------------------------------------------------------------
 void Mesh::Release()
 {
+#if 0 // azarashin modified...
 	for( size_t i=0; i<mBones.size(); i++ )
 	{
 		mBones[i].Release();
 	}
+#endif 
 	for( size_t i=0; i<mMaterials.size(); i++ )
 	{
 		mMaterials[i].Release();
@@ -688,7 +698,9 @@ void Mesh::Release()
 	mSkinIndices.clear();
 	mSkinWeights.clear();
 	mIndices.clear();
+#if 0 // azarashin modified...
     mBones.clear();
+#endif
 	mSubsets.clear();
 	mMaterials.clear();
 }
@@ -807,8 +819,10 @@ std::vector< uint32_t > Mesh::GetIndices()
 ///</summary>
 ///<returns>IBone*型に変換したボーンコンテナを返却する</returns>
 ///---------------------------------------------------------------------
+#if 0 // azarashin modified...
 std::vector< IBone* > Mesh::GetBones()
 {
+
     std::vector< IBone* > result;
     result.resize( mBones.size() );
     for( size_t i=0; i<mBones.size(); i++ )
@@ -817,6 +831,7 @@ std::vector< IBone* > Mesh::GetBones()
     }
     return result;
 }
+#endif
 
 ///--------------------------------------------------------------------
 ///<summary>
@@ -978,11 +993,13 @@ uint32_t Mesh::GetIndex( uint32_t index )
 ///指定されたインデックスのボーンをIBone*型に変換して返却する
 ///</returns>
 ///----------------------------------------------------------------------
+#if 0 // azarashin modified...
 IBone* Mesh::GetBone( uint32_t index )
 {
 	assert( index < GetNumBones() );
 	return &mBones[index];
 }
+#endif
 
 ///----------------------------------------------------------------------
 ///<summary>
@@ -1119,10 +1136,12 @@ uint32_t Mesh::GetNumIndices()
 ///</summary>
 ///<returns>ボーン数を返却する</returns>
 ///----------------------------------------------------------------------
+#if 0 // azarashin modified...
 uint32_t Mesh::GetNumBones()
 {
 	return static_cast< uint32_t >( mBones.size() );
 }
+#endif
 
 ///----------------------------------------------------------------------
 ///<summary>
@@ -1145,6 +1164,17 @@ uint32_t Mesh::GetNumMaterials()
 {
 	return static_cast< uint32_t >( mMaterials.size() );
 }
+
+void Mesh::SetRefBone(int ref)
+{
+	ref_bone = ref; 
+}
+
+int Mesh::GetRefBone()
+{
+	return ref_bone; 
+}
+
 
 ///----------------------------------------------------------------------
 ///<summary>
@@ -1316,6 +1346,7 @@ void Mesh::SetIndices( const std::vector< uint32_t > &indices )
 ///</summary>
 ///<param name="bones">設定するボーン</param>
 ///---------------------------------------------------------------------
+#if 0 // azarashin modified...
 void Mesh::SetBones( const std::vector< Bone > &bones )
 {
     size_t size = bones.size();
@@ -1326,6 +1357,7 @@ void Mesh::SetBones( const std::vector< Bone > &bones )
         mBones[i] = bones[i];
     }
 }
+#endif
 
 ///---------------------------------------------------------------------
 ///<summary>
@@ -1403,7 +1435,11 @@ Mesh& Mesh::operator = ( const Mesh &mesh )
 	SetSkinIndices( mesh.mSkinIndices );
 	SetSkinWeights( mesh.mSkinWeights );
     SetIndices( mesh.mIndices );
+#if 0 // azarashin modified...
     SetBones( mesh.mBones );
+#else
+	ref_bone = mesh.ref_bone; 
+#endif 
     SetSubsets( mesh.mSubsets );
     SetMaterials( mesh.mMaterials );
 	return (*this);
@@ -2291,8 +2327,34 @@ Model& Model::operator = ( const Model &model )
 	SetName( model.mName );
 	SetMeshes( model.mMeshes );
 	SetClips( model.mClips );
+#if 1 // azarashin modified...
+	mBaseBone = model.mBaseBone; 
+#endif
 	return (*this);
 }
+
+uint32_t Model::GetNumBones()
+{
+	return mBaseBone.size(); 
+}
+
+std::vector< IBone* > Model::GetBones()
+{
+	std::vector< IBone* > ret; 
+	ret.assign(mBaseBone.size(), 0); 
+	int i; 
+	for(i=0;i<mBaseBone.size();i++) {
+		ret[i] = &(mBaseBone[i]); 
+	}
+
+	return ret; 
+}
+
+IBone* Model::GetBone(uint32_t index)
+{
+	return &(mBaseBone[index]); 
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 // ModelLoaderBase class

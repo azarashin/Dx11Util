@@ -960,6 +960,7 @@ bool SkinningModelData::LoadFromX( const char* filename )
 	}
 	assert( mpInterface != null );
 
+#if 0 // azarashin modified...
 	// アニメーションプレイヤーを生成
 	if ( mpInterface->GetMesh( 0 )->GetNumBones() > 0 )
 	{
@@ -992,6 +993,7 @@ bool SkinningModelData::LoadFromX( const char* filename )
 			return false;
 		}
 	}
+#endif
 
 	return true;
 }

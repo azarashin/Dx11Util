@@ -279,7 +279,9 @@ public:
     virtual std::vector< Short4 >                 GetSkinIndices() = 0;
     virtual std::vector< Asura::Math::Vector4 >   GetSkinWeights() = 0;
     virtual std::vector< uint32_t >               GetIndices() = 0;
+#if 0 // azarashin modified...
     virtual std::vector< IBone* >                 GetBones() = 0;
+#endif
     virtual std::vector< IMeshSubset* >           GetSubsets() = 0;
     virtual std::vector< IMaterial* >             GetMaterials() = 0;
 	virtual Asura::Math::Vector3                  GetPosition( uint32_t index ) = 0;
@@ -291,7 +293,9 @@ public:
 	virtual Short4                                GetSkinIndex( uint32_t index ) = 0;
 	virtual Asura::Math::Vector4                  GetSkinWeight( uint32_t index ) = 0;
 	virtual uint32_t                              GetIndex( uint32_t index ) = 0;
+#if 0 // azarashin modified...
 	virtual IBone*                                GetBone( uint32_t index ) = 0;
+#endif
 	virtual IMeshSubset*                          GetSubset( uint32_t index ) = 0;
 	virtual IMaterial*                            GetMaterial( uint32_t index ) = 0;
 	virtual uint32_t                              GetNumPositions() = 0;
@@ -303,9 +307,16 @@ public:
 	virtual uint32_t                              GetNumSkinIndices() = 0;
 	virtual uint32_t                              GetNumSkinWeights() = 0;
 	virtual uint32_t                              GetNumIndices() = 0;
+#if 0 // azarashin modified...
 	virtual uint32_t                              GetNumBones() = 0;
+#endif
 	virtual uint32_t                              GetNumSubsets() = 0;
 	virtual uint32_t                              GetNumMaterials() = 0;
+
+#if 1 // azarashin modified...
+	virtual void SetRefBone(int ref) = 0; 
+	virtual int GetRefBone() = 0; 
+#endif
 
 protected:
 	//-------------------------------------------------------------------
@@ -542,6 +553,9 @@ public:
 	virtual IAnimationClip*                 GetClip( uint32_t index ) = 0;
 	virtual uint32_t                        GetNumMeshes() = 0;
 	virtual uint32_t                        GetNumClips() = 0;
+	virtual uint32_t						GetNumBones() = 0; 
+	virtual std::vector< IBone* >			GetBones() = 0; 
+	virtual IBone*							GetBone(uint32_t index) = 0; 
 	virtual void                            Release() = 0;	// call delete.
 
 protected:

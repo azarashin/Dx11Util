@@ -48,7 +48,7 @@
 
 #include <vector>
 
-#include <DX11Util/Dx11Lens.h>
+#include <DX11Util/Lens/Dx11Lens.h>
 
 
 class Dx11LensStandard : public Dx11Lens

@@ -18,7 +18,7 @@
 //-----------------------------------------------------------------------
 #include "asDef.h"
 #include "asMath.h"
-#include "asdxApp.h"
+//#include "asdxApp.h"
 
 
 namespace Asura {

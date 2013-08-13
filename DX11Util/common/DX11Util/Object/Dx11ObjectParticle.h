@@ -44,10 +44,10 @@
 #include <dxerr.h>
 
 #include <xnamath.h>
-#include <DX11Util/Dx11Context.h>
+#include <DX11Util/Core/Dx11Context.h>
 
 
-#include <DX11Util/Dx11ObjectGUI.h>
+#include <DX11Util/Object/Dx11ObjectGUI.h>
 
 class Dx11ObjectParticle
 	: public Dx11Object
@@ -69,6 +69,7 @@ public:
 	virtual BOOL GetIndexNum(unsigned int idx, unsigned int* num); 
 
 	virtual BOOL GetTexture(unsigned int num, ID3D11ShaderResourceView** pTexture); 
+	virtual BOOL GetTextureNum(unsigned int* num); 
 
 private: 
 	ID3D11Buffer* m_pVB; 

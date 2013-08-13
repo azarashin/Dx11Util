@@ -39,11 +39,11 @@
 
 #pragma once
 
-#include <DX11Util/Dx11Effect.h>
-#include <DX11Util/Dx11Camera.h>
-#include <DX11Util/Dx11Lens.h>
-#include <DX11Util/Dx11DirectionalLight.h>
-#include <DX11Util/Dx11Context.h>
+#include <DX11Util/Effect/Dx11Effect.h>
+#include <DX11Util/Camera/Dx11Camera.h>
+#include <DX11Util/Lens/Dx11Lens.h>
+#include <DX11Util/__under_construction/Dx11DirectionalLight.h>
+#include <DX11Util/Core/Dx11Context.h>
 
 #include <d3d11.h>
 #include <d3dx11.h>

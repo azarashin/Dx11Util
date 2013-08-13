@@ -39,9 +39,9 @@
 
 #pragma once
 
-#include <DX11Util/Dx11ObjectGUI.h>
-#include <DX11Util/Dx11Motion.h>
-#include <DX11Util/Dx11Context.h>
+#include <DX11Util/Object/Dx11ObjectGUI.h>
+#include <DX11Util/Motion/Dx11Motion.h>
+#include <DX11Util/Core/Dx11Context.h>
 
 
 #include <d3d11.h>

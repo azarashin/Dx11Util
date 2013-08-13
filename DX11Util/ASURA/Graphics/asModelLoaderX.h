@@ -124,19 +124,23 @@ protected:
 	//-------------------------------------------------------------------
 	// protected methods
 	//-------------------------------------------------------------------
-    void    CheckNode();
+    void    CheckNode(int parent);
 	void    SkipNode();
-	void    ParseMesh();
-	void    ParseMeshNormals();
-	void    ParseMeshTextureCoords();
-	void    ParseMeshVertexColors();
-	void    ParseMeshMaterialList();
-	void    ParseMaterial();
-	void    ParseTextureFileName();
+	void    ParseMesh(int parent);
+	void    ParseMeshNormals(int parent);
+	void    ParseMeshTextureCoords(int parent);
+	void    ParseMeshVertexColors(int parent);
+	void    ParseMeshMaterialList(int parent);
+	void    ParseMaterial(int parent);
+	void    ParseTextureFileName(int parent);
+#if 0 // azarashin modified...
 	void    ParseFrame();
-	void    ParseSkinWeights();
-	void    ParseAnimationSet();
-    void    ParseAnimation();
+#else
+	void    ParseFrame(int parent);
+#endif
+	void    ParseSkinWeights(int parent);
+	void    ParseAnimationSet(int parent);
+    void    ParseAnimation(int parent);
 	short   FindFrame( std::string name );
     void    SetSkinDataFromCache();
 

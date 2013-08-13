@@ -41,9 +41,9 @@
 
 class Dx11Scene; 
 
-#include <DX11Util/Dx11Context.h>
-#include <DX11Util/Dx11Camera.h>
-#include <DX11Util/Dx11Lens.h>
+#include <DX11Util/Core/Dx11Context.h>
+#include <DX11Util/Camera/Dx11Camera.h>
+#include <DX11Util/Lens/Dx11Lens.h>
 
 #include <d3d11.h>
 #include <d3dx11.h>

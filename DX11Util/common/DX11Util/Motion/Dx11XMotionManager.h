@@ -39,6 +39,9 @@
 
 #pragma once
 
+#include <DX11Util/Motion/Dx11Motion.h>
+#include <DX11Util/Motion/Dx11XMotion.h>
+
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <dxerr.h>
@@ -46,20 +49,37 @@
 #include <xnamath.h>
 
 #include <vector>
+#include <map>
+#include <string>
 
-class Dx11Motion
+class Dx11XMotionManager : public Dx11Motion
 {
-public:
-	Dx11Motion(void);
-	virtual ~Dx11Motion(void);
+public: 
+	Dx11XMotionManager(int bone_max); 
+	virtual ~Dx11XMotionManager(); 
 
-	virtual HRESULT Setup() = 0; 
-	virtual HRESULT Update() = 0; 
-	virtual HRESULT GetMatrix(XMMATRIX* mat) = 0; 
-	virtual HRESULT GetNumberOfMatrix(int* num) = 0; 
-	virtual HRESULT Term() = 0; 
+	virtual HRESULT Setup(); 
+	virtual HRESULT Update(); 
+	virtual HRESULT GetMatrix(XMMATRIX* mat); 
+	virtual HRESULT GetNumberOfMatrix(int* num); 
+	virtual HRESULT Term(); 
 
-protected:
+	/**
+	 * change animation immediately. 
+	 **/ 
+	void SelectAnimation(std::string, bool loop); 
+	void ReserveNextAnimation(std::string, bool loop); 
 
-};
+	/**
+	 * added instance of Dx11XMotion which is already setup. It will be managed by Dx11XMotionManager. 
+	 * Dx11XMotionManager will delete the instance. 
+	 **/ 
+	void AddAnimation(std::string name, Dx11XMotion* _motion); 
 
+private: 
+	Dx11XMotion* current; 
+	Dx11XMotion* next; 
+	std::map<std::string, Dx11XMotion*> motion_map; 
+	bool loop_flag; 
+
+}; 

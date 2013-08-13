@@ -335,7 +335,7 @@ ModelLoaderX::~ModelLoaderX()
 ///ノードをチェックする
 ///</summary>
 ///----------------------------------------------------------------------
-void ModelLoaderX::CheckNode()
+void ModelLoaderX::CheckNode(int parent)
 {
     if ( mToken.Check( "template" ) )
     {
@@ -343,40 +343,44 @@ void ModelLoaderX::CheckNode()
     }
     else if ( mToken.Check( "Mesh" ) )
     {
-        ParseMesh();
+        ParseMesh(parent);
     }
     else if ( mToken.Check( "MeshNormals" ) )
     {
-        ParseMeshNormals();
+        ParseMeshNormals(parent);
     }
     else if ( mToken.Check( "MeshTextureCoords" ) )
     {
-        ParseMeshTextureCoords();
+        ParseMeshTextureCoords(parent);
     }
 	else if ( mToken.Check( "MeshVertexColors" ) )
 	{
-		ParseMeshVertexColors();
+		ParseMeshVertexColors(parent);
 	}
     else if ( mToken.Check( "MeshMaterialList" ) )
     {
-        ParseMeshMaterialList();
+        ParseMeshMaterialList(parent);
     }
     else if ( mToken.Check( "Frame" ) )
     {
-	    ParseFrame();
+	    ParseFrame(parent);
     }
     else if ( mToken.Check( "SkinWeights" ) )
     {
-        ParseSkinWeights();
+        ParseSkinWeights(parent);
     }
     else if ( mToken.Check( "AnimationSet" ) )
     {
-        ParseAnimationSet();
+        ParseAnimationSet(parent);
     }
     else if ( mToken.Check( "Animation" ) )
     {
-        ParseAnimation();
-    }
+        ParseAnimation(parent);
+#if 1 // azarashin modified...
+    } else {
+		mToken.Next();
+#endif 
+	}
 }
 
 ///----------------------------------------------------------------------
@@ -388,16 +392,65 @@ void ModelLoaderX::Parse()
 {
 	//　トーカナイザーの設定
 	mToken.SetBuffer( mpBuf );
+
+	// --> azarashin modified to remove comment
+	char* cp = mpBuf; 
+	char* lt = cp; 
+	char bkp; 
+	while(*cp != '\0') {
+		if((*cp != 0x0d) && (*cp != 0x0a)) {
+			cp++; 
+			continue; 
+		}
+
+		bkp = *cp; 
+		*cp = 0; 
+		char* cm = strstr(lt, "//"); 
+		char* lft = strstr(lt, "{"); 
+		if((cm != 0) && (lft != 0) && (lft < cm)) { // find comment
+			char* cm2 = cm+2; 
+			int ps = strspn(cm2, " \t\r\n"); 
+			char* cm3 = cm2 + ps; 
+			int ps2 = strcspn(cm3, " \t\r\n"); 
+			char* cm4 = cm3 + ps2; // key word appear from cm3 to (cm4 - 1)
+
+			while(cm3 != cm4) {
+				*lft = *cm3; 
+				lft++; 
+				cm3++; 
+			}
+			*lft = '{'; 
+			lft++; 
+			while(lft != cp) {
+				*lft = ' '; 
+				lft++; 
+			}
+		} else if(cm != 0) {
+			while(cm != cp) {
+				*cm = ' '; 
+				cm++; 
+			}
+		}
+
+		*cp = bkp; 
+
+		cp++; 
+		lt = cp; 
+	}
+	// <-- azarashin modified to remove comment
+
 	mToken.SetSeparator( " \t\r\n,;\"" );
 	mToken.SetCutOff( "{}" );
 
 	//　ファイル終端までループ
 	while( !mToken.IsEnd() )
 	{
+#if 0 // azarashin modified...
 		mToken.Next();
+#endif 
         DEBUG_LOG( "Check Token : %s", mToken.GetAsChar() );
 
-        CheckNode();
+        CheckNode(-1);
 	}
 
 	if ( mModel.GetNumMeshes() > 0 )
@@ -408,8 +461,11 @@ void ModelLoaderX::Parse()
             SetSkinDataFromCache(); 
 
            	//　最後のボーンを追加
+#if 0 // azarashin modified...
     		uint32_t index = mModel.GetNumMeshes() -1;
     		mModel.mMeshes[index].SetBones( mBoneCaches );
+#endif
+			mModel.mBaseBone = mBoneCaches; 
         }
 
         if ( mAnimationCaches.size() > 0 )
@@ -601,23 +657,29 @@ void ModelLoaderX::SkipNode()
 ///メッシュの構文解析を行う
 ///</summary>
 ///----------------------------------------------------------------------
-void ModelLoaderX::ParseMesh()
+void ModelLoaderX::ParseMesh(int parent)
 {
 	Mesh mesh;
 
 	//　メッシュデータを読み取った後でボーンを追加する
 	if ( mModel.GetNumMeshes() > 0 )
 	{
+#if 0 // azarashin modified...
 		uint32_t index = mModel.GetNumMeshes() -1;
 		mModel.mMeshes[index].SetBones( mBoneCaches );
 		mBoneCaches.clear();
+#endif
 	}
 
 	mToken.Next();
 	if ( !mToken.Check( "{" ) )
 	{
 		//名前をセット
+#if 0 // azarashin modified...
 		std::string name = std::string( mToken.GetNextAsChar() );
+#else
+		std::string name = std::string( mToken.GetAsChar() );
+#endif
 		DEBUG_LOG( "Mesh Name : %s", name.c_str() );
 		mesh.SetName( name );
 
@@ -712,20 +774,34 @@ void ModelLoaderX::ParseMesh()
 	//　頂点インデックスをセット
 	mesh.SetIndices( indices );
 
+	mesh.SetRefBone(parent); 
+
 	//　メッシュを追加
 	mModel.mMeshes.push_back( mesh );
 
 	//　メモリ解放
 	vertices.clear();
 	indices.clear();
+
+
+#if 1 // azarashin modified...
+	while(!mToken.Check( "}" ) ) 
+	{
+		//　ノードチェック
+    	CheckNode(parent);
+	}
+	mToken.Next();
+#endif 
+
 }
+
 
 ///----------------------------------------------------------------------
 ///<summary>
 ///法線ベクトルの構文解析を行う
 ///</summary>
 ///----------------------------------------------------------------------
-void ModelLoaderX::ParseMeshNormals()
+void ModelLoaderX::ParseMeshNormals(int parent)
 {
 	//　'{'が出るまでスキップ
 	while ( !mToken.IsEnd() )
@@ -830,6 +906,14 @@ void ModelLoaderX::ParseMeshNormals()
 	//　メモリ解放
 	normals.clear();
 	indices.clear();
+#if 1 // azarashin modified...
+	while(!mToken.Check( "}" ) ) 
+	{
+		//　ノードチェック
+    	CheckNode(parent);
+	}
+	mToken.Next();
+#endif 
 }
 
 ///-----------------------------------------------------------------------
@@ -837,7 +921,7 @@ void ModelLoaderX::ParseMeshNormals()
 ///テクスチャ座標の構文解析を行う
 ///</summary>
 ///-----------------------------------------------------------------------
-void ModelLoaderX::ParseMeshTextureCoords()
+void ModelLoaderX::ParseMeshTextureCoords(int parent)
 {
 	//　'{'が出るまでスキップ
 	while ( !mToken.IsEnd() )
@@ -868,6 +952,14 @@ void ModelLoaderX::ParseMeshTextureCoords()
 
 	//　メモリ解放
 	texcoords.clear();
+#if 1 // azarashin modified...
+	while(!mToken.Check( "}" ) ) 
+	{
+		//　ノードチェック
+    	CheckNode(parent);
+	}
+	mToken.Next();
+#endif 
 }
 
 ///----------------------------------------------------------------------
@@ -875,7 +967,7 @@ void ModelLoaderX::ParseMeshTextureCoords()
 ///頂点カラーを構文解析する
 ///</summary>
 ///----------------------------------------------------------------------
-void ModelLoaderX::ParseMeshVertexColors()
+void ModelLoaderX::ParseMeshVertexColors(int parent)
 {
 	while( !mToken.IsEnd() )
 	{
@@ -936,7 +1028,7 @@ void ModelLoaderX::ParseMeshVertexColors()
 ///マテリアルリストの構文解析を行う
 ///</summary>
 ///-----------------------------------------------------------------------
-void ModelLoaderX::ParseMeshMaterialList()
+void ModelLoaderX::ParseMeshMaterialList(int parent)
 {
 	// '{'が出るまでスキップ
 	while ( !mToken.IsEnd() )
@@ -1026,7 +1118,11 @@ void ModelLoaderX::ParseMeshMaterialList()
 		if ( !mToken.Check( "{" ) )
 		{
 			//　名前をセット
+#if 0 // azarashin modified...
 			std::string name = std::string( mToken.GetNextAsChar() );
+#else
+			std::string name = std::string( mToken.GetAsChar() );
+#endif 
 			DEBUG_LOG( "Material Name : %s", name.c_str() );
 			materials[i].SetName( name );
 
@@ -1112,6 +1208,9 @@ void ModelLoaderX::ParseMeshMaterialList()
 			}			
 		}
 	}
+#if 1 // azarashin
+	mToken.Next();
+#endif
 
 	while( !mToken.IsEnd() )
 	{
@@ -1120,6 +1219,9 @@ void ModelLoaderX::ParseMeshMaterialList()
 
 		mToken.Next();
 	}
+#if 1 // azarashin
+	mToken.Next();
+#endif
 
 	//　マテリアルをセット
 	uint32_t index = mModel.GetNumMeshes() -1;
@@ -1135,12 +1237,16 @@ void ModelLoaderX::ParseMeshMaterialList()
 ///フレームの構文解析を行う
 ///</summary>
 ///-----------------------------------------------------------------------
-void ModelLoaderX::ParseFrame()
+void ModelLoaderX::ParseFrame(int parent)
 {
 	Bone bone;
+#if 0 // azarashin modified...
 	bone.SetParentIndex( mParentIndex );
 
 	mParentIndex++;
+#else 
+	bone.SetParentIndex( parent );
+#endif
 
     mToken.Next();
     if ( mToken.Check( "{" ) )
@@ -1211,42 +1317,63 @@ void ModelLoaderX::ParseFrame()
 
 	//　子フレームがあるかどうかチェック
 	mToken.Next();
-	if ( mToken.Check( "Frame" ) )
-	{
-		//　子フレームがあるならば再帰呼び出し
-		mParentIndex = static_cast< int >( mBoneCaches.size() ) -1;
-		ParseFrame();
-	}
-	//　Frameノードが終了の場合
-	else if ( mToken.Check( "}" ) )
-	{
-		uint32_t index = mBoneCaches.size() -1;
-		mParentIndex = mBoneCaches[index].GetParentIndex();
-		while( !mToken.IsEnd() )
+
+	int this_node = static_cast< int >( mBoneCaches.size() ) -1; 
+
+#if 1 // azarashin modified...
+	while(!mToken.Check( "}" ) ) {
+
+		if ( mToken.Check( "Frame" ) )
 		{
-			//　Frameノードの終了が連続しているかチェック
-			mToken.Next();
-			if ( mToken.Check( "}" ) )
+			//　子フレームがあるならば再帰呼び出し
+	#if 0 // azarashin modified...
+			mParentIndex = static_cast< int >( mBoneCaches.size() ) -1;
+			ParseFrame();
+	#else 
+			ParseFrame(this_node);
+	#endif 
+		}
+		//　Frameノードが終了の場合
+		else if ( mToken.Check( "}" ) )
+		{
+	#if 0 // azarashin modified...
+			uint32_t index = mBoneCaches.size() -1;
+			mParentIndex = mBoneCaches[index].GetParentIndex();
+	#else 
+			mParentIndex = parent; 
+	#endif
+			while( !mToken.IsEnd() )
 			{
-				//　親のインデックスを1つ前の深さに戻す
-				index = mParentIndex;
-				mParentIndex = mBoneCaches[index].GetParentIndex();
-			}
-			else
-			{
-				//　ノードチェック
-				CheckNode();
-                bone.Release();
-				return;
+				//　Frameノードの終了が連続しているかチェック
+				mToken.Next();
+				if ( mToken.Check( "}" ) )
+				{
+					//　親のインデックスを1つ前の深さに戻す
+	#if 0 //azarashin modified...
+					index = mParentIndex;
+					mParentIndex = mBoneCaches[index].GetParentIndex();
+	#endif 
+				}
+				else
+				{
+					//　ノードチェック
+					CheckNode(parent);
+					bone.Release();
+					return;
+				}
 			}
 		}
+		else
+		{
+			//　ノードチェック
+    		CheckNode(this_node);
+		}
 	}
-	else
-	{
-		//　ノードチェック
-    	CheckNode();
-	}
-    bone.Release();
+
+	mToken.Next();
+#endif 
+
+	bone.Release();
 }
 
 ///----------------------------------------------------------------------
@@ -1254,7 +1381,7 @@ void ModelLoaderX::ParseFrame()
 ///スキンウェイトの構文解析を行う
 ///</summary>
 ///----------------------------------------------------------------------
-void ModelLoaderX::ParseSkinWeights()
+void ModelLoaderX::ParseSkinWeights(int parent)
 {
 	//　'{'が出るまでスキップ
 	while( !mToken.IsEnd() )
@@ -1335,7 +1462,7 @@ void ModelLoaderX::ParseSkinWeights()
 			else
 			{
 				//　ノードチェック
-				CheckNode();
+				CheckNode(parent);
 				return;
 			}
 		}
@@ -1343,7 +1470,7 @@ void ModelLoaderX::ParseSkinWeights()
 	else
 	{
 		//　ノードチェック
-		CheckNode();
+		CheckNode(parent);
 	}
 }
 
@@ -1354,7 +1481,7 @@ void ModelLoaderX::ParseSkinWeights()
 ///アニメーションセットの構文解析を行う
 ///</summary>
 ///----------------------------------------------------------------------
-void ModelLoaderX::ParseAnimationSet()
+void ModelLoaderX::ParseAnimationSet(int parent)
 {
 	AnimationClip clip;
 
@@ -1401,7 +1528,7 @@ void ModelLoaderX::ParseAnimationSet()
 ///アニメーションの構文解析を行う
 ///</summary>
 ///-----------------------------------------------------------------------
-void ModelLoaderX::ParseAnimation()
+void ModelLoaderX::ParseAnimation(int parent)
 {
     Animation anime;
 
@@ -1601,7 +1728,7 @@ void ModelLoaderX::ParseAnimation()
         {
             mAnimationCaches.push_back( anime );
 			//　ノードをチェック
-            CheckNode();
+            CheckNode(parent);
         }
     }
 

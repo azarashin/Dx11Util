@@ -39,8 +39,8 @@
 
 #pragma once
 
-#include <DX11Util/Dx11Object.h>
-#include <DX11Util/Dx11Context.h>
+#include <DX11Util/Object/Dx11Object.h>
+#include <DX11Util/Core/Dx11Context.h>
 
 #include <d3d11.h>
 #include <d3dx11.h>
@@ -69,6 +69,6 @@ public:
 	virtual BOOL GetIndexNum(unsigned int idx, unsigned int* num) = 0; 
 
 	virtual BOOL GetTexture(unsigned int num, ID3D11ShaderResourceView** pTexture) = 0; 
-
+	virtual BOOL GetTextureNum(unsigned int* num) = 0; 
 };
 

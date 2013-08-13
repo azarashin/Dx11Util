@@ -50,36 +50,80 @@
 #include <DX11Util/Core/Dx11Context.h>
 
 
-struct tDAEVERTEX
+
+#include <Dx11Util/Object/Dx11Object.h>
+#include <DX11Util/Motion/Dx11XMotionManager.h>
+#include <DX11Util/Motion/Dx11XMotion.h>
+
+
+typedef struct _Dx11XMaterial
 {
-	XMFLOAT3 vPos;
-	XMFLOAT3 vNormal;
-	FLOAT tu, tv;
-};
+	FLOAT diffuse[4]; // rgba
+	FLOAT specular[3]; 
+	FLOAT emissive[3]; 
+	FLOAT power; // index of ID3D11ShaderResourceView
 
+	int tex_index; 
+} Dx11XMaterialStandard; 
 
-class Dx11Object
+typedef struct _Dx11XSubMesh
 {
-public:
-	Dx11Object(void);
-	virtual ~Dx11Object(void);
+	int mat_index; // index of Dx11XMaterialStandard
+	int start_index; // start of index in ID3D11Buffer
+	int size; // size of index in ID3D11Buffer to be rendered. 
+	float bounding_box[3][2]; 
+} Dx11XSubMesh; 
 
-	virtual void Setup(Dx11Context* _context) = 0;
-	virtual void Term() = 0;
+typedef struct _Dx11XBufferInfo
+{
+	ID3D11Buffer* vb; 
+	ID3D11Buffer* ib; 
 
-	virtual BOOL GetBufNum(unsigned int* num) = 0; 
-	virtual BOOL GetVertexBuf(unsigned int num, ID3D11Buffer** buf) = 0; 
-	virtual BOOL GetWeightBuf(unsigned int num, ID3D11Buffer** buf) = 0; 
-	virtual BOOL GetIndexBuf(unsigned int num, ID3D11Buffer** buf) = 0; 
+	int vtx_num; // number of vertex; 
+	int idx_num; // number of index; 
 
-	virtual BOOL GetVertexNum(unsigned int idx, unsigned int* num) = 0; 
-	virtual BOOL GetIndexNum(unsigned int idx, unsigned int* num) = 0; 
+	int ref_frame; 
+} Dx11XBufferInfo; 
 
-	virtual BOOL GetTexture(unsigned int num, ID3D11ShaderResourceView** pTexture) = 0; 
+class Dx11XObject : public Dx11Object
+{
+public: 
+	Dx11XObject(const char* filename); 
+	virtual ~Dx11XObject(); 
+
+	virtual void Setup(Dx11Context* _context);
+	virtual void Term();
+
+	virtual BOOL GetBufNum(unsigned int* num); 
+	virtual BOOL GetVertexBuf(unsigned int num, ID3D11Buffer** buf); 
+	virtual BOOL GetWeightBuf(unsigned int num, ID3D11Buffer** buf); 
+	virtual BOOL GetIndexBuf(unsigned int num, ID3D11Buffer** buf); 
+
+	virtual BOOL GetVertexNum(unsigned int idx, unsigned int* num); 
+	virtual BOOL GetIndexNum(unsigned int idx, unsigned int* num); 
+
+	virtual BOOL GetTexture(unsigned int num, ID3D11ShaderResourceView** pTexture); 
+	virtual BOOL GetTextureNum(unsigned int* num); 
 
 
+	void GetMaterial(unsigned int id, unsigned int mat_id, Dx11XMaterialStandard* material); 
+	int GetNumberOfMaterial(unsigned int id); 
 
-protected:
+	void GetSubMesh(unsigned int id, unsigned int mat_id, Dx11XSubMesh* sub_mesh); 
+	int GetNumberOfSubMesh(unsigned int id); 
+
+	XMFLOAT4X4 GetBindPose(unsigned int idx); 
+
+private: 
+	std::string filename; 
+	Dx11XMotionManager* motion_manager; 
+
+	std::vector<Dx11XBufferInfo> buffer_info; 
+	std::vector<ID3D11ShaderResourceView*>	m_pTexture;	
+
+	std::vector<std::vector<Dx11XMaterialStandard> > material; // [buffer][material]
+	std::vector<std::vector<Dx11XSubMesh> > sub_mesh; // [buffer][sub_mesh]
+
+	std::vector<XMFLOAT4X4> bindpose; 
 
 };
-

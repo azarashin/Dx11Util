@@ -276,7 +276,9 @@ public:
     std::vector< Asura::Math::Vector3 >   GetBinormals();
     std::vector< Short4 >                 GetSkinIndices();
     std::vector< Asura::Math::Vector4 >   GetSkinWeights();
+#if 0 // azarashin modified...
     std::vector< IBone* >                 GetBones();
+#endif
     std::vector< uint32_t >               GetIndices();
     std::vector< IMeshSubset* >           GetSubsets();
     std::vector< IMaterial* >             GetMaterials();
@@ -292,7 +294,9 @@ public:
 	Short4                                GetSkinIndex( uint32_t index );
 	Asura::Math::Vector4                  GetSkinWeight( uint32_t index );
 	uint32_t                              GetIndex( uint32_t index );
+#if 0 // azarashin modified...
 	IBone*                                GetBone( uint32_t index );
+#endif
 	IMeshSubset*                          GetSubset( uint32_t index );
 	IMaterial*                            GetMaterial( uint32_t index );
     
@@ -305,7 +309,9 @@ public:
 	uint32_t  GetNumBinormals();
 	uint32_t  GetNumSkinIndices();
 	uint32_t  GetNumSkinWeights();
+#if 0 // azarashin modified...
 	uint32_t  GetNumBones();
+#endif
 	uint32_t  GetNumIndices();
 	uint32_t  GetNumSubsets();
 	uint32_t  GetNumMaterials();
@@ -321,7 +327,12 @@ public:
 	void      SetSkinIndices( const std::vector< Short4 > &skin_indices );
     void      SetSkinWeights( const std::vector< Asura::Math::Vector4 > &skin_weights );
     void      SetIndices( const std::vector< uint32_t > &indices );
+#if 0 // azarashin modified...
     void      SetBones( const std::vector< Bone > &bones );
+#else
+	void SetRefBone(int ref); 
+	int GetRefBone(); 
+#endif
     void      SetSubsets( const std::vector< MeshSubset > &subsets );
     void      SetMaterials( const std::vector< Material> &materials );
 	Mesh& operator = ( const Mesh &mesh );
@@ -340,7 +351,11 @@ protected:
 	std::vector< Short4 >                   mSkinIndices;
     std::vector< Asura::Math::Vector4 >		mSkinWeights;
 	std::vector< uint32_t >                 mIndices;
+#if 0 // azarashin modified...
     std::vector< Bone >                     mBones;
+#else 
+	int ref_bone; 
+#endif 
     std::vector< MeshSubset >               mSubsets;
     std::vector< Material >                 mMaterials;
 
@@ -636,6 +651,10 @@ public:
 	uint32_t                        GetNumMeshes();
 	uint32_t                        GetNumClips();
 
+	uint32_t						GetNumBones(); 
+	std::vector< IBone* >				GetBones(); 
+	IBone*							GetBone(uint32_t index); 
+
     void SetName( const std::string &name );
     void SetMeshes( const std::vector< Mesh > &meshes );
     void SetClips( const std::vector< AnimationClip > &clips );
@@ -648,6 +667,7 @@ protected:
     std::string					 mName;
     std::vector< Mesh >			 mMeshes;
     std::vector< AnimationClip > mClips;
+	std::vector< Bone >             mBaseBone;
 
     //-------------------------------------------------------------------
     // protected methods

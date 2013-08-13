@@ -47,15 +47,18 @@
 
 #include <vector>
 
-#include <DX11Util/Dx11Context.h>
+#include <DX11Util/Core/Dx11Context.h>
 
 
-struct tDAEVERTEX
+typedef struct 
 {
 	XMFLOAT3 vPos;
 	XMFLOAT3 vNormal;
+	XMFLOAT4 mat_weight; 
+	UINT mat_index[4]; 
+	XMFLOAT4 color; 
 	FLOAT tu, tv;
-};
+} tDAEVERTEX;
 
 
 class Dx11Object
@@ -69,13 +72,13 @@ public:
 
 	virtual BOOL GetBufNum(unsigned int* num) = 0; 
 	virtual BOOL GetVertexBuf(unsigned int num, ID3D11Buffer** buf) = 0; 
-	virtual BOOL GetWeightBuf(unsigned int num, ID3D11Buffer** buf) = 0; 
 	virtual BOOL GetIndexBuf(unsigned int num, ID3D11Buffer** buf) = 0; 
 
 	virtual BOOL GetVertexNum(unsigned int idx, unsigned int* num) = 0; 
 	virtual BOOL GetIndexNum(unsigned int idx, unsigned int* num) = 0; 
 
 	virtual BOOL GetTexture(unsigned int num, ID3D11ShaderResourceView** pTexture) = 0; 
+	virtual BOOL GetTextureNum(unsigned int* num) = 0; 
 
 
 

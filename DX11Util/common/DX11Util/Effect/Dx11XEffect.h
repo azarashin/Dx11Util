@@ -39,31 +39,30 @@
 
 #pragma once
 
-#include <DX11Util/Object/Dx11Object.h>
-#include <DX11Util/Motion/Dx11Motion.h>
-
-
-#include <d3d11.h>
-#include <d3dx11.h>
-#include <dxerr.h>
-
-#include <xnamath.h>
-
-#include <vector>
+#include <DX11Util/Core/Dx11Context.h>
+#include <DX11Util/Object/Dx11XObject.h>
+#include <DX11Util/Motion/Dx11XMotion.h>
 
 
 
-class Dx11Effect
+class Dx11XEffect
 {
 public:
-	Dx11Effect(void);
-	virtual ~Dx11Effect(void);
+	Dx11XEffect(); 
+	virtual ~Dx11XEffect(); 
 
-	virtual HRESULT Setup(ID3D11Device* pd3dDevice) = 0; 
-	virtual HRESULT Update(ID3D11DeviceContext* context, Dx11Object* obj, Dx11Motion* mot) = 0; 
-	virtual HRESULT Term(ID3D11Device* pd3dDevice) = 0; 
+	virtual HRESULT Setup(Dx11Context* context); 
+	virtual HRESULT Update(Dx11Context* context, Dx11XObject* xobj, Dx11Motion* mot, Dx11Camera* cam, Dx11Lens* lens); 
+	virtual HRESULT Term(Dx11Context* context); 
 
-protected:
+private: 
+	ID3D11VertexShader*       pVertexShader; 
+	ID3D11PixelShader*        pPixelShader; 
+	ID3D11InputLayout*        pInputLayout; 
 
+	ID3D11Buffer* const_buf; 
+	ID3D11Buffer* const_buf4part; 
+
+	ID3D11BlendState*         pBlendState;			// ブレンド・ステート・オブジェクト
+	ID3D11DepthStencilState*  pDepthStencilState;	// 深度/ステンシル・ステート・オブジェクト
 };
-

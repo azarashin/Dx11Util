@@ -56,6 +56,7 @@ public:
 	virtual HRESULT Setup() = 0; 
 	virtual HRESULT Update() = 0; 
 	virtual HRESULT GetMatrix(XMMATRIX* mat) = 0; 
+	virtual HRESULT GetNumberOfMatrix(int* num) = 0; 
 	virtual HRESULT Term() = 0; 
 
 protected:
