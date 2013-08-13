@@ -1,5 +1,6 @@
 #include <DX11Util/Effect/Dx11EffectStandard.h>
 #include <d3dcompiler.h>
+#include "ShaderCompilerWrapper.h"
 
 typedef struct  {
 	XMMATRIX World;		// ÉèÅ[ÉãÉhïœä∑çsóÒ
@@ -36,7 +37,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile vertex shader. 
 	ID3DBlob* pBlobVS = NULL;
-	hr = D3DCompileFromFile(
+	hr = D3DCompileFromFileWrapper(
 			L"shader\\standard.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
@@ -65,7 +66,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile geometory shader. 
 	ID3DBlob* pBlobGS = NULL;
-	hr = D3DCompileFromFile(
+	hr = D3DCompileFromFileWrapper(
 			L"shader\\standard.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
@@ -92,7 +93,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile pixel shader
 	ID3DBlob* pBlobPS = NULL;
-	hr = D3DCompileFromFile(
+	hr = D3DCompileFromFileWrapper(
 			L"shader\\standard.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file

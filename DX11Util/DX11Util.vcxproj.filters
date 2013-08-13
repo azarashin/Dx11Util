@@ -229,6 +229,9 @@
     <ClCompile Include="implement\Util\DDSTextureLoader.cpp">
       <Filter>source_header\util</Filter>
     </ClCompile>
+    <ClCompile Include="implement\Util\ShaderCompilerWrapper.cpp">
+      <Filter>source_header\util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASURA\asDef.h">
@@ -383,6 +386,12 @@
     </ClInclude>
     <ClInclude Include="common\DX11Util\Effect\Dx11XEffect.h">
       <Filter>source_header\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ShaderCompilerWrapper.h">
+      <Filter>source_header\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDSTextureLoader.h">
+      <Filter>source_header\util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #include <DX11Util/Effect/Dx11EffectSideBySide.h>
 #include <DX11Util/Object/Dx11ObjectTargetTexture.h>
 #include <d3dcompiler.h>
+#include "ShaderCompilerWrapper.h"
 
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }	// âï˙É}ÉNÉç
@@ -34,7 +35,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile vertex shader. 
 	ID3DBlob* pBlobVS = NULL;
-	hr = D3DCompileFromFile(
+	hr = D3DCompileFromFileWrapper(
 			L"shader\\sidebyside.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
@@ -88,7 +89,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile pixel shader
 	ID3DBlob* pBlobPS = NULL;
-	hr = D3DCompileFromFile(
+	hr = D3DCompileFromFileWrapper(
 			L"shader\\sidebyside.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file

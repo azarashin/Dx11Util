@@ -148,7 +148,7 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <ClCompile Include="implement\Effect\Dx11Effect.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectGUI.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectGUICanvas.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="implement\Effect\Dx11EffectGUIStandard.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectGUITrans.cpp" />
@@ -190,6 +190,7 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     </ClCompile>
     <ClCompile Include="implement\Object\Dx11XObject.cpp" />
     <ClCompile Include="implement\Util\DDSTextureLoader.cpp" />
+    <ClCompile Include="implement\Util\ShaderCompilerWrapper.cpp" />
     <ClCompile Include="implement\__under_construction\Dx11DirectionalLight.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -247,6 +248,8 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <ClInclude Include="common\DX11Util\__under_construction\Dx11DirectionalLight.h" />
     <ClInclude Include="common\DX11Util\__under_construction\Dx11Index.h" />
     <ClInclude Include="common\DX11Util\__under_construction\Dx11Vertex.h" />
+    <ClInclude Include="include\DDSTextureLoader.h" />
+    <ClInclude Include="include\ShaderCompilerWrapper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
