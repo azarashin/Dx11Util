@@ -1,4 +1,4 @@
-#include <DX11Util/Dx11Context.h>
+#include <DX11Util/Core/Dx11Context.h>
 
 // 必要なライブラリをリンクする
 #pragma comment( lib, "d3d11.lib" )
