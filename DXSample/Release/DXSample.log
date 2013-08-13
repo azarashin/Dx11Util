@@ -1,42 +1,44 @@
-﻿2013/08/05 0:15:00 にビルドを開始しました。
-     1>ノード 2 上のプロジェクト "C:\Users\azarashin\Dx11Util\DXSample\DXSample.vcxproj" (build ターゲット)。
-     1>InitializeBuildStatus:
-         "AlwaysCreate" が指定されたため "Release\DXSample.unsuccessfulbuild" を作成しています。
-       ClCompile:
-         すべての出力が最新のものです。
-         すべての出力が最新のものです。
-       ResourceCompile:
-         すべての出力が最新のものです。
+﻿2013/08/13 16:03:17 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "D:\MyDevelopment\Dx11Util\DXSample\DXSample.vcxproj" (Build ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\OpenCV2.3.1\build\include /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ID:\MyDevelopment\Dx11Util\\DX11Util\Package\include /ID:\MyDevelopment\Dx11Util\\DX11Util\Package\include\XNAMath /Zi /nologo /W3 /WX- /MP /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt DXSample.cpp SampleScene02.cpp
+         DXSample.cpp
+         SampleScene02.cpp
+     1>SampleScene02.cpp(35): warning C4244: '初期化中' : 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+     1>SampleScene02.cpp(33): warning C4101: 'buf' : ローカル変数は 1 度も使われていません。
+     1>c:\opencv2.3.1\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (DXSample.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : 'fopen' の宣言を確認してください。
+     1>C:\OpenCV2.3.1\build\include\opencv2/flann/flann.hpp(233): warning C4996: 'cv::flann::Index_<T>': が古い形式として宣言されました。 (DXSample.cpp)
+                 C:\OpenCV2.3.1\build\include\opencv2/flann/flann.hpp(278) : コンパイルされたクラスの テンプレート のインスタンス化 'cv::flann::Index_<T>' の参照を確認してください
+     1>C:\OpenCV2.3.1\build\include\opencv2/legacy/compat.hpp : warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。 (DXSample.cpp)
+     1>DXSample.cpp(226): warning C4101: 'hr' : ローカル変数は 1 度も使われていません。
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\azarashin\Dx11Util\Release\DXSample.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\OpenCV2.3.1\build\x86\vc10\lib /LIBPATH:C:\Users\azarashin\Dx11Util\\DX11Util\Package\lib\Release /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" opencv_core231.lib opencv_gpu231.lib opencv_highgui231.lib opencv_imgproc231.lib opencv_video231.lib opencv_ml231.lib DX11Util.lib d3dx10.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\DXSample.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\azarashin\Dx11Util\Release\DXSample.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\azarashin\Dx11Util\Release\DXSample.lib" /MACHINE:X86 Release\DXSample.res
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\MyDevelopment\Dx11Util\Release\DXSample.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\OpenCV2.3.1\build\x86\vc10\lib /LIBPATH:D:\MyDevelopment\Dx11Util\\DX11Util\Package\lib\Release /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" opencv_core231.lib opencv_gpu231.lib opencv_highgui231.lib opencv_imgproc231.lib opencv_video231.lib opencv_ml231.lib DX11Util.lib d3d11.lib d3dcompiler.lib dxguid.lib winmm.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\MyDevelopment\Dx11Util\Release\DXSample.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\MyDevelopment\Dx11Util\Release\DXSample.lib" /MACHINE:X86 /SAFESEH Release\DXSample.res
          Release\DXSample.obj
          Release\SampleScene01.obj
          Release\SampleScene02.obj
          Release\SampleScene03.obj
          Release\SampleScene04.obj
          Release\SampleScene06.obj
+         Release\SampleScene07.obj
          Release\stdafx.obj
          コード生成しています。
          コード生成が終了しました。
-         DXSample.vcxproj -> C:\Users\azarashin\Dx11Util\Release\DXSample.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\azarashin\Dx11Util\Release\DXSample.exe;#1" /manifest Release\DXSample.exe.intermediate.manifest
+         DXSample.vcxproj -> D:\MyDevelopment\Dx11Util\Release\DXSample.exe
        PostBuildEvent:
-         copy "C:\Users\azarashin\Dx11Util\\shader\*.*" "C:\Users\azarashin\Dx11Util\DXSample\\workspace\shader\"
+         copy "D:\MyDevelopment\Dx11Util\\shader\*.*" "D:\MyDevelopment\Dx11Util\DXSample\\workspace\shader\"
          :VCEnd
-         C:\Users\azarashin\Dx11Util\\shader\canvas.sh
-         C:\Users\azarashin\Dx11Util\\shader\commet.sh
-         C:\Users\azarashin\Dx11Util\\shader\escape_game.sh
-         C:\Users\azarashin\Dx11Util\\shader\gui.sh
-         C:\Users\azarashin\Dx11Util\\shader\gui_trans.sh
-         C:\Users\azarashin\Dx11Util\\shader\sidebyside.sh
-         C:\Users\azarashin\Dx11Util\\shader\standard.sh
-                 7 個のファイルをコピーしました。
-       FinalizeBuildStatus:
-         ファイル "Release\DXSample.unsuccessfulbuild" を削除しています。
-         "Release\DXSample.lastbuildstate" のタッチ タスクを実行しています。
-     1>プロジェクト "C:\Users\azarashin\Dx11Util\DXSample\DXSample.vcxproj" (build ターゲット) のビルドが完了しました。
+         D:\MyDevelopment\Dx11Util\\shader\canvas.sh
+         D:\MyDevelopment\Dx11Util\\shader\commet.sh
+         D:\MyDevelopment\Dx11Util\\shader\escape_game.sh
+         D:\MyDevelopment\Dx11Util\\shader\gui.sh
+         D:\MyDevelopment\Dx11Util\\shader\gui_trans.sh
+         D:\MyDevelopment\Dx11Util\\shader\sidebyside.sh
+         D:\MyDevelopment\Dx11Util\\shader\standard.sh
+         D:\MyDevelopment\Dx11Util\\shader\xfile_notexture.sh
+                 8 個のファイルをコピーしました。
+     1>プロジェクト "D:\MyDevelopment\Dx11Util\DXSample\DXSample.vcxproj" (Build ターゲット) のビルドが完了しました。
 
 ビルドに成功しました。
 
-経過時間 00:00:04.78
+経過時間 00:00:07.40

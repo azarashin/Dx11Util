@@ -15,7 +15,7 @@
 // Includes
 //-----------------------------------------------------------------------
 #include "asdxShaderUtil.h"
-#include <d3dx11.h>
+
 #include <d3dcompiler.h>
 
 namespace Asura {

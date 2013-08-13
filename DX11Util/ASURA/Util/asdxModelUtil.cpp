@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------------
 #include "asdxModelUtil.h"
 #include <d3dcompiler.h>
-#include <d3dx11.h>
+
 
 
 //------------------------------------------------------------------------------------
@@ -59,9 +59,9 @@ typedef struct AS_ALIGN16 _MeshMaterial
 /////////////////////////////////////////////////////////////////////////////////////
 typedef struct AS_ALIGN16 _MatrixBuffer
 {
-    D3DXMATRIX World;
-    D3DXMATRIX View;
-    D3DXMATRIX Projection;
+    XMFLOAT4X4 World;
+    XMFLOAT4X4 View;
+    XMFLOAT4X4 Projection;
 } MatrixBuffer;
 
 
@@ -70,8 +70,8 @@ typedef struct AS_ALIGN16 _MatrixBuffer
 /////////////////////////////////////////////////////////////////////////////////////
 typedef struct AS_ALIGN16 _VectorBuffer
 {
-    D3DXVECTOR3 LightDir;
-    D3DXVECTOR3 ViewDir;
+    XMFLOAT3 LightDir;
+    XMFLOAT3 ViewDir;
 } VectorBuffer;
 
 
@@ -369,9 +369,9 @@ ID3D11InputLayout* ModelUtil::GetDefaultInputLayout()
 void ModelUtil::SetMatrix
 (
     ID3D11DeviceContext* pImmediateContext,
-    const D3DXMATRIX &world,
-    const D3DXMATRIX &view,
-    const D3DXMATRIX &proj
+    const XMFLOAT4X4 &world,
+    const XMFLOAT4X4 &view,
+    const XMFLOAT4X4 &proj
 )
 {
     MatrixBuffer buffer;
@@ -391,8 +391,8 @@ void ModelUtil::SetMatrix
 void ModelUtil::SetVector
 (
     ID3D11DeviceContext* pImmediateContext,
-    const D3DXVECTOR3 &lightDir,
-    const D3DXVECTOR3 &viewDir
+    const XMFLOAT3 &lightDir,
+    const XMFLOAT3 &viewDir
 )
 {
     VectorBuffer buffer;
@@ -1047,9 +1047,9 @@ Matrix SkinningModelData::GetRootMatrix()
 //-----------------------------------------------------------------------
 //! @brief ルート行列を取得する
 //-----------------------------------------------------------------------
-D3DXMATRIX SkinningModelData::GetD3DXRootMatrix()
+XMFLOAT4X4 SkinningModelData::GetD3DXRootMatrix()
 {
-	D3DXMATRIX result;
+	XMFLOAT4X4 result;
 	memcpy(
 		&result.m[ 0 ][ 0 ],
 		&mRoot.m[ 0 ][ 0 ], 
@@ -1075,9 +1075,9 @@ std::vector< Matrix > SkinningModelData::GetSkinTransformMatrix()
 //-----------------------------------------------------------------------
 //! @brief 行列パレットを取得する
 //-----------------------------------------------------------------------
-std::vector< D3DXMATRIX > SkinningModelData::GetD3DXSkinTransformMatrix()
+std::vector< XMFLOAT4X4 > SkinningModelData::GetD3DXSkinTransformMatrix()
 {
-	std::vector< D3DXMATRIX > result;
+	std::vector< XMFLOAT4X4 > result;
 	if ( mpPlayer )
 	{
 		result.resize( mpPlayer->GetSkinTransform().size() );

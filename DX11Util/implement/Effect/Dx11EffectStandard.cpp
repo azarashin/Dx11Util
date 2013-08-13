@@ -1,4 +1,5 @@
 #include <DX11Util/Effect/Dx11EffectStandard.h>
+#include <d3dcompiler.h>
 
 typedef struct  {
 	XMMATRIX World;		// ÉèÅ[ÉãÉhïœä∑çsóÒ
@@ -35,7 +36,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile vertex shader. 
 	ID3DBlob* pBlobVS = NULL;
-	hr = D3DX11CompileFromFile(
+	hr = D3DCompileFromFile(
 			L"shader\\standard.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
@@ -43,10 +44,9 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 			"vs_4_0",      // vertex shader 4.0
 			flagCompile, // compile option
 			0,             // compile option for effect
-			NULL,          // finish function after compiling
 			&pBlobVS,      // compiled byte code 
-			NULL,          // no error message
-			NULL);         // return 
+			NULL);          // no error message
+
 	if (FAILED(hr)) {
 		return DXTRACE_ERR(L"InitDirect3D D3DX11CompileShaderFromFile", hr);
 	}
@@ -65,18 +65,17 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile geometory shader. 
 	ID3DBlob* pBlobGS = NULL;
-	hr = D3DX11CompileFromFile(
+	hr = D3DCompileFromFile(
 			L"shader\\standard.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
-			"GS",          // run GS function
-			"gs_4_0",      // geometory shader
+			"GS",          // run VS function
+			"gs_4_0",      // vertex shader 4.0
 			flagCompile, // compile option
 			0,             // compile option for effect
-			NULL,          // finish function after compiling
 			&pBlobGS,      // compiled byte code 
-			NULL,          // no error message
-			NULL);         // return
+			NULL);          // no error message
+
 	if (FAILED(hr))
 		return DXTRACE_ERR(L"InitDirect3D D3DX11CompileShaderFromFile", hr);
 
@@ -93,18 +92,16 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile pixel shader
 	ID3DBlob* pBlobPS = NULL;
-	hr = D3DX11CompileFromFile(
+	hr = D3DCompileFromFile(
 			L"shader\\standard.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
-			"PS",          // run PS function
-			"ps_4_0",      // Pixel shader
-			flagCompile, //  compile option
+			"PS",          // run VS function
+			"ps_4_0",      // vertex shader 4.0
+			flagCompile, // compile option
 			0,             // compile option for effect
-			NULL,          // finish function after compiling
 			&pBlobPS,      // compiled byte code 
-			NULL,          // no error message
-			NULL);         // return
+			NULL);          // no error message
 	if (FAILED(hr))
 		return DXTRACE_ERR(L"InitDirect3D D3DX11CompileShaderFromFile", hr);
 

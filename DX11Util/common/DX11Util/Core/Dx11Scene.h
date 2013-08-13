@@ -46,7 +46,7 @@ class Dx11Scene;
 #include <DX11Util/Lens/Dx11Lens.h>
 
 #include <d3d11.h>
-#include <d3dx11.h>
+
 // #include <dxerr.h>
 
 #include <vector>

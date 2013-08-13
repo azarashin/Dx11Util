@@ -1,4 +1,5 @@
 #include <DX11Util/Object/Dx11ObjectViewAround.h>
+#include "DDSTextureLoader.h"
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }
 
@@ -81,42 +82,42 @@ void Dx11ObjectViewAround::Setup(Dx11Context* _context)
 	WCHAR filepath[2048];
 
 	MultiByteToWideChar(CP_UTF8, 0, front.c_str(), -1, filepath, (int)sizeof(filepath));
-	hr = D3DX11CreateShaderResourceViewFromFile(pd3dDevice, filepath, NULL, NULL, &m_pTexture[0], &hr); 
+	hr = CreateDDSTextureFromFile( pd3dDevice, filepath, NULL, &m_pTexture[0] ); 
 	if (FAILED(hr)) {
 		DXTRACE_ERR(L"D3DX11CreateShaderResourceViewFromFile", hr);
 		return; 
 	}
 
 	MultiByteToWideChar(CP_UTF8, 0, back.c_str(), -1, filepath, (int)sizeof(filepath));
-	hr = D3DX11CreateShaderResourceViewFromFile(pd3dDevice, filepath, NULL, NULL, &m_pTexture[1], &hr); 
+	hr = CreateDDSTextureFromFile( pd3dDevice, filepath, NULL, &m_pTexture[1] ); 
 	if (FAILED(hr)) {
 		DXTRACE_ERR(L"D3DX11CreateShaderResourceViewFromFile", hr);
 		return; 
 	}
 
 	MultiByteToWideChar(CP_UTF8, 0, top.c_str(), -1, filepath, (int)sizeof(filepath));
-	hr = D3DX11CreateShaderResourceViewFromFile(pd3dDevice, filepath, NULL, NULL, &m_pTexture[2], &hr); 
+	hr = CreateDDSTextureFromFile( pd3dDevice, filepath, NULL, &m_pTexture[2] ); 
 	if (FAILED(hr)) {
 		DXTRACE_ERR(L"D3DX11CreateShaderResourceViewFromFile", hr);
 		return; 
 	}
 
 	MultiByteToWideChar(CP_UTF8, 0, bottom.c_str(), -1, filepath, (int)sizeof(filepath));
-	hr = D3DX11CreateShaderResourceViewFromFile(pd3dDevice, filepath, NULL, NULL, &m_pTexture[3], &hr); 
+	hr = CreateDDSTextureFromFile( pd3dDevice, filepath, NULL, &m_pTexture[3] ); 
 	if (FAILED(hr)) {
 		DXTRACE_ERR(L"D3DX11CreateShaderResourceViewFromFile", hr);
 		return; 
 	}
 
 	MultiByteToWideChar(CP_UTF8, 0, left.c_str(), -1, filepath, (int)sizeof(filepath));
-	hr = D3DX11CreateShaderResourceViewFromFile(pd3dDevice, filepath, NULL, NULL, &m_pTexture[4], &hr); 
+	hr = CreateDDSTextureFromFile( pd3dDevice, filepath, NULL, &m_pTexture[4] ); 
 	if (FAILED(hr)) {
 		DXTRACE_ERR(L"D3DX11CreateShaderResourceViewFromFile", hr);
 		return; 
 	}
 
 	MultiByteToWideChar(CP_UTF8, 0, right.c_str(), -1, filepath, (int)sizeof(filepath));
-	hr = D3DX11CreateShaderResourceViewFromFile(pd3dDevice, filepath, NULL, NULL, &m_pTexture[5], &hr); 
+	hr = CreateDDSTextureFromFile( pd3dDevice, filepath, NULL, &m_pTexture[5] ); 
 	if (FAILED(hr)) {
 		DXTRACE_ERR(L"D3DX11CreateShaderResourceViewFromFile", hr);
 		return; 

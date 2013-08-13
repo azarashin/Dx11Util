@@ -42,7 +42,7 @@
 /// [warning] This class is under construction! 
 
 #include <d3d11.h>
-#include <d3dx11.h>
+
 // #include <dxerr.h>
 
 #include <xnamath.h>

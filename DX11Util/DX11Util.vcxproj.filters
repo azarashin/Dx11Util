@@ -47,6 +47,9 @@
     <Filter Include="external\ASURA\Graphics">
       <UniqueIdentifier>{126025ad-4fd2-4dce-87f5-775710aa2111}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source_header\util">
+      <UniqueIdentifier>{dad00362-aaa1-4f93-93bc-38fecff17e02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -222,6 +225,9 @@
     </ClCompile>
     <ClCompile Include="implement\Effect\Dx11XEffect.cpp">
       <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Util\DDSTextureLoader.cpp">
+      <Filter>source_header\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

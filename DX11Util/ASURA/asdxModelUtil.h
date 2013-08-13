@@ -11,7 +11,7 @@
 #include "asModel.h"
 #include "asTimer.h"
 #include <d3d11.h>
-#include <d3dx10math.h>
+#include <xnamath.h>
 
 namespace Asura {
 namespace Util {
@@ -64,13 +64,13 @@ public:
     static ID3D11InputLayout*  GetDefaultInputLayout();
     static void SetMatrix( 
         ID3D11DeviceContext* pImmediateContext,
-        const D3DXMATRIX &world,
-        const D3DXMATRIX &view,
-        const D3DXMATRIX &proj );
+        const XMFLOAT4X4 &world,
+        const XMFLOAT4X4 &view,
+        const XMFLOAT4X4 &proj );
     static void SetVector(
         ID3D11DeviceContext* pImmediateContext,
-        const D3DXVECTOR3 &lightDir,
-        const D3DXVECTOR3 &viewDir );
+        const XMFLOAT3 &lightDir,
+        const XMFLOAT3 &viewDir );
 };
 
 
@@ -257,13 +257,13 @@ public:
     uint32_t     GetNumClips();
     void         SetClip( const uint32_t index );
 	void         SetRootMatrix( const Asura::Math::Matrix &matrix );
-	void         SetD3DXRootMatrix( const D3DXMATRIX &matrix );
+	void         SetD3DXRootMatrix( const XMFLOAT4X4 &matrix );
     void         Update( const bool isStop = false, const float speed = 1.0f );
 
 	std::vector< Asura::Math::Matrix > GetSkinTransformMatrix();
-	std::vector< D3DXMATRIX >          GetD3DXSkinTransformMatrix();
+	std::vector< XMFLOAT4X4 >          GetD3DXSkinTransformMatrix();
 	Asura::Math::Matrix                GetRootMatrix();
-	D3DXMATRIX                         GetD3DXRootMatrix();
+	XMFLOAT4X4                         GetD3DXRootMatrix();
 };
 
 

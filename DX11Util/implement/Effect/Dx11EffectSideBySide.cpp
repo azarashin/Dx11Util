@@ -1,5 +1,6 @@
 #include <DX11Util/Effect/Dx11EffectSideBySide.h>
 #include <DX11Util/Object/Dx11ObjectTargetTexture.h>
+#include <d3dcompiler.h>
 
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }	// ‰ð•úƒ}ƒNƒ
@@ -33,7 +34,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile vertex shader. 
 	ID3DBlob* pBlobVS = NULL;
-	hr = D3DX11CompileFromFile(
+	hr = D3DCompileFromFile(
 			L"shader\\sidebyside.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
@@ -41,10 +42,8 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 			"vs_4_0",      // vertex shader 4.0
 			flagCompile, // compile option
 			0,             // compile option for effect
-			NULL,          // finish function after compiling
 			&pBlobVS,      // compiled byte code 
-			NULL,          // no error message
-			NULL);         // return 
+			NULL);          // no error message
 	if (FAILED(hr)) {
 		return DXTRACE_ERR(L"InitDirect3D D3DX11CompileShaderFromFile", hr);
 	}
@@ -89,18 +88,16 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile pixel shader
 	ID3DBlob* pBlobPS = NULL;
-	hr = D3DX11CompileFromFile(
+	hr = D3DCompileFromFile(
 			L"shader\\sidebyside.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
-			"PS",          // run PS function
-			"ps_4_0",      // Pixel shader
-			flagCompile, //  compile option
+			"PS",          // run VS function
+			"ps_4_0",      // vertex shader 4.0
+			flagCompile, // compile option
 			0,             // compile option for effect
-			NULL,          // finish function after compiling
 			&pBlobPS,      // compiled byte code 
-			NULL,          // no error message
-			NULL);         // return
+			NULL);          // no error message
 	if (FAILED(hr))
 		return DXTRACE_ERR(L"InitDirect3D D3DX11CompileShaderFromFile", hr);
 
@@ -192,8 +189,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 HRESULT Dx11EffectSideBySide::Update(Dx11Context* _context, Dx11Scene* scene, Dx11CameraSideBySide* camera, Dx11LensSideBySide* lens)
 {
 	HRESULT hr; 
-	int num; 
-	unsigned int i, max; 
+	unsigned int max; 
 	D3D11_MAPPED_SUBRESOURCE MappedResource;
 	ID3D11DeviceContext* context = _context->GetDXDC(); 
 	EffectSideBySideInfo * param;
@@ -281,12 +277,11 @@ HRESULT Dx11EffectSideBySide::Update(Dx11Context* _context, Dx11Scene* scene, Dx
 
 	left->GetBufNum(&max); 
 
-	for(int i=0;i<max;i++)
+	for(unsigned int i=0;i<max;i++)
 	{
 		unsigned int vn, in; 
 		ID3D11Buffer* vb; 
 		ID3D11Buffer* ib; 
-		ID3D11Buffer* uv; 
 
 		left->GetVertexBuf(i, &vb); 
 		left->GetIndexBuf(i, &ib); 
@@ -356,12 +351,11 @@ HRESULT Dx11EffectSideBySide::Update(Dx11Context* _context, Dx11Scene* scene, Dx
 
 	right->GetBufNum(&max); 
 
-	for(int i=0;i<max;i++)
+	for(unsigned int i=0;i<max;i++)
 	{
 		unsigned int vn, in; 
 		ID3D11Buffer* vb; 
 		ID3D11Buffer* ib; 
-		ID3D11Buffer* uv; 
 
 		right->GetVertexBuf(i, &vb); 
 		right->GetIndexBuf(i, &ib); 

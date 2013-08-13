@@ -15,7 +15,7 @@ void SampleScene02::Setup(Dx11Context* context)
 {
 	left = 0; 
 	max = 300.0f; 
-	text = new Dx11ObjectGUIStandard("image.jpg"); 
+	text = new Dx11ObjectGUIStandard("image.dds"); 
 	text->Setup(context); 
 
 	effect = new Dx11EffectGUIStandard(); 

@@ -1,4 +1,5 @@
 #include <DX11Util/Effect/Dx11XEffect.h>
+#include <d3dcompiler.h>
 
 
 typedef struct  { // Warning: XMMATRIX ‚Å‚Í‚È‚­XMFLOAT4X4 ‚ðŽg‚¤‚æ‚¤‚ÉC³‚·‚é‚±‚Æ
@@ -43,7 +44,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile vertex shader. 
 	ID3DBlob* pBlobVS = NULL;
-	hr = D3DX11CompileFromFile(
+	hr = D3DCompileFromFile(
 			L"shader\\xfile_notexture.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
@@ -51,10 +52,8 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 			"vs_4_0",      // vertex shader 4.0
 			flagCompile, // compile option
 			0,             // compile option for effect
-			NULL,          // finish function after compiling
 			&pBlobVS,      // compiled byte code 
-			NULL,          // no error message
-			NULL);         // return 
+			NULL);          // no error message
 	if (FAILED(hr)) {
 		return DXTRACE_ERR(L"InitDirect3D D3DX11CompileShaderFromFile", hr);
 	}
@@ -98,18 +97,16 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// **********************************************************
 	// compile pixel shader
 	ID3DBlob* pBlobPS = NULL;
-	hr = D3DX11CompileFromFile(
+	hr = D3DCompileFromFile(
 			L"shader\\xfile_notexture.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
-			"PS",          // run PS function
-			"ps_4_0",      // Pixel shader
-			flagCompile, //  compile option
+			"PS",          // run VS function
+			"ps_4_0",      // vertex shader 4.0
+			flagCompile, // compile option
 			0,             // compile option for effect
-			NULL,          // finish function after compiling
 			&pBlobPS,      // compiled byte code 
-			NULL,          // no error message
-			NULL);         // return
+			NULL);          // no error message
 	if (FAILED(hr))
 		return DXTRACE_ERR(L"InitDirect3D D3DX11CompileShaderFromFile", hr);
 
@@ -283,7 +280,6 @@ HRESULT Dx11XEffect::Update(Dx11Context* _context, Dx11XObject* xobj, Dx11Motion
 		unsigned int vn, in; 
 		ID3D11Buffer* vb; 
 		ID3D11Buffer* ib; 
-		ID3D11Buffer* uv; 
 
 		xobj->GetVertexBuf(i, &vb); 
 		xobj->GetIndexBuf(i, &ib); 

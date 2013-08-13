@@ -3,6 +3,8 @@
 
 #include <map>
 
+#include "DDSTextureLoader.h"
+
 
 using namespace Asura::Graphics; 
 
@@ -350,7 +352,7 @@ void Dx11XObject::Setup(Dx11Context* _context)
 		WCHAR filepath[4096];
 		MultiByteToWideChar(CP_UTF8, 0, filename.c_str(), -1, filepath, (int)sizeof(filepath));
 		HRESULT hr; 
-		hr = D3DX11CreateShaderResourceViewFromFile(pd3dDevice, filepath, NULL, NULL, &m_pTexture[i], &hr); 
+		hr = CreateDDSTextureFromFile( pd3dDevice, filepath, NULL, &m_pTexture[i] ); 
 		if (FAILED(hr)) {
 			DXTRACE_ERR(L"D3DX11CreateShaderResourceViewFromFile", hr);
 			return; 
@@ -360,7 +362,7 @@ void Dx11XObject::Setup(Dx11Context* _context)
 
 
 	// animation. 
-	int num_bones = mpInterface->GetNumBones(); 
+	unsigned int num_bones = mpInterface->GetNumBones(); 
 	bindpose.assign(num_bones, XMFLOAT4X4()); 
 	for(i=0;i<num_bones;i++) {
 		IBone* bone = mpInterface->GetBone(i); 
@@ -377,17 +379,17 @@ void Dx11XObject::Setup(Dx11Context* _context)
 		XMStoreFloat4x4(&bindpose[i], xmmbindpose); 
 	}
 
-	int num_clips = mpInterface->GetNumClips(); 
+	unsigned int num_clips = mpInterface->GetNumClips(); 
 	for(i=0;i<num_clips;i++) {
 		IAnimationClip* clip = mpInterface->GetClip(i); 
 		float duration = clip->GetDuration(); 
 		std::string name = clip->GetName(); 
-		int num_frames = clip->GetNumFrames(); 
+		unsigned int num_frames = clip->GetNumFrames(); 
 		for(j=0;j<num_frames;j++) {
 			IAnimation* frame = clip->GetFrame(j); 
 			int bidx = frame->GetBoneIndex(); 
 			std::string bname = frame->GetName(); 
-			int num_keys = frame->GetNumKeys(); 
+			unsigned int num_keys = frame->GetNumKeys(); 
 			for(k=0;k<num_keys;k++) {
 				IKeyPose* keypose = frame->GetKey(k); 
 				int tm = keypose->GetTime(); 

@@ -15,8 +15,8 @@
 
 #include <windows.h>
 #include <crtdbg.h>
-#include <d3dx11.h>
-#include <dxerr.h>
+
+//#include <dxerr.h>
 
 #include <DX11Util/Core/Dx11Context.h>
 
@@ -147,7 +147,7 @@ HRESULT InitApp(HINSTANCE hInst)
 HRESULT InitDirect3D(void)
 {
 	 s_scene = new Dx11Context(); 
-	 s_scene->Setup(s_hWindow, new SampleScene07()); 
+	 s_scene->Setup(s_hWindow, new SampleScene01()); 
 
 	 return S_OK;
 }

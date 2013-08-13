@@ -22,6 +22,7 @@
 //-----------------------------------------------------------------------
 // Data Definition
 //-----------------------------------------------------------------------
+#ifndef _STDINT
 typedef unsigned char          uchar_t;
 typedef unsigned char          uint8_t;
 typedef unsigned short         uint16_t;
@@ -33,7 +34,7 @@ typedef int                    int32_t;
 typedef long long              int64_t;
 typedef float                  fp32_t;
 typedef double                 fp64_t;
-
+#endif
 
 #ifndef AS_TCHAR_DEFINE
 #define AS_TCHAR_DEFINE 1

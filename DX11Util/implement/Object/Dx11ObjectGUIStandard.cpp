@@ -1,4 +1,5 @@
 #include <DX11Util/Object/Dx11ObjectGUIStandard.h>
+#include "DDSTextureLoader.h"
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }
 
@@ -75,7 +76,7 @@ void Dx11ObjectGUIStandard::Setup(Dx11Context* _context)
 
 	WCHAR filepath[2048];
 	MultiByteToWideChar(CP_UTF8, 0, filename.c_str(), -1, filepath, (int)sizeof(filepath));
-	hr = D3DX11CreateShaderResourceViewFromFile(pd3dDevice, filepath, NULL, NULL, &m_pTexture, &hr); 
+	hr = CreateDDSTextureFromFile( pd3dDevice, filepath, NULL, &m_pTexture ); 
 	if (FAILED(hr)) {
 		DXTRACE_ERR(L"D3DX11CreateShaderResourceViewFromFile", hr);
 		return; 

@@ -2342,7 +2342,7 @@ std::vector< IBone* > Model::GetBones()
 {
 	std::vector< IBone* > ret; 
 	ret.assign(mBaseBone.size(), 0); 
-	int i; 
+	unsigned int i; 
 	for(i=0;i<mBaseBone.size();i++) {
 		ret[i] = &(mBaseBone[i]); 
 	}
