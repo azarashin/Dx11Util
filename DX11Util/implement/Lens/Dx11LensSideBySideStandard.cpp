@@ -1,4 +1,4 @@
-#include <DX11Util/Dx11LensSideBySideStandard.h>
+#include <DX11Util/Lens/Dx11LensSideBySideStandard.h>
 
 
 Dx11LensSideBySideStandard::Dx11LensSideBySideStandard(void)

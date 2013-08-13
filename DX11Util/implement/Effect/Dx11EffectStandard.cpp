@@ -1,4 +1,4 @@
-#include <DX11Util/Dx11EffectStandard.h>
+#include <DX11Util/Effect/Dx11EffectStandard.h>
 
 typedef struct  {
 	XMMATRIX World;		// ƒ[ƒ‹ƒh•ÏŠ·s—ñ

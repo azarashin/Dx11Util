@@ -1,4 +1,4 @@
-#include <DX11Util/Dx11EffectGUI.h>
+#include <DX11Util/Effect/Dx11EffectGUI.h>
 
 
 
