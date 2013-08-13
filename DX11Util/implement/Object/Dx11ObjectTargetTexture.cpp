@@ -1,4 +1,4 @@
-#include <DX11Util/Dx11ObjectTargetTexture.h>
+#include <DX11Util/Object/Dx11ObjectTargetTexture.h>
 
 #include <dxerr.h>
 
@@ -23,10 +23,10 @@ void Dx11ObjectTargetTexture::Setup(Dx11Context* _context)
 	HRESULT hr; 
 	ID3D11Device* pd3dDevice = _context->GetDXDevice(); 
 	tDAEVERTEX v[4] = {
-		{XMFLOAT3( -1.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , 1.0f, 0.0f}, 
-		{XMFLOAT3( 1.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , 0.0f, 0.0f}, 
-		{XMFLOAT3( 1.0f,  -1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , 0.0f, 1.0f}, 
-		{XMFLOAT3( -1.0f,  -1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , 1.0f, 1.0f}, 
+		{XMFLOAT3( -1.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 1.0f, 0.0f}, 
+		{XMFLOAT3( 1.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 0.0f, 0.0f}, 
+		{XMFLOAT3( 1.0f,  -1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 0.0f, 1.0f}, 
+		{XMFLOAT3( -1.0f,  -1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 1.0f, 1.0f}, 
 	}; 
 
 	D3D11_BUFFER_DESC vBufferDesc;
@@ -353,3 +353,8 @@ void Dx11ObjectTargetTexture::Activate(ID3D11DeviceContext* context)
 	context->PSSetSamplers(0, 1, &pTextureSamplerWrap);
 }
 
+BOOL Dx11ObjectTargetTexture::GetTextureNum(unsigned int* num)
+{
+	*num = 1; 
+	return true; 
+}

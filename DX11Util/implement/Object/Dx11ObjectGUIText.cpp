@@ -1,4 +1,4 @@
-#include <DX11Util/Dx11ObjectGUIText.h>
+#include <DX11Util/Object/Dx11ObjectGUIText.h>
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }
 
@@ -235,5 +235,11 @@ BOOL Dx11ObjectGUIText::GetIndexNum(unsigned int idx, unsigned int* num)
 	} else {
 		*num = 0; 
 	}
+	return true; 
+}
+
+BOOL Dx11ObjectGUIText::GetTextureNum(unsigned int* num)
+{
+	*num = 1; 
 	return true; 
 }

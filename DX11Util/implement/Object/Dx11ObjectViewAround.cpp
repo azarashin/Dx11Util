@@ -1,4 +1,4 @@
-#include <DX11Util/Dx11ObjectViewAround.h>
+#include <DX11Util/Object/Dx11ObjectViewAround.h>
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }
 
@@ -25,10 +25,10 @@ void Dx11ObjectViewAround::Setup(Dx11Context* _context)
 	HRESULT hr; 
 	ID3D11Device* pd3dDevice = _context->GetDXDevice(); 
 	tDAEVERTEX v[4] = {
-		{XMFLOAT3( 0.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , 0.0f, 1.0f}, 
-		{XMFLOAT3( 1.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , 1.0f, 1.0f}, 
-		{XMFLOAT3( 1.0f,  0.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , 1.0f, 0.0f}, 
-		{XMFLOAT3( 0.0f,  0.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , 0.0f, 0.0f}, 
+		{XMFLOAT3( 0.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 0.0f, 1.0f}, 
+		{XMFLOAT3( 1.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 1.0f, 1.0f}, 
+		{XMFLOAT3( 1.0f,  0.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 1.0f, 0.0f}, 
+		{XMFLOAT3( 0.0f,  0.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 0.0f, 0.0f}, 
 	}; 
 
 	D3D11_BUFFER_DESC vBufferDesc;
@@ -176,5 +176,12 @@ BOOL Dx11ObjectViewAround::GetVertexNum(unsigned int idx, unsigned int* num)
 BOOL Dx11ObjectViewAround::GetIndexNum(unsigned int idx, unsigned int* num)
 {
 	*num = 6; 
+	return true; 
+}
+
+
+BOOL Dx11ObjectViewAround::GetTextureNum(unsigned int* num)
+{
+	*num = 1; 
 	return true; 
 }
