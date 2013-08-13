@@ -41,13 +41,15 @@
 
 #include <d3d11.h>
 #include <d3dx11.h>
-#include <dxerr.h>
+// #include <dxerr.h>
 
 #include <xnamath.h>
 
 #include <vector>
 
 class Dx11Context; 
+
+#define DXTRACE_ERR(x, y) (y)
 
 #include <DX11Util/Core/Dx11Scene.h>
 

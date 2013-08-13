@@ -1,6 +1,6 @@
 #include <DX11Util/Object/Dx11ObjectTargetTexture.h>
 
-#include <dxerr.h>
+// #include <dxerr.h>
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }
 

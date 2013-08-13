@@ -42,7 +42,7 @@
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <d3dx10math.h>
-#include <dxerr.h>
+// #include <dxerr.h>
 
 #include <xnamath.h>
 
