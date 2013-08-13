@@ -1,0 +1,109 @@
+﻿2013/08/13 11:34:21 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\azarashin\Dx11Util\DX11Util\DX11Util.vcxproj" (build ターゲット)。
+     1>InitializeBuildStatus:
+         "Debug\DX11Util.unsuccessfulbuild" のタッチ タスクを実行しています。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\azarashin\Dx11Util\DX11Util\common /IC:\Users\azarashin\Dx11Util\DX11Util\\ASURA /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /IC:\Users\azarashin\Dx11Util\\DX11Util\Package\include /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt implement\Object\Dx11XObject.cpp
+         Dx11XObject.cpp
+     1>c:\users\azarashin\dx11util\dx11util\implement\object\dx11xobject.cpp(365): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\azarashin\dx11util\dx11util\implement\object\dx11xobject.cpp(381): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\azarashin\dx11util\dx11util\implement\object\dx11xobject.cpp(386): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+     1>c:\users\azarashin\dx11util\dx11util\implement\object\dx11xobject.cpp(391): warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"C:\Users\azarashin\Dx11Util\Debug\DX11Util.lib" /NOLOGO Debug\asdxShaderUtil.obj
+         Debug\asModelImpl.obj
+         Debug\asModelLoaderX.obj
+         Debug\asdxModelUtil.obj
+         Debug\asTokenizer.obj
+         Debug\Dx11Camera.obj
+         Debug\Dx11CameraRift.obj
+         Debug\Dx11CameraSideBySide.obj
+         Debug\Dx11CameraSideBySideStandard.obj
+         Debug\Dx11CameraStandard.obj
+         Debug\Dx11Context.obj
+         Debug\Dx11Scene.obj
+         Debug\Dx11Effect.obj
+         Debug\Dx11EffectGUI.obj
+         Debug\Dx11EffectGUIStandard.obj
+         Debug\Dx11EffectGUITrans.obj
+         Debug\Dx11EffectSideBySide.obj
+         Debug\Dx11EffectStandard.obj
+         Debug\Dx11XEffect.obj
+         Debug\Dx11Lens.obj
+         Debug\Dx11LensRift.obj
+         Debug\Dx11LensSideBySide.obj
+         Debug\Dx11LensSideBySideStandard.obj
+         Debug\Dx11LensStandard.obj
+         Debug\Dx11Motion.obj
+         Debug\Dx11MotionStandard.obj
+         Debug\Dx11XMotion.obj
+         Debug\Dx11XMotionManager.obj
+         Debug\Dx11Object.obj
+         Debug\Dx11ObjectGUI.obj
+         Debug\Dx11ObjectGUICanvas.obj
+         Debug\Dx11ObjectGUIStandard.obj
+         Debug\Dx11ObjectGUIText.obj
+         Debug\Dx11ObjectParticle.obj
+         Debug\Dx11ObjectTargetTexture.obj
+         Debug\Dx11ObjectViewAround.obj
+         Debug\Dx11XObject.obj
+         DX11Util.vcxproj -> C:\Users\azarashin\Dx11Util\Debug\DX11Util.lib
+       PostBuildEvent:
+         if exist "C:\Users\azarashin\Dx11Util\DX11Util\\Package\lib\Debug\DX11Util.lib" (del /S /Q "C:\Users\azarashin\Dx11Util\DX11Util\\Package\lib\Debug\DX11Util.lib")
+         if exist "C:\Users\azarashin\Dx11Util\DX11Util\\Package\include\DX11Util\*.h" (del /S /Q "C:\Users\azarashin\Dx11Util\DX11Util\\Package\include\DX11Util\*.h")
+         if exist "C:\Users\azarashin\Dx11Util\DX11Util\\common" (xcopy /Y /S "C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\*.h" "C:\Users\azarashin\Dx11Util\DX11Util\\Package\include\DX11Util\")
+         copy "C:\Users\azarashin\Dx11Util\Debug\DX11Util.lib" "C:\Users\azarashin\Dx11Util\DX11Util\\Package\lib\Debug\" 
+         if "$TargetExt" == ".exe" (if "Debug" == "Release" (copy "C:\Users\azarashin\Dx11Util\Debug\DX11Util.lib" "C:\Users\azarashin\Dx11Util\\working_space"))
+         
+         :VCEnd
+         削除したファイル - C:\Users\azarashin\Dx11Util\DX11Util\Package\lib\Debug\DX11Util.lib
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Camera\Dx11Camera.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Camera\Dx11CameraRift.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Camera\Dx11CameraSideBySide.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Camera\Dx11CameraSideBySideStandard.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Camera\Dx11CameraStandard.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Core\Dx11Context.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Core\Dx11Scene.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Effect\Dx11Effect.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Effect\Dx11EffectGUI.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Effect\Dx11EffectGUICanvas.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Effect\Dx11EffectGUIStandard.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Effect\Dx11EffectGUITrans.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Effect\Dx11EffectSideBySide.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Effect\Dx11EffectStandard.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Effect\Dx11EffectViewAround.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Effect\Dx11XEffect.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Lens\Dx11Lens.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Lens\Dx11LensRift.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Lens\Dx11LensSideBySide.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Lens\Dx11LensSideBySideStandard.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Lens\Dx11LensStandard.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Motion\Dx11Motion.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Motion\Dx11MotionStandard.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Motion\Dx11XMotion.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Motion\Dx11XMotionManager.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11Object.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectDae.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectDaeStdModel.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectGUI.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectGUICanvas.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectGUIStandard.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectGUIText.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectParticle.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectTargetTexture.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectViewAround.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11ObjectWaveFront.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\Object\Dx11XObject.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\__under_construction\Dx11DirectionalLight.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\__under_construction\Dx11Index.h
+         C:\Users\azarashin\Dx11Util\DX11Util\\common\DX11Util\__under_construction\Dx11Vertex.h
+         40 個のファイルをコピーしました
+                 1 個のファイルをコピーしました。
+       FinalizeBuildStatus:
+         ファイル "Debug\DX11Util.unsuccessfulbuild" を削除しています。
+         "Debug\DX11Util.lastbuildstate" のタッチ タスクを実行しています。
+     1>プロジェクト "C:\Users\azarashin\Dx11Util\DX11Util\DX11Util.vcxproj" (build ターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:19.87
