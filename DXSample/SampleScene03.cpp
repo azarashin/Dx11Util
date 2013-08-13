@@ -3,6 +3,7 @@
 #include "SampleScene03.h"
 #include "SampleScene01.h"
 #include "SampleScene06.h"
+#include "SampleScene07.h"
 
 
 #include <DX11Util/Camera/Dx11CameraSideBySide.h>
@@ -16,7 +17,7 @@
 
 SampleScene03::SampleScene03(void)
 {
-	act = new SampleScene06(); 
+	act = new SampleScene07(); 
 }
 
 

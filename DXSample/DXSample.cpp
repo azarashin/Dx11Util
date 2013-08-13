@@ -25,6 +25,7 @@
 #include "SampleScene03.h"
 #include "SampleScene04.h"
 #include "SampleScene06.h"
+#include "SampleScene07.h"
 
 // ƒTƒEƒ“ƒhŒn
 
@@ -146,7 +147,7 @@ HRESULT InitApp(HINSTANCE hInst)
 HRESULT InitDirect3D(void)
 {
 	 s_scene = new Dx11Context(); 
-	 s_scene->Setup(s_hWindow, new SampleScene03()); 
+	 s_scene->Setup(s_hWindow, new SampleScene07()); 
 
 	 return S_OK;
 }
