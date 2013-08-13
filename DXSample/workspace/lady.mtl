@@ -1,0 +1,106 @@
+newmtl Skin
+Ns 40
+Ka 0 0 0
+Kd 0.976471 0.968628 0.960784
+Ks 0.0235294 0.0200981 0.0184314
+map_Kd GGSkinC1.jpg
+map_Bump  GGMask1.jpg
+d 1
+newmtl Nipples
+Ns 18
+Ka 0 0 0
+Kd 1 0.870588 0.811765
+Ks 0 0 0
+map_Kd GGSkinC1.jpg
+d 1
+newmtl Fingernails
+Ns 18
+Ka 0 0 0
+Kd 0.839216 0 0.137255
+Ks 0.5 0.5 0.5
+d 1
+newmtl Toenails
+Ns 18
+Ka 0 0 0
+Kd 0.870588 0 0.180392
+Ks 0.5 0.5 0.5
+d 1
+newmtl Lacrimal
+Ns 18
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+map_Kd GGSkinC1.jpg
+d 1
+newmtl Eyelashes
+Ns 18
+Ka 0 0 0
+Kd 0 0 0
+Ks 0 0 0
+d 0
+newmtl Eyebrows
+Ns 18
+Ka 0 0 0
+Kd 0 0 0
+Ks 0 0 0
+d 0
+newmtl Tongue
+Ns 18
+Ka 0 0 0
+Kd 0.678431 0.458824 0.447059
+Ks 0.196078 0.0745098 0.101961
+map_Kd GGTongueC1.jpg
+map_Bump  GGTongueC1.jpg
+d 1
+newmtl Teeth
+Ns 40
+Ka 0 0 0
+Kd 0.996078 0.988235 0.905882
+Ks 0.0219608 0.0213726 0.0200981
+d 1
+newmtl Lips
+Ns 18
+Ka 0 0 0
+Kd 1 0.717647 0.792157
+Ks 0.196078 0.0745098 0.101961
+map_Kd GGSkinC1.jpg
+d 1
+newmtl InnerMouth
+Ns 50
+Ka 0 0 0
+Kd 0.713726 0.564706 0.513726
+Ks 0.0142157 0.0113726 0.0126471
+map_Kd GGSkinC1.jpg
+map_Bump  GGSkinC1.jpg
+d 1
+newmtl Eyetrans
+Ns 100
+Ka 0 0 0
+Kd 0 0 0
+Ks 0 0 0
+d 0
+newmtl Pupil
+Ns 100
+Ka 0 0 0
+Kd 0 0 0
+Ks 0.988235 0.988235 0.988235
+d 1
+newmtl Iris
+Ns 100
+Ka 0.1 0.1 0.1
+Kd 0.945098 0.984314 0.960784
+Ks 0.945098 0.984314 0.960784
+map_Kd GGEyeC1.jpg
+d 1
+newmtl Eyeball
+Ns 100
+Ka 0 0 0
+Kd 0.886275 0.886275 0.886275
+Ks 0.443137 0.443137 0.443137
+d 1
+newmtl Hair
+Ns 30
+Ka 0 0 0
+Kd 0.247059 0 0
+Ks 0.0588083 0.0588083 0.0588083
+d 1
