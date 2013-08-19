@@ -14,7 +14,7 @@ Dx11Context::~Dx11Context(void)
 /*-------------------------------------------
 	Direct3D初期化
 --------------------------------------------*/
-HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene)
+HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene, int _width, int _height)
 {
 	pFeatureLevels = new D3D_FEATURE_LEVEL[3]; 
 	pFeatureLevels[0] = D3D_FEATURE_LEVEL_11_0; 
@@ -47,8 +47,8 @@ HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene)
     DXGI_SWAP_CHAIN_DESC sd;
     ZeroMemory(&sd, sizeof(sd));    // 構造体の値を初期化(必要な場合)
     sd.BufferCount       = 1;       // バック・バッファ数
-    sd.BufferDesc.Width  = 640;     // バック・バッファの幅
-    sd.BufferDesc.Height = 480;     // バック・バッファの高さ
+    sd.BufferDesc.Width  = _width;     // バック・バッファの幅
+    sd.BufferDesc.Height = _height;     // バック・バッファの高さ
     sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;  // フォーマット
     sd.BufferDesc.RefreshRate.Numerator = 60;  // リフレッシュ・レート(分子)
     sd.BufferDesc.RefreshRate.Denominator = 1; // リフレッシュ・レート(分母)
@@ -157,8 +157,8 @@ HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene)
     // ビューポートの設定
     ViewPort[0].TopLeftX = 0.0f;    // ビューポート領域の左上X座標。
     ViewPort[0].TopLeftY = 0.0f;    // ビューポート領域の左上Y座標。
-    ViewPort[0].Width    = 640.0f;  // ビューポート領域の幅
-    ViewPort[0].Height   = 480.0f;  // ビューポート領域の高さ
+    ViewPort[0].Width    = (float)_width;  // ビューポート領域の幅
+    ViewPort[0].Height   = (float)_height;  // ビューポート領域の高さ
     ViewPort[0].MinDepth = 0.0f; // ビューポート領域の深度値の最小値
     ViewPort[0].MaxDepth = 1.0f; // ビューポート領域の深度値の最大値
 
@@ -320,6 +320,16 @@ HRESULT Dx11Context::Start()
 
 	return Activate(); 
 }
+
+HRESULT Dx11Context::ClearBackground(float ClearColor[4])
+{
+    pImmediateContext->ClearRenderTargetView(
+                       pRenderTargetView, // クリアする描画ターゲット
+                       ClearColor);         // クリアする値
+	return S_OK; 
+}
+
+
 
 HRESULT Dx11Context::Activate()
 {

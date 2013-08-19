@@ -1,6 +1,6 @@
 #include <DX11Util/Effect/Dx11XEffect.h>
 #include <d3dcompiler.h>
-#include "ShaderCompilerWrapper.h"
+#include <DX11Util/Util/ShaderCompilerWrapper.h>
 
 
 typedef struct  { // Warning: XMMATRIX ‚Å‚Í‚È‚­XMFLOAT4X4 ‚ğg‚¤‚æ‚¤‚ÉC³‚·‚é‚±‚Æ

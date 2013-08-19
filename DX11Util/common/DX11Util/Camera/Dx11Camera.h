@@ -56,6 +56,8 @@ public:
 	virtual HRESULT Setup() = 0; 
 	virtual HRESULT GetMatrix(XMMATRIX* mat) = 0; 
 	virtual HRESULT GetBackwardMatrix(XMMATRIX* mat) = 0; 
+	virtual HRESULT GetCamPos(XMFLOAT3* vec) = 0; 
+	virtual HRESULT GetCamFront(XMFLOAT3* vec) = 0; 
 	virtual HRESULT Term() = 0; 
 
 protected:

@@ -245,11 +245,11 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectViewAround.h" />
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectWaveFront.h" />
     <ClInclude Include="common\DX11Util\Object\Dx11XObject.h" />
+    <ClInclude Include="common\DX11Util\Util\DDSTextureLoader.h" />
+    <ClInclude Include="common\DX11Util\Util\ShaderCompilerWrapper.h" />
     <ClInclude Include="common\DX11Util\__under_construction\Dx11DirectionalLight.h" />
     <ClInclude Include="common\DX11Util\__under_construction\Dx11Index.h" />
     <ClInclude Include="common\DX11Util\__under_construction\Dx11Vertex.h" />
-    <ClInclude Include="include\DDSTextureLoader.h" />
-    <ClInclude Include="include\ShaderCompilerWrapper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

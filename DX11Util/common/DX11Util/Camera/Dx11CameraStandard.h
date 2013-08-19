@@ -59,11 +59,14 @@ public:
 	virtual HRESULT GetMatrix(XMMATRIX* mat); 
 	virtual HRESULT GetBackwardMatrix(XMMATRIX* mat); 
 	virtual HRESULT Term(); 
+	virtual HRESULT GetCamPos(XMFLOAT3* vec); 
+	virtual HRESULT GetCamFront(XMFLOAT3* vec); 
 
 	void SetCameraDirection(const XMFLOAT3& pos, const XMFLOAT3& at); 
 	void SetCameraDirection(const XMFLOAT3& pos, const XMFLOAT3& at, const XMFLOAT3& upper_vec); 
 
 protected:
 	XMFLOAT4X4 mat, bmat; 
+	XMFLOAT3 m_pos, m_dir; 
 };
 

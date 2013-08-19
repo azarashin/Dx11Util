@@ -28,7 +28,7 @@
 //
 //M*/
 
-#include "ShaderCompilerWrapper.h"
+#include <DX11Util/Util/ShaderCompilerWrapper.h>
 #include <cstdlib>
 #include <iostream>
 #include <fstream>

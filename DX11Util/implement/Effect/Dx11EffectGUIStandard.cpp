@@ -1,6 +1,6 @@
 #include <DX11Util/Effect/Dx11EffectGUIStandard.h>
 #include <d3dcompiler.h>
-#include "ShaderCompilerWrapper.h"
+#include <DX11Util/Util/ShaderCompilerWrapper.h>
 
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }	// ‰ð•úƒ}ƒNƒ
@@ -237,6 +237,7 @@ HRESULT Dx11EffectGUIStandard::Update(Dx11Context* _context, Dx11ObjectGUI* obj,
 	{
 		unsigned int vn, in; 
 		ID3D11Buffer* vb; 
+
 		ID3D11Buffer* ib; 
 
 		obj->GetVertexBuf(i, &vb); 

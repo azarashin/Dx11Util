@@ -39,14 +39,28 @@ void Dx11CameraStandard::SetCameraDirection(const XMFLOAT3& pos, const XMFLOAT3&
 
 void Dx11CameraStandard::SetCameraDirection(const XMFLOAT3& _pos, const XMFLOAT3& _at, const XMFLOAT3& _upper)
 {
+	m_pos = _pos; 
 	XMVECTOR pos = XMLoadFloat3(&_pos); 
 	XMVECTOR at = XMLoadFloat3(&_at); 
 	XMVECTOR upper = XMLoadFloat3(&_upper); 
-	XMVECTOR front = at - pos; 
+	XMVECTOR front = XMVector3Normalize(at - pos); 
 	XMVECTOR back_at = pos - front; 
 	XMMATRIX _mat = XMMatrixLookAtLH(pos, at, upper); 
 	XMMATRIX _bmat = XMMatrixLookAtLH(pos, back_at, upper); 
+	XMStoreFloat3(&m_dir, front); 
 
 	XMStoreFloat4x4(&mat, _mat); 
 	XMStoreFloat4x4(&bmat, _bmat); 
+}
+
+HRESULT Dx11CameraStandard::GetCamPos(XMFLOAT3* vec)
+{
+	*vec = m_pos; 
+	return S_OK; 
+}
+
+HRESULT Dx11CameraStandard::GetCamFront(XMFLOAT3* vec)
+{
+	*vec = m_dir; 
+	return S_OK; 
 }

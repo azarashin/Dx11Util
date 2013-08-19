@@ -18,6 +18,7 @@ public:
 
 	virtual Dx11Scene* GetNext(Dx11Context* context); 
 
+	void SetNext(Dx11Scene* context); 
 private: 
 	int left; 
 	Dx11ObjectGUIText* text; 

@@ -387,10 +387,10 @@
     <ClInclude Include="common\DX11Util\Effect\Dx11XEffect.h">
       <Filter>source_header\effect</Filter>
     </ClInclude>
-    <ClInclude Include="include\ShaderCompilerWrapper.h">
+    <ClInclude Include="common\DX11Util\Util\ShaderCompilerWrapper.h">
       <Filter>source_header\util</Filter>
     </ClInclude>
-    <ClInclude Include="include\DDSTextureLoader.h">
+    <ClInclude Include="common\DX11Util\Util\DDSTextureLoader.h">
       <Filter>source_header\util</Filter>
     </ClInclude>
   </ItemGroup>

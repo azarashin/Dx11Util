@@ -3,7 +3,7 @@
 
 #include <map>
 
-#include "DDSTextureLoader.h"
+#include <DX11Util/Util/DDSTextureLoader.h>
 
 
 using namespace Asura::Graphics; 

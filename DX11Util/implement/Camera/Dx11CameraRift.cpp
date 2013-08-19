@@ -85,3 +85,20 @@ HRESULT Dx11CameraRift::Update()
 	return S_OK; 
 }
 
+
+HRESULT Dx11CameraRift::GetCamPos(XMFLOAT3* vec)
+{
+	*vec = pos; 
+	return S_OK; 
+}
+
+HRESULT Dx11CameraRift::GetCamFront(XMFLOAT3* vec)
+{
+	XMVECTOR _at, _pos; 
+	_at = XMLoadFloat3(&at); 
+	_pos = XMLoadFloat3(&pos); 
+	XMVECTOR front = XMVector3Normalize(_at - _pos); 
+	XMStoreFloat3(vec, front); 
+	return S_OK; 
+}
+

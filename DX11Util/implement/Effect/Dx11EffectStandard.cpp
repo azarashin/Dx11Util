@@ -1,6 +1,6 @@
 #include <DX11Util/Effect/Dx11EffectStandard.h>
 #include <d3dcompiler.h>
-#include "ShaderCompilerWrapper.h"
+#include <DX11Util/Util/ShaderCompilerWrapper.h>
 
 typedef struct  {
 	XMMATRIX World;		// ƒ[ƒ‹ƒh•ÏŠ·s—ñ

@@ -66,7 +66,7 @@ public:
 	 * @param hwnd handle of window. You will set the return value of CreateWindow. 
 	 * @param first_scene instance of Dx11Scene which developer design as their own application. 
 	 **/ 
-	HRESULT Setup(HWND hwnd, Dx11Scene* first_scene); 
+	HRESULT Setup(HWND hwnd, Dx11Scene* first_scene, int width, int height); 
 
 	/**
 	 * Update. 
@@ -86,6 +86,8 @@ public:
 	HRESULT Start(); 
 	HRESULT Activate(); 
 	HRESULT Flush(); 
+
+	HRESULT ClearBackground(float ClearColor[4]); 
 
 private: 
 	HRESULT InitBackBuffer(int width, int height); 

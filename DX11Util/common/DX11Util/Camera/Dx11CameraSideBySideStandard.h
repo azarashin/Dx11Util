@@ -62,6 +62,8 @@ public:
 	virtual HRESULT Term(); 
 	virtual HRESULT SetIsLeft(bool _is_left); 
 	virtual HRESULT Update();  
+	virtual HRESULT GetCamPos(XMFLOAT3* vec); 
+	virtual HRESULT GetCamFront(XMFLOAT3* vec); 
 
 
 	void SetCameraDirection(const XMFLOAT3& pos, const XMFLOAT3& at, const XMFLOAT3& _upper); 
@@ -69,7 +71,7 @@ public:
 protected:
 	XMFLOAT4X4 mat, bmat; 
 
-	XMFLOAT3 pos, at, upper; 
+	XMFLOAT3 pos, at, upper, dir; 
 	float base_length; 
 	bool is_left; 
 };

@@ -62,5 +62,7 @@ public:
 	virtual HRESULT SetIsLeft(bool _is_left) = 0; 
 
 	virtual HRESULT Update() = 0;  
+	virtual HRESULT GetCamPos(XMFLOAT3* vec) = 0; 
+	virtual HRESULT GetCamFront(XMFLOAT3* vec) = 0; 
 };
 

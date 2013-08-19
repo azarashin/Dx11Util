@@ -1,5 +1,5 @@
 #include <DX11Util/Object/Dx11ObjectGUIStandard.h>
-#include "DDSTextureLoader.h"
+#include <DX11Util/Util/DDSTextureLoader.h>
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }
 
