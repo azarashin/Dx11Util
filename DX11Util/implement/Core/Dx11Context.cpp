@@ -262,6 +262,12 @@ HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene, int _width, int _h
 	return S_OK;
 }
 
+HRESULT Dx11Context::GetFPS(float* _fps)
+{
+	*_fps = fps; 
+	return S_OK; 
+}
+
 
 HRESULT Dx11Context::Update()
 {
@@ -272,6 +278,7 @@ HRESULT Dx11Context::Update()
 	LARGE_INTEGER latest, diff, li; 
 	QueryPerformanceCounter(&latest);
 	diff.QuadPart = latest.QuadPart - now.QuadPart; 
+	fps = (float)((double)freq.QuadPart / (double)diff.QuadPart); 
 
 //	for(li.QuadPart = 0;li.QuadPart < diff / (freq/frames); li.QuadPart += freq/frame) {
 	for(li.QuadPart = freq.QuadPart;li.QuadPart < diff.QuadPart * frames; li.QuadPart += freq.QuadPart) {

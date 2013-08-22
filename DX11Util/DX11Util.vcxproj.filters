@@ -232,6 +232,9 @@
     <ClCompile Include="implement\Util\ShaderCompilerWrapper.cpp">
       <Filter>source_header\util</Filter>
     </ClCompile>
+    <ClCompile Include="implement\Core\Dx11SceneOSD_FPS.cpp">
+      <Filter>source_header\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASURA\asDef.h">
@@ -392,6 +395,9 @@
     </ClInclude>
     <ClInclude Include="common\DX11Util\Util\DDSTextureLoader.h">
       <Filter>source_header\util</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Core\Dx11SceneOSD_FPS.h">
+      <Filter>source_header\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -88,6 +88,7 @@ public:
 	HRESULT Flush(); 
 
 	HRESULT ClearBackground(float ClearColor[4]); 
+	HRESULT GetFPS(float* _fps); 
 
 private: 
 	HRESULT InitBackBuffer(int width, int height); 
@@ -119,5 +120,6 @@ protected:
 	Dx11Scene* current_scene; 
 	LARGE_INTEGER now; 
 	LARGE_INTEGER freq;  
+	float fps; 
 };
 

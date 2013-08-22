@@ -145,6 +145,7 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <ClCompile Include="implement\Camera\Dx11CameraStandard.cpp" />
     <ClCompile Include="implement\Core\Dx11Context.cpp" />
     <ClCompile Include="implement\Core\Dx11Scene.cpp" />
+    <ClCompile Include="implement\Core\Dx11SceneOSD_FPS.cpp" />
     <ClCompile Include="implement\Effect\Dx11Effect.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectGUI.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectGUICanvas.cpp">
@@ -215,6 +216,7 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <ClInclude Include="common\DX11Util\Camera\Dx11CameraStandard.h" />
     <ClInclude Include="common\DX11Util\Core\Dx11Context.h" />
     <ClInclude Include="common\DX11Util\Core\Dx11Scene.h" />
+    <ClInclude Include="common\DX11Util\Core\Dx11SceneOSD_FPS.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11Effect.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUI.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUICanvas.h" />
