@@ -25,11 +25,15 @@ void SampleScene01::Setup(Dx11Context* context)
 	effect = new Dx11EffectGUIStandard(); 
 	effect->Setup(context); 
 
+	osd_fps = new Dx11SceneOSD_FPS(); 
+	osd_fps->Setup(context); 
+
 }
 
 void SampleScene01::Update()
 {
 	left++; 
+	osd_fps->Update(); 
 }
  
 void SampleScene01::Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* lens)
@@ -42,10 +46,18 @@ void SampleScene01::Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* l
 		1.0f, 0.5f, 0, 0}; // 完全不透明（1.0f), 色半反転(0,5f)
 
 	effect->Update(context, text, &info); 
+	if(_heapchk()!=_HEAPOK) {
+		DebugBreak();
+	}
+	osd_fps->Render(context, camera, lens); 
 }
  
 void SampleScene01::Term(Dx11Context* context)
 {
+	osd_fps->Term(context); 
+	delete osd_fps; 
+	osd_fps = 0; 
+
 	text->Term(); 
 	effect->Term(context); 
 

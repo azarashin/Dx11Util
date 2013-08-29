@@ -120,6 +120,8 @@ protected:
 	Dx11Scene* current_scene; 
 	LARGE_INTEGER now; 
 	LARGE_INTEGER freq;  
+	LARGE_INTEGER previous, left_time; 
 	float fps; 
+	double sum_fps, fps_count; 
 };
 

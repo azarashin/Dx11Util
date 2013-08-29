@@ -103,10 +103,11 @@ float Dx11ObjectGUIText::SetText(Dx11Context* _context, WCHAR* mes)
 	if(canvas == 0) {
 		canvas = new Dx11ObjectGUICanvas(width, height); 
 		canvas->Setup(_context); 
-	} else if((oldwidth != width) || (oldheight != height)) { //if((oldwidth < width) || (oldheight < height)) { 
+	} else if((oldwidth < width) || (oldheight < height)) { //if((oldwidth != width) || (oldheight != height)) { 
 		canvas->Term(); 
 		delete canvas ;
 
+//		canvas = new Dx11ObjectGUICanvas((width/16)*16, (height/16)*16); 
 		canvas = new Dx11ObjectGUICanvas(width, height); 
 		canvas->Setup(_context); 
 	}

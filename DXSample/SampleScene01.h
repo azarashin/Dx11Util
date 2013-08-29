@@ -3,7 +3,7 @@
 #include <DX11Util/Core/Dx11Scene.h>
 #include <DX11Util/Object/Dx11ObjectGUIText.h>
 #include <DX11Util/Effect/Dx11EffectGUIStandard.h>
-
+#include <DX11Util/Core/Dx11SceneOSD_FPS.h>
 
 class SampleScene01 : public Dx11Scene
 {
@@ -27,5 +27,6 @@ private:
 	float max; 
 
 	Dx11Scene* scene2;
+	Dx11SceneOSD_FPS* osd_fps; 
 };
 

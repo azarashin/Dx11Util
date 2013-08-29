@@ -54,6 +54,8 @@ typedef struct
 {
 	XMFLOAT3 vPos;
 	XMFLOAT3 vNormal;
+	XMFLOAT3 vTangent;
+	XMFLOAT3 vBinormal;
 	XMFLOAT4 mat_weight; 
 	UINT mat_index[4]; 
 	XMFLOAT4 color; 

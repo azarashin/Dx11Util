@@ -29,12 +29,15 @@ void Dx11SceneOSD_FPS::Update()
 void Dx11SceneOSD_FPS::Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* lens)
 {
 	wchar_t buf[32]; 
-	float fps;
-	context->GetFPS(&fps); 
-	wsprintf(buf, L"FPS %f", fps); 
+	float fps_info = 0.0f;
+	float fps_info2 = 0.0f;
+	context->GetFPS(&fps_info); 
+	fps_info2 = fps_info; 
+	swprintf_s(buf, 32, L"FPS %.2f", fps_info2); 
+//	wsprintf(buf, L"FPS %f", fps); 
 	float w = text->SetText(context, buf); 
 
-	EffectGUIStandardInfo info = {0, 0, 0.125f * w, 0.125f, 
+	EffectGUIStandardInfo info = {0, 1.0f - 0.125f, 0.125f * w, 0.125f, 
 		0.5f, 0.5f, 0, 0}; // ”¼“§–¾i0.5f), F”¼”½“](0,5f)
 
 	effect->Update(context, text, &info); 

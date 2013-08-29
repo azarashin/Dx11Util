@@ -10,6 +10,8 @@ cbuffer cbNeverChanges : register(b0) { // 常にスロット「0」を使う
 struct VS_INPUT {
     float3 Pos  : POSITION; 
     float3 Normal  : NORMAL; 
+    float3 Tangent  : TANGENT; 
+    float3 Binormal  : BINORMAL; 
     float4 Weight  : WEIGHT; 
 	int4 Windex  : WEIGHT_INDEX; 
 	float4 Color   : COLOR; 

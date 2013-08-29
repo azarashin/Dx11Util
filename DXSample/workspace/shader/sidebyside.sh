@@ -11,6 +11,8 @@ cbuffer EffectGUIStandardInfo : register(b0) {
 struct VS_INPUT {
     float3 Pos  : POSITION; 
     float3 Normal  : NORMAL; 
+    float3 Tangent  : TANGENT; 
+    float3 Binormal  : BINORMAL; 
     float4 Weight  : WEIGHT; 
 	int4 Windex  : WEIGHT_INDEX; 
 	float4 Color   : COLOR; 

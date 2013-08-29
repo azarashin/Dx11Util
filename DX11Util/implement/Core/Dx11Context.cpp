@@ -5,6 +5,7 @@
 
 Dx11Context::Dx11Context(void)
 {
+	fps = 0.0f; 
 }
 
 Dx11Context::~Dx11Context(void)
@@ -16,6 +17,7 @@ Dx11Context::~Dx11Context(void)
 --------------------------------------------*/
 HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene, int _width, int _height)
 {
+	fps = 0.0f; 
 	pFeatureLevels = new D3D_FEATURE_LEVEL[3]; 
 	pFeatureLevels[0] = D3D_FEATURE_LEVEL_11_0; 
 	pFeatureLevels[1] = D3D_FEATURE_LEVEL_10_1; 
@@ -259,6 +261,11 @@ HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene, int _width, int _h
 	QueryPerformanceFrequency(&freq); 
 	QueryPerformanceCounter(&now);
 
+	previous.QuadPart = now.QuadPart; 
+	left_time.QuadPart = 0; 
+	sum_fps = 0.0; 
+	fps_count =0.0; 
+
 	return S_OK;
 }
 
@@ -278,13 +285,30 @@ HRESULT Dx11Context::Update()
 	LARGE_INTEGER latest, diff, li; 
 	QueryPerformanceCounter(&latest);
 	diff.QuadPart = latest.QuadPart - now.QuadPart; 
-	fps = (float)((double)freq.QuadPart / (double)diff.QuadPart); 
 
 //	for(li.QuadPart = 0;li.QuadPart < diff / (freq/frames); li.QuadPart += freq/frame) {
 	for(li.QuadPart = freq.QuadPart;li.QuadPart < diff.QuadPart * frames; li.QuadPart += freq.QuadPart) {
 		current_scene->Update(); 
 		now.QuadPart += freq.QuadPart / frames; 
 	}
+
+
+#if 1 // estimate frame-rate
+	LARGE_INTEGER diff2; 
+	diff2.QuadPart = latest.QuadPart - previous.QuadPart; 
+	previous.QuadPart = latest.QuadPart; 
+	left_time.QuadPart += diff2.QuadPart; 
+	fps_count += 1.0f; 
+	sum_fps += (double)freq.QuadPart / (double)diff2.QuadPart; 
+
+	if(left_time.QuadPart >= freq.QuadPart) {
+		left_time.QuadPart -= freq.QuadPart; 
+		fps = (float)(sum_fps / fps_count);
+		sum_fps = 0.0; 
+		fps_count = 0.0; 
+	}
+
+#endif 
 
 	Start(); 
 	current_scene->Render(this, 0, 0 ); 
