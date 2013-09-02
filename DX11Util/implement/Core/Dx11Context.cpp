@@ -127,11 +127,11 @@ HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene, int _width, int _h
 //	descDepth.Height    = descBackBuffer.Height;  // 高さ
 	descDepth.MipLevels = 1;       // ミップマップ・レベル数
 	descDepth.ArraySize = 1;       // 配列サイズ
-	descDepth.Format    = DXGI_FORMAT_D32_FLOAT;  // フォーマット(深度のみ)
+	descDepth.Format    = DXGI_FORMAT_D32_FLOAT_S8X24_UINT;  // depth + stencil
 //	descDepth.SampleDesc.Count   = 1;  // マルチサンプリングの設定
 //	descDepth.SampleDesc.Quality = 0;  // マルチサンプリングの品質
 	descDepth.Usage          = D3D11_USAGE_DEFAULT;      // デフォルト使用法
-	descDepth.BindFlags      = D3D11_BIND_DEPTH_STENCIL; // 深度/ステンシルとして使用
+	descDepth.BindFlags      = D3D11_BIND_DEPTH_STENCIL; // 
 	descDepth.CPUAccessFlags = 0;   // CPUからはアクセスしない
 	descDepth.MiscFlags      = 0;   // その他の設定なし
 	hr = pD3DDevice->CreateTexture2D(
@@ -344,9 +344,9 @@ HRESULT Dx11Context::Start()
 	// 深度/ステンシルのクリア
 	pImmediateContext->ClearDepthStencilView(
 			pDepthStencilView, // クリアする深度/ステンシル・ビュー
-			D3D11_CLEAR_DEPTH,   // 深度値だけをクリアする
-			1.0f,                // 深度バッファをクリアする値
-			0);                  // ステンシル・バッファをクリアする値(この場合、無関係)
+			D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,   
+			1.0f,                
+			0);                  
 
 
 	return Activate(); 
