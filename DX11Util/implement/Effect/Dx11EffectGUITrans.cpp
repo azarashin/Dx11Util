@@ -6,9 +6,9 @@ typedef struct  {
 	float trans; 
 	float inv; 
 	float dummy1, dummy2; 
-	XMMATRIX World;		// ワールド変換行列
-	XMMATRIX View;		// ビュー変換行列
-	XMMATRIX Projection;	// 透視変換行列
+	XMFLOAT4X4 World;		// ワールド変換行列
+	XMFLOAT4X4 View;		// ビュー変換行列
+	XMFLOAT4X4 Projection;	// 透視変換行列
 } Dx11EffectGUITransCBuffer;
 
 

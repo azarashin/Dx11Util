@@ -21,14 +21,14 @@ HRESULT Dx11CameraSideBySideStandard::Setup()
 	return S_OK; 
 }
 
-HRESULT Dx11CameraSideBySideStandard::GetMatrix(XMMATRIX* m)
+HRESULT Dx11CameraSideBySideStandard::GetMatrix(XMFLOAT4X4* m)
 {
-	*m = XMLoadFloat4x4(&mat); 
+	*m = mat; 
 	return S_OK; 
 }
-HRESULT Dx11CameraSideBySideStandard::GetBackwardMatrix(XMMATRIX* m)
+HRESULT Dx11CameraSideBySideStandard::GetBackwardMatrix(XMFLOAT4X4* m)
 {
-	*m = XMLoadFloat4x4(&bmat); 
+	*m = bmat; 
 	return S_OK; 
 }
 

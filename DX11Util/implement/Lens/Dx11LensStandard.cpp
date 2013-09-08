@@ -49,9 +49,9 @@ HRESULT Dx11LensStandard::SetParameterFov(float fov, float aspect, float _near, 
 }
 
 
-HRESULT Dx11LensStandard::GetMatrix(XMMATRIX* m)
+HRESULT Dx11LensStandard::GetMatrix(XMFLOAT4X4* m)
 {
-	*m = XMLoadFloat4x4(&mat); 
+	*m = mat; 
 	return S_OK; 
 }
 

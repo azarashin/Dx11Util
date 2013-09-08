@@ -21,14 +21,14 @@ HRESULT Dx11CameraRift::Setup()
 	return S_OK; 
 }
 
-HRESULT Dx11CameraRift::GetMatrix(XMMATRIX* m)
+HRESULT Dx11CameraRift::GetMatrix(XMFLOAT4X4* m)
 {
-	*m = XMLoadFloat4x4(&mat); 
+	*m = mat; 
 	return S_OK; 
 }
-HRESULT Dx11CameraRift::GetBackwardMatrix(XMMATRIX* m)
+HRESULT Dx11CameraRift::GetBackwardMatrix(XMFLOAT4X4* m)
 {
-	*m = XMLoadFloat4x4(&bmat); 
+	*m = bmat; 
 	return S_OK; 
 }
 

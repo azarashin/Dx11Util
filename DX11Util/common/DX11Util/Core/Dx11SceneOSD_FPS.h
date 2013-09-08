@@ -57,6 +57,7 @@ public:
 
 	virtual void Setup(Dx11Context* context); 
 	virtual void Update(); 
+	virtual bool RefCameraParameter(XMFLOAT3* pos, XMFLOAT3* to, XMFLOAT3* up); 
 	virtual void Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* lens); 
 	virtual void Term(Dx11Context* context); 
 

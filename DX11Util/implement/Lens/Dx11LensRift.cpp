@@ -65,17 +65,19 @@ HRESULT Dx11LensRift::GetNearHeight(float* height)
 	return original_lens->GetNearHeight(height); 
 }
 
-HRESULT Dx11LensRift::GetMatrix(XMMATRIX* m)
+HRESULT Dx11LensRift::GetMatrix(XMFLOAT4X4* m)
 {
 	XMMATRIX mat, smat; 
-	HRESULT ret = original_lens->GetMatrix(&mat);  
+	XMFLOAT4X4 xmf; 
+	HRESULT ret = original_lens->GetMatrix(&xmf);  
+	mat = XMLoadFloat4x4(&xmf); 
 	if(is_left) {
 		smat = XMMatrixTranslation(shift, 0, 0); 
 	} else {
 		smat = XMMatrixTranslation(-shift, 0, 0); 
 	}
 
-	*m = mat * smat; 
+	XMStoreFloat4x4(m, mat * smat); 
 
 	return ret; 
 }

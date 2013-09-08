@@ -57,7 +57,7 @@ public:
 
 	virtual HRESULT Setup(); 
 	virtual HRESULT Update(); 
-	virtual HRESULT GetMatrix(XMMATRIX* _mat); 
+	virtual HRESULT GetMatrix(XMFLOAT4X4* _mat); 
 	virtual HRESULT GetNumberOfMatrix(int* num); 
 	virtual HRESULT Term(); 
 

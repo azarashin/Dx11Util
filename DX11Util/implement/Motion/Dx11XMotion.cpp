@@ -96,11 +96,11 @@ void Dx11XMotion::UpdateMatrix(int idx)
 	mat_flag[idx] = 1; 
 }
 
-HRESULT Dx11XMotion::GetMatrix(XMMATRIX* mat) 
+HRESULT Dx11XMotion::GetMatrix(XMFLOAT4X4* mat) 
 {
 	int i;
 	for(i=0;i<num_part;i++) {
-		mat[i] = XMLoadFloat4x4(&cash_matrix[i]); 
+		mat[i] = cash_matrix[i]; 
 	}
 	return S_OK; 
 }

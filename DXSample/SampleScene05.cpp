@@ -104,3 +104,7 @@ Dx11Scene* SampleScene05::GetNext(Dx11Context* context)
 	return this; 
 }
  
+bool SampleScene05::RefCameraParameter(XMFLOAT3* pos, XMFLOAT3* to, XMFLOAT3* up)
+{
+	return false; 
+}

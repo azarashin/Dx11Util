@@ -101,7 +101,13 @@ void SampleScene03::Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* _
 #else 
 	Dx11CameraRift cam; 
 	cam.Setup(); 
-	cam.SetCameraDirection(XMFLOAT3(0, 0, 0), XMFLOAT3(0, 0, 200), XMFLOAT3(0, 1, 0)); 
+
+	XMFLOAT3 pos, to, up; 
+	if(act->RefCameraParameter(&pos, &to, &up)) {
+		cam.SetCameraDirection(pos, to, up); 
+	} else {
+		cam.SetCameraDirection(XMFLOAT3(0, 0, 0), XMFLOAT3(0, 0, 200), XMFLOAT3(0, 1, 0)); 
+	}
 
 	Dx11LensRift lens(0.14976f, 0.0935f, 0.0f, 0.041f,  0.0635f, 0.064f, 640, 480, 0, 10000.0f); 
 //	Dx11LensRift lens(0.14976f, 0.0935f, 0.0f, 100.041f,  0.0635f, 0.064f, 640, 480, 0, 10000.0f); 
@@ -140,3 +146,7 @@ Dx11Scene* SampleScene03::GetNext(Dx11Context* context)
 	return this; 
 }
  
+bool SampleScene03::RefCameraParameter(XMFLOAT3* pos, XMFLOAT3* to, XMFLOAT3* up)
+{
+	return false; 
+}

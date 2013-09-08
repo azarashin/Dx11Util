@@ -46,6 +46,7 @@ class Dx11Scene;
 #include <DX11Util/Lens/Dx11Lens.h>
 
 #include <d3d11.h>
+#include <xnamath.h>
 
 // #include <dxerr.h>
 
@@ -59,6 +60,11 @@ public:
 
 	virtual void Setup(Dx11Context* context) = 0; 
 	virtual void Update() = 0; 
+	/**
+	 * reference camera parameter in this scene. 
+	 * @return return true only when camera parameter is enable. 
+	 **/
+	virtual bool RefCameraParameter(XMFLOAT3* pos, XMFLOAT3* to, XMFLOAT3* up) = 0; 
 	virtual void Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* lens) = 0; 
 	virtual void Term(Dx11Context* context) = 0; 
 

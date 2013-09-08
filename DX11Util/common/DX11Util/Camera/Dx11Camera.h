@@ -54,8 +54,8 @@ public:
 	virtual ~Dx11Camera(void);
 
 	virtual HRESULT Setup() = 0; 
-	virtual HRESULT GetMatrix(XMMATRIX* mat) = 0; 
-	virtual HRESULT GetBackwardMatrix(XMMATRIX* mat) = 0; 
+	virtual HRESULT GetMatrix(XMFLOAT4X4* mat) = 0; 
+	virtual HRESULT GetBackwardMatrix(XMFLOAT4X4* mat) = 0; 
 	virtual HRESULT GetCamPos(XMFLOAT3* vec) = 0; 
 	virtual HRESULT GetCamFront(XMFLOAT3* vec) = 0; 
 	virtual HRESULT Term() = 0; 

@@ -58,3 +58,7 @@ Dx11Scene* Dx11SceneOSD_FPS::GetNext(Dx11Context* context)
 	return 0; 
 }
  
+bool Dx11SceneOSD_FPS::RefCameraParameter(XMFLOAT3* pos, XMFLOAT3* to, XMFLOAT3* up)
+{
+	return false; 
+}

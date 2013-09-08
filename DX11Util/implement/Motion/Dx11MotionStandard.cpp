@@ -24,9 +24,9 @@ HRESULT Dx11MotionStandard::Update()
 	return S_OK; 
 }
 
-HRESULT Dx11MotionStandard::GetMatrix(XMMATRIX* _mat)
+HRESULT Dx11MotionStandard::GetMatrix(XMFLOAT4X4* _mat)
 {
-	*_mat = XMLoadFloat4x4(&mat); 
+	*_mat = mat; 
 	return S_OK; 
 }
 

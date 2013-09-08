@@ -4,9 +4,9 @@
 
 
 typedef struct  { // Warning: XMMATRIX ではなくXMFLOAT4X4 を使うように修正すること
-	XMMATRIX World;		// ワールド変換行列
-	XMMATRIX View;		// ビュー変換行列
-	XMMATRIX Projection;	// 透視変換行列
+	XMFLOAT4X4 World;		// ワールド変換行列
+	XMFLOAT4X4 View;		// ビュー変換行列
+	XMFLOAT4X4 Projection;	// 透視変換行列
 } Dx11XEffectCBuffer;
 
 typedef struct {

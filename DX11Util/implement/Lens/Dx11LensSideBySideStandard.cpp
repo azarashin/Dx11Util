@@ -54,9 +54,9 @@ HRESULT Dx11LensSideBySideStandard::SetParameterFov(float fov, float aspect, flo
 }
 
 
-HRESULT Dx11LensSideBySideStandard::GetMatrix(XMMATRIX* m)
+HRESULT Dx11LensSideBySideStandard::GetMatrix(XMFLOAT4X4* m)
 {
-	*m = XMLoadFloat4x4(&mat); 
+	*m = mat; 
 	return S_OK; 
 }
 

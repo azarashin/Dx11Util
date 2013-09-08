@@ -16,14 +16,14 @@ HRESULT Dx11CameraStandard::Setup()
 	return S_OK; 
 }
 
-HRESULT Dx11CameraStandard::GetMatrix(XMMATRIX* m)
+HRESULT Dx11CameraStandard::GetMatrix(XMFLOAT4X4* m)
 {
-	*m = XMLoadFloat4x4(&mat); 
+	*m = mat; 
 	return S_OK; 
 }
-HRESULT Dx11CameraStandard::GetBackwardMatrix(XMMATRIX* m)
+HRESULT Dx11CameraStandard::GetBackwardMatrix(XMFLOAT4X4* m)
 {
-	*m = XMLoadFloat4x4(&bmat); 
+	*m = bmat; 
 	return S_OK; 
 }
 

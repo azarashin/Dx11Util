@@ -43,7 +43,7 @@ HRESULT Dx11XMotionManager::Update()
 	return S_OK; 
 }
 
-HRESULT Dx11XMotionManager::GetMatrix(XMMATRIX* mat)
+HRESULT Dx11XMotionManager::GetMatrix(XMFLOAT4X4* mat)
 {
 	if(current == 0) {
 		return E_FAIL; 

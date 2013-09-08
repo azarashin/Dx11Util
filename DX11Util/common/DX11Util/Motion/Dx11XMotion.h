@@ -70,7 +70,7 @@ public:
 	/**
 	 * At first, check te number of matrix. The area which parameter mat show must have capacity to cover num of XMMMatrix.  
 	 **/ 
-	virtual HRESULT GetMatrix(XMMATRIX* mat); 
+	virtual HRESULT GetMatrix(XMFLOAT4X4* mat); 
 	virtual HRESULT GetNumberOfMatrix(int* num); 
 	virtual HRESULT Term(); 
 

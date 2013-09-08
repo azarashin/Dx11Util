@@ -56,8 +56,8 @@ public:
 	virtual ~Dx11CameraSideBySide(void);
 
 	virtual HRESULT Setup() = 0; 
-	virtual HRESULT GetMatrix(XMMATRIX* mat) = 0; 
-	virtual HRESULT GetBackwardMatrix(XMMATRIX* mat) = 0; 
+	virtual HRESULT GetMatrix(XMFLOAT4X4* mat) = 0; 
+	virtual HRESULT GetBackwardMatrix(XMFLOAT4X4* mat) = 0; 
 	virtual HRESULT Term() = 0; 
 	virtual HRESULT SetIsLeft(bool _is_left) = 0; 
 

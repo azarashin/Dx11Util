@@ -56,8 +56,8 @@ public:
 	virtual ~Dx11CameraRift(void);
 
 	virtual HRESULT Setup(); 
-	virtual HRESULT GetMatrix(XMMATRIX* mat); 
-	virtual HRESULT GetBackwardMatrix(XMMATRIX* mat); 
+	virtual HRESULT GetMatrix(XMFLOAT4X4* mat); 
+	virtual HRESULT GetBackwardMatrix(XMFLOAT4X4* mat); 
 	virtual HRESULT Term(); 
 	virtual HRESULT SetIsLeft(bool _is_left); 
 	virtual HRESULT Update(); 

@@ -60,7 +60,7 @@ public:
 	virtual HRESULT GetDistanceNear(float* distance) = 0; 
 	virtual HRESULT GetNearWidth(float* width) = 0; 
 	virtual HRESULT GetNearHeight(float* height) = 0; 
-	virtual HRESULT GetMatrix(XMMATRIX* m) = 0; 
+	virtual HRESULT GetMatrix(XMFLOAT4X4* m) = 0; 
 	virtual HRESULT GetHAngle(float* angle) = 0; 
 	virtual HRESULT GetVAngle(float* angle) = 0; 
 	virtual HRESULT Term() = 0; 
