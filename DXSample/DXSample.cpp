@@ -15,6 +15,9 @@
 
 #include <windows.h>
 #include <crtdbg.h>
+#include <dshow.h>
+#include <conio.h>
+#include <objbase.h>
 
 //#include <dxerr.h>
 
@@ -24,8 +27,10 @@
 #include "SampleScene02.h"
 #include "SampleScene03.h"
 #include "SampleScene04.h"
+#include "SampleScene05.h"
 #include "SampleScene06.h"
 #include "SampleScene07.h"
+#include "SampleScene08.h"
 
 // サウンド系
 
@@ -147,7 +152,8 @@ HRESULT InitApp(HINSTANCE hInst)
 HRESULT InitDirect3D(void)
 {
 	 s_scene = new Dx11Context(); 
-	 s_scene->Setup(s_hWindow, new SampleScene03(), 640, 480); 
+	 s_scene->Setup(s_hWindow, new SampleScene08(), 640, 480); 
+//	 s_scene->Setup(s_hWindow, new SampleScene03(), 640, 480); 
 
 	 return S_OK;
 }
@@ -265,6 +271,8 @@ int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR, int)
 	// デバッグ ヒープ マネージャによるメモリ割り当ての追跡方法を設定
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
+	CoInitialize(NULL);
+
 	// アプリケーションに関する初期化
 	HRESULT hr = InitApp(hInst);
 	if (FAILED(hr))
@@ -303,6 +311,7 @@ int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR, int)
 
 	// アプリケーションの終了処理
 	CleanupApp();
+	CoUninitialize();
 
 	return (int)msg.wParam;
 }

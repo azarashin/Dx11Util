@@ -5,7 +5,7 @@
 #include <DX11Util/Effect/Dx11XEffect.h>
 #include <DX11Util/Lens/Dx11LensStandard.h>
 
-
+// This sample show how to use Dx11XObject and Dx11XEffect. 
 class SampleScene07 : public Dx11Scene
 {
 public:

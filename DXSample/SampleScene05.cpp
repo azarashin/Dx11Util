@@ -1,5 +1,7 @@
 #include "StdAfx.h"
 
+#include <DX11Util/Lens/Dx11LensStandard.h>
+
 #include "SampleScene05.h"
 #include "SampleScene01.h"
 
@@ -32,8 +34,10 @@ void SampleScene05::Setup(Dx11Context* context)
 	canvas = new Dx11ObjectGUICanvas(cap_width, cap_height); 
 	canvas->Setup(context); 
 
-	effect = new Dx11EffectStandard(); 
+	effect = new Dx11EffectGUITrans(); 
 	effect->Setup(context); 
+	effect2 = new Dx11EffectGUIStandard(); 
+	effect2->Setup(context); 
 
 	camera = new Dx11CameraStandard(); 
 
@@ -44,7 +48,7 @@ void SampleScene05::Update()
 	max++; 
 }
  
-void SampleScene05::Render(Dx11Context* context, Dx11Camera* _camera)
+void SampleScene05::Render(Dx11Context* context, Dx11Camera* _camera, Dx11Lens* lens)
 {
 	D3D11_MAPPED_SUBRESOURCE map_info; 
 	int x, y, offset; 
@@ -73,9 +77,18 @@ void SampleScene05::Render(Dx11Context* context, Dx11Camera* _camera)
 		canvas->Unmap(context); 
 	}
 
-	EffectGUIStandardInfo info = {0.25 + sin(max * 3.141592f / 30) * 0.25f, 0, 0.25f, 0.25f, 1.0f, 0, 0, 0}; 
+	EffectGUIStandardInfo info = {0.25 + sin(max * 3.141592f / 30) * 0.25f, 0, 0.25f, 0.25f, 1.0f, 0.0f, 0, 0}; 
+	Dx11LensStandard stlens; 
+	stlens.Setup(); 
+	stlens.SetParameter(10.0f, 7.0f, 1.0f, 1000.0f); 
 
-	effect->Update(context, canvas, &info); 
+	if(lens == 0) {
+		lens = &stlens; 
+	}
+
+	effect->Update(context, canvas, 0.25 + sin(max * 3.141592f / 30) * 0.25f, 0.0f, 0.25f, 0.25f, 50.0f, lens, 1.0f, 0.0f); 
+
+//	effect2->Update(context, canvas, &info); 
 }
  
 void SampleScene05::Term(Dx11Context* context)
@@ -92,6 +105,10 @@ void SampleScene05::Term(Dx11Context* context)
 	if(effect) {
 		effect->Term(context); 
 		delete effect; 
+	}
+	if(effect2) {
+		effect2->Term(context); 
+		delete effect2; 
 	}
 }
  

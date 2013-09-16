@@ -59,7 +59,8 @@ public:
 	virtual ~Dx11EffectGUITrans(void);
 
 	virtual HRESULT Setup(Dx11Context* _context); 
-	virtual HRESULT Update(Dx11Context* _context, Dx11Object* obj, Dx11Motion* mot, Dx11Camera* cam, Dx11Lens* lens); 
+	virtual HRESULT Update(Dx11Context* _context, Dx11Object* obj, Dx11Motion* mot, Dx11Camera* cam, Dx11Lens* lens, float trans, float inv); 
+	virtual HRESULT Update(Dx11Context* _context, Dx11Object* obj, float px, float py, float width, float height, float depth, Dx11Lens* lens, float trans, float inv); 
 	virtual HRESULT Term(Dx11Context* _context); 
 
 

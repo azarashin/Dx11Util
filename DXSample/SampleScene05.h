@@ -1,13 +1,15 @@
 #pragma once
 
 #include <DX11Util/Core/Dx11Scene.h>
-#include <DX11Util/Effect/Dx11EffectStandard.h>
+#include <DX11Util/Effect/Dx11EffectGUITrans.h>
+#include <DX11Util/Effect/Dx11EffectGUIStandard.h>
 #include <DX11Util/Object/Dx11ObjectGUICanvas.h>
 #include <DX11Util/Camera/Dx11CameraStandard.h>
 
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 
+// Play movie with Dx11EffectGUITrans. It only change distance from camera. 
 class SampleScene05 : public Dx11Scene
 {
 public:
@@ -27,7 +29,8 @@ private:
 	float max; 
 
 	Dx11ObjectGUICanvas* canvas; 
-	Dx11EffectStandard* effect; 
+	Dx11EffectGUITrans* effect; 
+	Dx11EffectGUIStandard* effect2; 
 	Dx11Camera* camera; 
 
 	CvCapture *capture; 

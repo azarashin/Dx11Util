@@ -108,6 +108,7 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\shader\canvas.sh" />
+    <None Include="..\shader\capture.sh" />
     <None Include="..\shader\commet.sh" />
     <None Include="..\shader\escape_game.sh" />
     <None Include="..\shader\gui.sh" />
@@ -147,6 +148,7 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <ClCompile Include="implement\Core\Dx11Scene.cpp" />
     <ClCompile Include="implement\Core\Dx11SceneOSD_FPS.cpp" />
     <ClCompile Include="implement\Effect\Dx11Effect.cpp" />
+    <ClCompile Include="implement\Effect\Dx11EffectCapture.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectGUI.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectGUICanvas.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -180,8 +182,11 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     </ClCompile>
     <ClCompile Include="implement\Object\Dx11ObjectGUI.cpp" />
     <ClCompile Include="implement\Object\Dx11ObjectGUICanvas.cpp" />
+    <ClCompile Include="implement\Object\Dx11ObjectGUICapture.cpp" />
+    <ClCompile Include="implement\Object\Dx11ObjectGUIMovie.cpp" />
     <ClCompile Include="implement\Object\Dx11ObjectGUIStandard.cpp" />
     <ClCompile Include="implement\Object\Dx11ObjectGUIText.cpp" />
+    <ClCompile Include="implement\Object\Dx11ObjectGUIWebCam.cpp" />
     <ClCompile Include="implement\Object\Dx11ObjectParticle.cpp" />
     <ClCompile Include="implement\Object\Dx11ObjectTargetTexture.cpp" />
     <ClCompile Include="implement\Object\Dx11ObjectViewAround.cpp" />
@@ -218,6 +223,7 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <ClInclude Include="common\DX11Util\Core\Dx11Scene.h" />
     <ClInclude Include="common\DX11Util\Core\Dx11SceneOSD_FPS.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11Effect.h" />
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectCapture.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUI.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUICanvas.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUIStandard.h" />
@@ -240,8 +246,11 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectDaeStdModel.h" />
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUI.h" />
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUICanvas.h" />
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUICapture.h" />
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUIMovie.h" />
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUIStandard.h" />
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUIText.h" />
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUIWebCam.h" />
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectParticle.h" />
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectTargetTexture.h" />
     <ClInclude Include="common\DX11Util\Object\Dx11ObjectViewAround.h" />

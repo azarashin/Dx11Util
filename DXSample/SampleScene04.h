@@ -7,6 +7,7 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 
+// Play movie with Dx11EffectGUIStandard. 
 class SampleScene04 : public Dx11Scene
 {
 public:

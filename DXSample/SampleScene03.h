@@ -5,6 +5,7 @@
 #include <DX11Util/Effect/Dx11EffectGUIStandard.h>
 #include <DX11Util/Effect/Dx11EffectSideBySide.h>
 
+// This sample show how to use Dx11EffectSideBySide. 
 class SampleScene03 : public Dx11Scene
 {
 public:

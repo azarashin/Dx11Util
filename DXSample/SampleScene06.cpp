@@ -68,7 +68,7 @@ void SampleScene06::Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* _
 		act_lens = _lens; 
 	}
 
-	effect->Update(context, text, &mot, act_cam, act_lens); 
+	effect->Update(context, text, &mot, act_cam, act_lens, 1.0f, 1.0f); 
 }
  
 void SampleScene06::Term(Dx11Context* context)

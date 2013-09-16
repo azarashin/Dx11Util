@@ -92,6 +92,9 @@
     <None Include="..\shader\xfile_notexture.sh">
       <Filter>shader</Filter>
     </None>
+    <None Include="..\shader\capture.sh">
+      <Filter>shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ASURA\Util\asdxModelUtil.cpp">
@@ -234,6 +237,18 @@
     </ClCompile>
     <ClCompile Include="implement\Core\Dx11SceneOSD_FPS.cpp">
       <Filter>source_header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectGUIMovie.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectGUIWebCam.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Object\Dx11ObjectGUICapture.cpp">
+      <Filter>source_header\object</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectCapture.cpp">
+      <Filter>source_header\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,6 +413,18 @@
     </ClInclude>
     <ClInclude Include="common\DX11Util\Core\Dx11SceneOSD_FPS.h">
       <Filter>source_header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUIMovie.h">
+      <Filter>source_header\object</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUIWebCam.h">
+      <Filter>source_header\object</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Object\Dx11ObjectGUICapture.h">
+      <Filter>source_header\object</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectCapture.h">
+      <Filter>source_header\effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

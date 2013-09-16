@@ -4,7 +4,7 @@
 #include <DX11Util/Object/Dx11ObjectGUIStandard.h>
 #include <DX11Util/Effect/Dx11EffectGUIStandard.h>
 
-
+// This sample show how to display image UI. 
 class SampleScene02 : public Dx11Scene
 {
 public:

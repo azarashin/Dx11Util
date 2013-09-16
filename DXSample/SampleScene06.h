@@ -5,7 +5,7 @@
 #include <DX11Util/Effect/Dx11EffectGUITrans.h>
 #include <DX11Util/Lens/Dx11LensStandard.h>
 
-
+// This sample show how to use Dx11EffectGUITrans so that camera and lens will be active. 
 class SampleScene06 : public Dx11Scene
 {
 public:

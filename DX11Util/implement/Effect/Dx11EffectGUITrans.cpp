@@ -1,6 +1,7 @@
 #include <DX11Util/Effect/Dx11EffectGUITrans.h>
 #include <d3dcompiler.h>
 #include <DX11Util/Util/ShaderCompilerWrapper.h>
+#include <DX11Util/Camera/Dx11CameraStandard.h>
 
 typedef struct  {
 	float trans; 
@@ -13,6 +14,46 @@ typedef struct  {
 
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }	// 解放マクロ
+
+class Dx11MotionScale : public Dx11Motion
+{
+public:
+	Dx11MotionScale(float _sw, float _sh, float _px, float _py, float _pz) {
+		sw = _sw; 
+		sh = _sh; 
+		px = _px; 
+		py = _py; 
+		pz = _pz; 
+	}
+	virtual ~Dx11MotionScale(void) {}
+
+	virtual HRESULT Setup(){return S_OK;} 
+	virtual HRESULT Update(){return S_OK;}
+	virtual HRESULT GetMatrix(XMFLOAT4X4* mat) {
+		mat->m[0][0] = sw; 
+		mat->m[1][1] = sh; 
+		mat->m[2][2] = 1.0; 
+		mat->m[3][3] = 1.0f; 
+		mat->m[0][1] = mat->m[0][2] = mat->m[0][3] = 0.0f; 
+		mat->m[1][0] = mat->m[1][2] = mat->m[1][3] = 0.0f; 
+		mat->m[2][0] = mat->m[2][1] = mat->m[2][3] = 0.0f; 
+		mat->m[3][0] = mat->m[3][1] = mat->m[3][2] = 0.0f; 
+
+		mat->m[3][0] = px; 
+		mat->m[3][1] = py; 
+		mat->m[3][2] = pz; 
+		return S_OK; 
+	}
+	virtual HRESULT GetNumberOfMatrix(int* num) {
+		*num = 1; 
+		return S_OK;
+	}
+	virtual HRESULT Term(){return S_OK;} 
+
+private: 
+	float sw, sh, px, py, pz; 
+
+};
 
 
 Dx11EffectGUITrans::Dx11EffectGUITrans()
@@ -185,7 +226,28 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	return S_OK; 
 }
 
-HRESULT Dx11EffectGUITrans::Update(Dx11Context* _context, Dx11Object* obj, Dx11Motion* mot, Dx11Camera* cam, Dx11Lens* lens)
+HRESULT Dx11EffectGUITrans::Update(Dx11Context* _context, Dx11Object* obj, float px, float py, float width, float height, float depth, Dx11Lens* lens, float trans, float inv)
+{
+	Dx11CameraStandard cam; 
+	float z_near, z_far, nwidth, nheight; 
+	float scale; 
+
+	lens->GetDistanceNear(&z_near); 
+	lens->GetDistanceFar(&z_far); 
+	lens->GetNearWidth(&nwidth); 
+	lens->GetNearHeight(&nheight); 
+
+	scale = depth / z_near; 
+
+	Dx11MotionScale mot(nwidth * width*scale, nheight * height*scale, ((px*2.0f)-1.0f) * nwidth*0.5f*scale, ((py*2.0f)-1.0f) * nheight*0.5f*scale, depth); 
+
+	cam.Setup(); 
+	cam.SetCameraDirection(XMFLOAT3(0, 0, 0), XMFLOAT3(0, 0, 1000), XMFLOAT3(0, 1, 0)); 
+
+	return Update(_context, obj, &mot, &cam, lens, trans, inv); 
+}
+
+HRESULT Dx11EffectGUITrans::Update(Dx11Context* _context, Dx11Object* obj, Dx11Motion* mot, Dx11Camera* cam, Dx11Lens* lens, float trans, float inv)
 {
 	HRESULT hr; 
 	unsigned int i, max; 
@@ -216,9 +278,8 @@ HRESULT Dx11EffectGUITrans::Update(Dx11Context* _context, Dx11Object* obj, Dx11M
 	lens->GetMatrix(&(buf.Projection)); 
 
 	mot->GetMatrix(&(buf.World)); 
-
-	buf.trans = 1.0f; 
-	buf.inv = 1.0f; 
+	buf.trans = trans; 
+	buf.inv = inv; 
 
 	hr = context->Map(
 	                  const_buf,              // マップするリソース

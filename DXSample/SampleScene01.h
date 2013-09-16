@@ -5,6 +5,7 @@
 #include <DX11Util/Effect/Dx11EffectGUIStandard.h>
 #include <DX11Util/Core/Dx11SceneOSD_FPS.h>
 
+// This sample show how to display text UI. 
 class SampleScene01 : public Dx11Scene
 {
 public:
