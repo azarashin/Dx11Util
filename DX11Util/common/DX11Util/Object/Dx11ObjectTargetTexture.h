@@ -62,6 +62,7 @@ public:
 	virtual void Setup(Dx11Context* _context);
 
 	void Start(Dx11Context* _context); 
+	void End(Dx11Context* _context); 
 
 	virtual void Term();
 
@@ -77,8 +78,6 @@ public:
 	virtual BOOL GetTexture(unsigned int num, ID3D11ShaderResourceView** pTexture); 
 	virtual BOOL GetTextureNum(unsigned int* num); 
 
-private: 
-	void Activate(ID3D11DeviceContext* context); 
 
 private: 
 	unsigned int width; 
@@ -89,16 +88,26 @@ private:
 	ID3D11Texture2D* m_pTex;
 	ID3D11ShaderResourceView*	m_pTexture;	
 	ID3D11RenderTargetView* pRenderTargetView; 
+	ID3D11RenderTargetView* pOldRenderTargetView; 
 
 	ID3D11Texture2D*         pDepthStencil;           // 深度/ステンシル・テクスチャ
 	ID3D11DepthStencilView*  pDepthStencilView;       // 深度/ステンシル・ビュー
-	D3D11_VIEWPORT          ViewPort[1];				// ビューポート
+	ID3D11DepthStencilView*  pOldDepthStencilView;       
+	D3D11_VIEWPORT          ViewPort[1], old_view_port[16];		// '16' is a tempolary value. It should be fixed. 
 
 	ID3D11BlendState*         pBlendState;			// ブレンド・ステート・オブジェクト
 	ID3D11RasterizerState*	  pRasterizerState;	// ラスタライザ・ステート・オブジェクト
 	ID3D11DepthStencilState*  pDepthStencilState;	// 深度/ステンシル・ステート・オブジェクト
+	ID3D11BlendState*         pOldBlendState;			// ブレンド・ステート・オブジェクト
+	ID3D11RasterizerState*	  pOldRasterizerState;	// ラスタライザ・ステート・オブジェクト
+	ID3D11DepthStencilState*  pOldDepthStencilState;	// 深度/ステンシル・ステート・オブジェクト
 
-	ID3D11SamplerState*       pTextureSamplerWrap; // サンプラー
+	ID3D11SamplerState*       pTextureSamplerWrap; 
+	ID3D11SamplerState*       pOldTextureSamplerWrap; 
 
+	FLOAT old_blend_factor[4]; 
+	UINT old_blend_mask; 
+	UINT old_stencil_ref; 
+	UINT old_num_viewport; 
 };
 

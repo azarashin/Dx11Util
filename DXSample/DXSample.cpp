@@ -152,8 +152,8 @@ HRESULT InitApp(HINSTANCE hInst)
 HRESULT InitDirect3D(void)
 {
 	 s_scene = new Dx11Context(); 
-	 s_scene->Setup(s_hWindow, new SampleScene08(), 640, 480); 
-//	 s_scene->Setup(s_hWindow, new SampleScene03(), 640, 480); 
+//	 s_scene->Setup(s_hWindow, new SampleScene08(), 640, 480); 
+	 s_scene->Setup(s_hWindow, new SampleScene03(), 640, 480); 
 
 	 return S_OK;
 }

@@ -264,7 +264,9 @@ HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene, int _width, int _h
 	previous.QuadPart = now.QuadPart; 
 	left_time.QuadPart = 0; 
 	sum_fps = 0.0; 
-	fps_count =0.0; 
+	fps_count =0.0;
+
+	Activate(); 
 
 	return S_OK;
 }
@@ -335,27 +337,39 @@ HRESULT Dx11Context::Update()
 
 HRESULT Dx11Context::Start()
 {
+	ID3D11RenderTargetView* active_render_target_view;
+	ID3D11DepthStencilView*  active_depth_stencil_target_view;
+
+	pImmediateContext->OMGetRenderTargets(1, &active_render_target_view,&active_depth_stencil_target_view);
+
+
+
 	float ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
     // 描画ターゲットのクリア
     pImmediateContext->ClearRenderTargetView(
-                       pRenderTargetView, // クリアする描画ターゲット
+                       active_render_target_view, // クリアする描画ターゲット
                        ClearColor);         // クリアする値
 
 	// 深度/ステンシルのクリア
 	pImmediateContext->ClearDepthStencilView(
-			pDepthStencilView, // クリアする深度/ステンシル・ビュー
+			active_depth_stencil_target_view, // クリアする深度/ステンシル・ビュー
 			D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,   
 			1.0f,                
 			0);                  
 
 
-	return Activate(); 
+	return S_OK; 
 }
 
 HRESULT Dx11Context::ClearBackground(float ClearColor[4])
 {
-    pImmediateContext->ClearRenderTargetView(
-                       pRenderTargetView, // クリアする描画ターゲット
+	ID3D11RenderTargetView* active_render_target_view;
+	ID3D11DepthStencilView*  active_depth_stencil_target_view;
+
+	pImmediateContext->OMGetRenderTargets(1, &active_render_target_view,&active_depth_stencil_target_view);
+
+	pImmediateContext->ClearRenderTargetView(
+                       active_render_target_view, // クリアする描画ターゲット
                        ClearColor);         // クリアする値
 	return S_OK; 
 }
@@ -374,12 +388,6 @@ HRESULT Dx11Context::Activate()
 
 	// ラスタライザにビューポートを設定
     pImmediateContext->RSSetViewports(1, ViewPort);
-
-    // 描画ターゲット・ビューを出力マージャーの描画ターゲットとして設定
-    pImmediateContext->OMSetRenderTargets(
-            1,                    // 描画ターゲットの数
-            &pRenderTargetView, // 描画ターゲット・ビューの配列
-	        pDepthStencilView); // 設定する深度/ステンシル・ビュー
 
 	// RSにラスタライザ・ステート・オブジェクトを設定
 	pImmediateContext->RSSetState(pRasterizerState);

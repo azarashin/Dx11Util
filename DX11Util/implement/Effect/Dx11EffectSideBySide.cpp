@@ -211,6 +211,7 @@ HRESULT Dx11EffectSideBySide::Update(Dx11Context* _context, Dx11Scene* scene, Dx
 		lens->SetIsLeft(true); 
 	}
 	scene->Render(_context, camera, lens); 
+	left->End(_context); 
 
 	right->Start(_context); 
 	if(camera) {
@@ -221,6 +222,7 @@ HRESULT Dx11EffectSideBySide::Update(Dx11Context* _context, Dx11Scene* scene, Dx
 		lens->SetIsLeft(false); 
 	}
 	scene->Render(_context, camera, lens); 
+	right->End(_context); 
 
 	_context->Activate(); 
 

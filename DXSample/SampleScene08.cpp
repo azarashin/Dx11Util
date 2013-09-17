@@ -40,7 +40,10 @@ void SampleScene08::Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* l
 
 	object->Update(context); 
 
-	effect->Update(context, object, 0.25*0 + sin(left * 3.141592f / 30) * 0.25f*0, 0.0f, 1, 1, 50.0f, lens, 1.0f, 0.0f); 
+	stlens.Setup(); 
+	stlens.SetParameter(10.0f, 7.0f, 1.0f, 1000.0f); 
+	effect->Update(context, object, 0.25, 0.25f, 0.5f, 0.5, 50.0f, &stlens, 1.0f, 0.0f); 
+//	effect->Update(context, object, 0.25*0 + sin(left * 3.141592f / 30) * 0.25f*0, 0.0f, 1, 1, 50.0f, lens, 1.0f, 0.0f); 
 }
  
 void SampleScene08::Term(Dx11Context* context)

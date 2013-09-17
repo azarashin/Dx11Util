@@ -257,6 +257,11 @@ void Dx11ObjectTargetTexture::Setup(Dx11Context* _context)
 		return; 
 	}
 
+	pOldRenderTargetView = 0; 
+	pOldDepthStencilView = 0; 
+	pOldBlendState = 0; 
+	pOldRasterizerState = 0; 
+	pOldDepthStencilState = 0; 
 }
 
 
@@ -315,42 +320,36 @@ BOOL Dx11ObjectTargetTexture::GetIndexNum(unsigned int idx, unsigned int* num)
 void Dx11ObjectTargetTexture::Start(Dx11Context* _context)
 {
 	ID3D11DeviceContext* context = _context->GetDXDC(); 
-	float ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-    // 描画ターゲットのクリア
-    context->ClearRenderTargetView(
-                       pRenderTargetView, // クリアする描画ターゲット
-                       ClearColor);         // クリアする値
+	FLOAT BlendFactor[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 
-	// 深度/ステンシルのクリア
-	context->ClearDepthStencilView(
-			pDepthStencilView, // クリアする深度/ステンシル・ビュー
-			D3D11_CLEAR_DEPTH,   // 深度値だけをクリアする
-			1.0f,                // 深度バッファをクリアする値
-			0);                  // ステンシル・バッファをクリアする値(この場合、無関係)
+	context->OMGetRenderTargets(1, &pOldRenderTargetView,&pOldDepthStencilView);
+	context->OMGetBlendState(&pOldBlendState, old_blend_factor, &old_blend_mask);
+	context->OMGetDepthStencilState(&pOldDepthStencilState, &old_stencil_ref);
+	old_num_viewport = 1; 
+    context->RSGetViewports(&old_num_viewport, old_view_port);
+	context->RSGetState(&pOldRasterizerState);
+	context->PSGetSamplers(0, 1, &pOldTextureSamplerWrap);
 
+	context->OMSetRenderTargets(1, &pRenderTargetView,pDepthStencilView);
+	context->OMSetBlendState(pBlendState, BlendFactor, 0xffffffff);
+	context->OMSetDepthStencilState(pDepthStencilState, 0);
+    context->RSSetViewports(1, ViewPort);
+	context->RSSetState(pRasterizerState);
+	context->PSSetSamplers(0, 1, &pTextureSamplerWrap);
 
-	Activate(context); 
-	return; 
+	_context->Start(); 
 }
 
-void Dx11ObjectTargetTexture::Activate(ID3D11DeviceContext* context)
+void Dx11ObjectTargetTexture::End(Dx11Context* _context)
 {
-	// OMに描画ターゲット ビューと深度/ステンシル・ビューを設定
-	context->OMSetRenderTargets(1, &pRenderTargetView,pDepthStencilView);
-	// OMにブレンド・ステート・オブジェクトを設定
-	FLOAT BlendFactor[4] = {0.0f, 0.0f, 0.0f, 0.0f};
-	context->OMSetBlendState(pBlendState, BlendFactor, 0xffffffff);
-	// OMに深度/ステンシル・ステート・オブジェクトを設定
-	context->OMSetDepthStencilState(pDepthStencilState, 0);
+	ID3D11DeviceContext* context = _context->GetDXDC(); 
 
-	// ラスタライザにビューポートを設定
-    context->RSSetViewports(1, ViewPort);
-
-	// RSにラスタライザ・ステート・オブジェクトを設定
-	context->RSSetState(pRasterizerState);
-
-	// PSにサンプラーを設定
-	context->PSSetSamplers(0, 1, &pTextureSamplerWrap);
+	context->OMSetRenderTargets(1, &pOldRenderTargetView,pOldDepthStencilView);
+	context->OMSetBlendState(pOldBlendState, old_blend_factor, old_blend_mask);
+	context->OMSetDepthStencilState(pOldDepthStencilState, old_stencil_ref);
+    context->RSSetViewports(old_num_viewport, old_view_port);
+	context->RSSetState(pOldRasterizerState);
+	context->PSSetSamplers(0, 1, &pOldTextureSamplerWrap);
 }
 
 BOOL Dx11ObjectTargetTexture::GetTextureNum(unsigned int* num)

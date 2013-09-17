@@ -58,6 +58,6 @@ float4 PS(PS_INPUT input) : SV_TARGET
 	float3 colmax = float3(1.0, 1.0, 1.0); 
     float4 texCol = myTex2D.Sample(texSampler, input.Tex);         // ÉeÉNÉZÉãì«Ç›çûÇ›
 	texCol.bgr = texCol.rgb * (1.0 - inv) + (colmax - texCol.rgb) * inv; 
-	texCol.a = 1.0; 
+	texCol.a = trans; 
 	return texCol; 
 }
