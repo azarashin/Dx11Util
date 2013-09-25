@@ -9,7 +9,18 @@ Dx11ObjectTargetTexture::Dx11ObjectTargetTexture(unsigned int _width, unsigned i
 {
 	width = _width; 
 	height = _height; 
+	mipmap_level = 1; 
+	readable = false; 
 }
+
+Dx11ObjectTargetTexture::Dx11ObjectTargetTexture(unsigned int _width, unsigned int _height, bool _readable, int _mipmap_level)
+{
+	width = _width; 
+	height = _height; 
+	mipmap_level = _mipmap_level; 
+	readable = _readable; 
+}
+
 
 
 Dx11ObjectTargetTexture::~Dx11ObjectTargetTexture(void)
@@ -23,10 +34,10 @@ void Dx11ObjectTargetTexture::Setup(Dx11Context* _context)
 	HRESULT hr; 
 	ID3D11Device* pd3dDevice = _context->GetDXDevice(); 
 	tDAEVERTEX v[4] = {
-		{XMFLOAT3( -1.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 1.0f, 0.0f}, 
+		{XMFLOAT3( 0.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 1.0f, 0.0f}, 
 		{XMFLOAT3( 1.0f,  1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 0.0f, 0.0f}, 
-		{XMFLOAT3( 1.0f,  -1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 0.0f, 1.0f}, 
-		{XMFLOAT3( -1.0f,  -1.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 1.0f, 1.0f}, 
+		{XMFLOAT3( 1.0f,  0.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 0.0f, 1.0f}, 
+		{XMFLOAT3( 0.0f,  0.0f, 0.0f) , XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f) , XMFLOAT4(1.0f, 0.0f, 0.0f, 0.0), {0, 0, 0, 0}, XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0), 1.0f, 1.0f}, 
 	}; 
 
 	D3D11_BUFFER_DESC vBufferDesc;
@@ -82,12 +93,15 @@ void Dx11ObjectTargetTexture::Setup(Dx11Context* _context)
 	ZeroMemory(&desc, sizeof(desc));
 	desc.Width     = width;  // 幅
 	desc.Height    = height;  // 高さ
-	desc.MipLevels = 1;    // ミップマップ レベル数
+	desc.MipLevels = mipmap_level;    // ミップマップ レベル数
 	desc.ArraySize = 1;    // テクスチャの配列サイズ
 	desc.Format    = DXGI_FORMAT_R32G32B32A32_FLOAT; // フォーマット
 	desc.SampleDesc.Count = 1; // マルチサンプリングの設定
 	desc.Usage            = D3D11_USAGE_DEFAULT;  
 	desc.BindFlags        = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE; // シェーダ リソース
+	if(readable) {
+//		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE|D3D11_CPU_ACCESS_READ; // impossible to set this flag as output texture. 
+	}
 	hr = pd3dDevice->CreateTexture2D(&desc, NULL, &m_pTex);
 	if (FAILED(hr)) {
 		DXTRACE_ERR(L"InitDirect3D g_pD3DDevice->CreateTexture2D", hr);
@@ -112,8 +126,8 @@ void Dx11ObjectTargetTexture::Setup(Dx11Context* _context)
 	D3D11_SHADER_RESOURCE_VIEW_DESC srDesc;
 	srDesc.Format        = desc.Format;		// フォーマット
 	srDesc.ViewDimension = D3D_SRV_DIMENSION_TEXTURE2D;  // 2Dテクスチャ
-	srDesc.Texture2D.MostDetailedMip = 0;   // 最初のミップマップ レベル
-	srDesc.Texture2D.MipLevels       = -1;  // すべてのミップマップ レベル
+	srDesc.Texture2D.MostDetailedMip = 0; 
+	srDesc.Texture2D.MipLevels       = mipmap_level;
 
 	// シェーダ リソース ビューの作成
 	hr = pd3dDevice->CreateShaderResourceView(
@@ -142,7 +156,7 @@ void Dx11ObjectTargetTexture::Setup(Dx11Context* _context)
 		DXTRACE_ERR(L"InitDirect3D g_pD3DDevice->CreateTexture2D", hr);
 		return; 
 	}
-
+	
 	// 深度/ステンシル・ビューの作成
 	D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
 	descDSV.Format             = descDepth.Format;            // ビューのフォーマット
@@ -236,6 +250,7 @@ void Dx11ObjectTargetTexture::Setup(Dx11Context* _context)
 	}
 
 
+#if 0
 	// サンプラーの作成
 	D3D11_SAMPLER_DESC descSampler;
 	descSampler.Filter          = D3D11_FILTER_ANISOTROPIC;
@@ -256,6 +271,7 @@ void Dx11ObjectTargetTexture::Setup(Dx11Context* _context)
 		DXTRACE_ERR(L"InitDirect3D g_pD3DDevice->CreateSamplerState", hr);
 		return; 
 	}
+#endif
 
 	pOldRenderTargetView = 0; 
 	pOldDepthStencilView = 0; 
@@ -328,14 +344,18 @@ void Dx11ObjectTargetTexture::Start(Dx11Context* _context)
 	old_num_viewport = 1; 
     context->RSGetViewports(&old_num_viewport, old_view_port);
 	context->RSGetState(&pOldRasterizerState);
+#if 0
 	context->PSGetSamplers(0, 1, &pOldTextureSamplerWrap);
+#endif
 
 	context->OMSetRenderTargets(1, &pRenderTargetView,pDepthStencilView);
 	context->OMSetBlendState(pBlendState, BlendFactor, 0xffffffff);
 	context->OMSetDepthStencilState(pDepthStencilState, 0);
     context->RSSetViewports(1, ViewPort);
 	context->RSSetState(pRasterizerState);
+#if 0
 	context->PSSetSamplers(0, 1, &pTextureSamplerWrap);
+#endif
 
 	_context->Start(); 
 }
@@ -349,7 +369,9 @@ void Dx11ObjectTargetTexture::End(Dx11Context* _context)
 	context->OMSetDepthStencilState(pOldDepthStencilState, old_stencil_ref);
     context->RSSetViewports(old_num_viewport, old_view_port);
 	context->RSSetState(pOldRasterizerState);
+#if 0
 	context->PSSetSamplers(0, 1, &pOldTextureSamplerWrap);
+#endif
 }
 
 BOOL Dx11ObjectTargetTexture::GetTextureNum(unsigned int* num)
@@ -357,3 +379,30 @@ BOOL Dx11ObjectTargetTexture::GetTextureNum(unsigned int* num)
 	*num = 1; 
 	return true; 
 }
+
+int Dx11ObjectTargetTexture::GetMemorySize()
+{
+	if(readable) {
+		return width * height * sizeof(float)*4; 
+	}
+	return 0; 
+}
+
+void Dx11ObjectTargetTexture::CopyToMemory(Dx11Context* _context, float* buffer)
+{
+	D3D11_MAPPED_SUBRESOURCE resource; 
+	ID3D11DeviceContext* context = _context->GetDXDC(); 
+	HRESULT hr; 
+	hr = context->Map(
+	                  m_pTex,				// マップするリソース
+	                  0,						// サブリソースのインデックス番号
+	                  D3D11_MAP_WRITE_DISCARD,	// 書き込みアクセス
+	                  0,						//
+	                  &resource);			// データの書き込み先ポインタ
+	if (FAILED(hr)) {
+		return; 
+	}
+	memcpy(buffer, resource.pData, width * height * sizeof(float)*4); 
+	context->Unmap(m_pTex, 0);
+}
+

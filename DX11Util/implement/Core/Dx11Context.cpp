@@ -6,6 +6,13 @@
 Dx11Context::Dx11Context(void)
 {
 	fps = 0.0f; 
+	is_fullscreen = false; 
+}
+
+Dx11Context::Dx11Context(BOOL _is_fullscreen)
+{
+	fps = 0.0f; 
+	is_fullscreen = _is_fullscreen; 
 }
 
 Dx11Context::~Dx11Context(void)
@@ -92,6 +99,8 @@ HRESULT Dx11Context::Setup(HWND hwnd, Dx11Scene* first_scene, int _width, int _h
             }
         }
     }
+
+	pSwapChain->SetFullscreenState(is_fullscreen, NULL);
 
 
 	// バック バッファの初期化

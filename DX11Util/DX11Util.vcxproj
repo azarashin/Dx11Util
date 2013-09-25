@@ -113,7 +113,10 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <None Include="..\shader\escape_game.sh" />
     <None Include="..\shader\gui.sh" />
     <None Include="..\shader\gui_trans.sh" />
+    <None Include="..\shader\hdr_bright.sh" />
+    <None Include="..\shader\hdr_mix.sh" />
     <None Include="..\shader\sidebyside.sh" />
+    <None Include="..\shader\sidebyside_ex.sh" />
     <None Include="..\shader\standard.sh" />
     <None Include="..\shader\xfile_notexture.sh" />
     <None Include="ASURA\Math\Bounding.inl" />
@@ -155,7 +158,10 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     </ClCompile>
     <ClCompile Include="implement\Effect\Dx11EffectGUIStandard.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectGUITrans.cpp" />
+    <ClCompile Include="implement\Effect\Dx11EffectHDRBright.cpp" />
+    <ClCompile Include="implement\Effect\Dx11EffectHDRMix.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectSideBySide.cpp" />
+    <ClCompile Include="implement\Effect\Dx11EffectSideBySideEx.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectStandard.cpp" />
     <ClCompile Include="implement\Effect\Dx11EffectViewAround.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -228,7 +234,10 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUICanvas.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUIStandard.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectGUITrans.h" />
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectHDRBright.h" />
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectHDRMix.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectSideBySide.h" />
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectSideBySideEx.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectStandard.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectViewAround.h" />
     <ClInclude Include="common\DX11Util\Effect\Dx11XEffect.h" />

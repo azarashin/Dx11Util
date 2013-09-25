@@ -4,6 +4,7 @@
 #include <DX11Util/Object/Dx11ObjectGUIStandard.h>
 #include <DX11Util/Effect/Dx11EffectGUIStandard.h>
 #include <DX11Util/Effect/Dx11EffectSideBySide.h>
+#include <DX11Util/Effect/Dx11EffectSideBySideEx.h>
 
 // This sample show how to use Dx11EffectSideBySide. 
 class SampleScene03 : public Dx11Scene
@@ -24,6 +25,7 @@ private:
 	float max; 
 
 	Dx11EffectSideBySide* effect; 
+	Dx11EffectSideBySideEx* effect_ex; 
 
 	Dx11Scene* act; 
 };

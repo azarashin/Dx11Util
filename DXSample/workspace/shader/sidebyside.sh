@@ -32,8 +32,8 @@ SamplerState texSampler : register(s0);
 PS_INPUT VS(VS_INPUT input) {
     PS_INPUT output;
     output.Pos = float4(
-		input.Pos.x * 0.5 + left, 
-		input.Pos.y, 
+		input.Pos.x + left-0.5, 
+		input.Pos.y * 2.0 - 1.0, 
 		input.Pos.z, 
 		1.0); 
     output.Tex = input.Tex;

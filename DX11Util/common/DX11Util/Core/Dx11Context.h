@@ -58,6 +58,7 @@ class Dx11Context
 {
 public:
 	Dx11Context(void);
+	Dx11Context(BOOL is_fullscreen);
 	virtual ~Dx11Context(void);
 
 	/**
@@ -123,5 +124,6 @@ protected:
 	LARGE_INTEGER previous, left_time; 
 	float fps; 
 	double sum_fps, fps_count; 
+	BOOL is_fullscreen; 
 };
 

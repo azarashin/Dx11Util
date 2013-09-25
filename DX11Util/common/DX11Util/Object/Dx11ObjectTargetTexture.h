@@ -57,12 +57,15 @@ class Dx11ObjectTargetTexture
 {
 public:
 	Dx11ObjectTargetTexture(unsigned int _width, unsigned int _height);
+	Dx11ObjectTargetTexture(unsigned int _width, unsigned int _height, bool _readable, int _mipmap_level);
 	virtual ~Dx11ObjectTargetTexture(void);
 
 	virtual void Setup(Dx11Context* _context);
 
 	void Start(Dx11Context* _context); 
 	void End(Dx11Context* _context); 
+	int GetMemorySize(); 
+	void CopyToMemory(Dx11Context* _context, float* buffer); 
 
 	virtual void Term();
 
@@ -82,6 +85,8 @@ public:
 private: 
 	unsigned int width; 
 	unsigned int height; 
+	int mipmap_level; 
+	bool readable; 
 
 	ID3D11Buffer* m_pVB; 
 	ID3D11Buffer* m_pIB; 
@@ -102,7 +107,9 @@ private:
 	ID3D11RasterizerState*	  pOldRasterizerState;	// ラスタライザ・ステート・オブジェクト
 	ID3D11DepthStencilState*  pOldDepthStencilState;	// 深度/ステンシル・ステート・オブジェクト
 
+#if 0
 	ID3D11SamplerState*       pTextureSamplerWrap; 
+#endif
 	ID3D11SamplerState*       pOldTextureSamplerWrap; 
 
 	FLOAT old_blend_factor[4]; 

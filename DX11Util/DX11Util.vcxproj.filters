@@ -95,6 +95,15 @@
     <None Include="..\shader\capture.sh">
       <Filter>shader</Filter>
     </None>
+    <None Include="..\shader\sidebyside_ex.sh">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="..\shader\hdr_bright.sh">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="..\shader\hdr_mix.sh">
+      <Filter>shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ASURA\Util\asdxModelUtil.cpp">
@@ -248,6 +257,15 @@
       <Filter>source_header\object</Filter>
     </ClCompile>
     <ClCompile Include="implement\Effect\Dx11EffectCapture.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectSideBySideEx.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectHDRBright.cpp">
+      <Filter>source_header\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="implement\Effect\Dx11EffectHDRMix.cpp">
       <Filter>source_header\effect</Filter>
     </ClCompile>
   </ItemGroup>
@@ -424,6 +442,15 @@
       <Filter>source_header\object</Filter>
     </ClInclude>
     <ClInclude Include="common\DX11Util\Effect\Dx11EffectCapture.h">
+      <Filter>source_header\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectSideBySideEx.h">
+      <Filter>source_header\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectHDRBright.h">
+      <Filter>source_header\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DX11Util\Effect\Dx11EffectHDRMix.h">
       <Filter>source_header\effect</Filter>
     </ClInclude>
   </ItemGroup>

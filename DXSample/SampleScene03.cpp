@@ -28,6 +28,7 @@ SampleScene03::~SampleScene03(void)
 void SampleScene03::Setup(Dx11Context* context)
 {
 	EffectSideBySideInfo param; 
+	EffectSideBySideExInfo param2; 
 	bool is7Inch = true; 
 
 	param.LensCenter[0] = 0.5f; 
@@ -73,9 +74,14 @@ void SampleScene03::Setup(Dx11Context* context)
 	param.ChromaAbCorrection[2] = 1.014f;
 	param.ChromaAbCorrection[3] = 0.0f;
 
+	memcpy(&param2, &param, sizeof(EffectSideBySideInfo)); 
+
 
 	effect = new Dx11EffectSideBySide(640, 480, &param); 
 	effect->Setup(context); 
+
+	effect_ex = new Dx11EffectSideBySideEx(640, 480, &param2); 
+	effect_ex->Setup(context); 
 
 	if(act) {
 		act->Setup(context); 
@@ -118,11 +124,24 @@ void SampleScene03::Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* _
 	lens2.SetParameter(640.0f, 480.0f, 100.0f, 10000.0f); 
 #endif
 
+
+#if 0
 	effect->Update(context, act, &cam, &lens); 
+#else 
+	effect_ex->Update(context, act, &cam, &lens); 
+#endif
 }
  
 void SampleScene03::Term(Dx11Context* context)
 {
+	effect->Term(context); 
+	delete effect; 
+	effect = 0; 
+
+	effect_ex->Term(context); 
+	delete effect_ex; 
+	effect_ex = 0; 
+
 	if(act) {
 		act->Term(context); 
 	}
