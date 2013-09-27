@@ -322,6 +322,7 @@ HRESULT Dx11Context::Update()
 #endif 
 
 	Start(); 
+	Activate(); 
 	current_scene->Render(this, 0, 0 ); 
 	Flush(); 
 
@@ -349,6 +350,21 @@ HRESULT Dx11Context::Start()
 	ID3D11RenderTargetView* active_render_target_view;
 	ID3D11DepthStencilView*  active_depth_stencil_target_view;
 
+#if 0
+	float ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+    // 描画ターゲットのクリア
+    pImmediateContext->ClearRenderTargetView(
+                       pRenderTargetView, // クリアする描画ターゲット
+                       ClearColor);         // クリアする値
+
+	// 深度/ステンシルのクリア
+	pImmediateContext->ClearDepthStencilView(
+			pDepthStencilView, // クリアする深度/ステンシル・ビュー
+			D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,   // 深度値だけをクリアする
+			1.0f,                // 深度バッファをクリアする値
+			0);                  // ステンシル・バッファをクリアする値(この場合、無関係)
+
+#else
 	pImmediateContext->OMGetRenderTargets(1, &active_render_target_view,&active_depth_stencil_target_view);
 
 
@@ -365,9 +381,9 @@ HRESULT Dx11Context::Start()
 			D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,   
 			1.0f,                
 			0);                  
+#endif
 
-
-	return S_OK; 
+	return S_OK; //Activate(); 
 }
 
 HRESULT Dx11Context::ClearBackground(float ClearColor[4])
