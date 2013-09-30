@@ -118,7 +118,7 @@ if "$TargetExt" == ".exe" (if "$(Configuration)" == "Release" (copy "$(OutDir)$(
     <None Include="..\shader\sidebyside.sh" />
     <None Include="..\shader\sidebyside_ex.sh" />
     <None Include="..\shader\standard.sh" />
-    <None Include="..\shader\xfile_notexture.sh" />
+    <None Include="..\shader\xfile_basic.sh" />
     <None Include="ASURA\Math\Bounding.inl" />
     <None Include="ASURA\Math\Matrix.inl" />
     <None Include="ASURA\Math\Plane.inl" />

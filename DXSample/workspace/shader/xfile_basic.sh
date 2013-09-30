@@ -4,13 +4,14 @@ cbuffer cbNeverChanges : register(b0) { // 常にスロット「0」を使う
     float4x4  Projection;
 };
 
-cbuffer cbSubMesh : register(b2) { // 常にスロット「0」を使う
+cbuffer cbSubMesh : register(b1) { // 常にスロット「0」を使う
 	float4x4  bind_pose;
 	float4 diffuse; // r, g, b, a
-	float3 specular; // r, g, b
-	float3 emmisive; // r, g, b
+	float4 specular; // r, g, b
+	float4 emmisive; // r, g, b
 	float power; 
 	int tex_enable; 
+	float2 dummy; 
 };
 
 struct VS_INPUT {
@@ -68,18 +69,22 @@ PS_INPUT VS(VS_INPUT input) {
 // ピクセル シェーダの関数
 float4 PS(PS_INPUT input) : SV_TARGET
 {
-/*
 	float3 colmax = float3(1.0, 1.0, 1.0); 
-    float4 texCol = myTex2D.Sample(texSampler, input.Tex);         // テクセル読み込み
-	if(texCol.a == 0.0) {
-		discard; 
+    float4 texCol; 
+	float4 ret; 
+	if(tex_enable == 0) {
+		ret = diffuse;
+//		ret = float4(1.0, 0.0, 0.0, 1.0);  
+	} else {
+		texCol = myTex2D.Sample(texSampler, input.Tex);         // テクセル読み込み
+		if(texCol.a == 0.0) {
+			discard; 
+		}
+//		texCol.rgb = texCol.rgb * diffuse.rgb; 
+		ret = texCol; 
+//		ret = float4(0.0, 1.0, 0.0, 1.0);  
 	}
-	texCol.rgb = texCol.rgb * (1.0 - inv) + (colmax - texCol.rgb) * inv; 
-	texCol.a = texCol.a * trans; 
-	return texCol; 
-	*/
-
+	
 //	float4 ret = float4(1.0, 1.0, 1.0, 1.0); 
-	float4 ret = diffuse; 
 	return ret; 
 }

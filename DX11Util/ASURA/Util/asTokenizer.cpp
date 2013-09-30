@@ -150,7 +150,8 @@ void Tokenizer::Next()
 bool Tokenizer::Check( const char *token )
 {
 	bool result = false;
-	if ( strcmp( mToken, token ) == 0 )
+	int ret = strcmp( mToken, token ); 
+	if ( ret == 0 )
 	{
 		result = true;
 	}

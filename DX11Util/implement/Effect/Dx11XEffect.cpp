@@ -12,10 +12,11 @@ typedef struct  { // Warning: XMMATRIX ではなくXMFLOAT4X4 を使うように修正するこ
 typedef struct {
 	XMFLOAT4X4 bind_pose; 
 	FLOAT diffuse[4]; // r, g, b, a
-	FLOAT specular[3]; // r, g, b
-	FLOAT emmisive[3]; // r, g, b
+	FLOAT specular[4]; // r, g, b
+	FLOAT emmisive[4]; // r, g, b
 	FLOAT power; 
 	UINT tex_enable; 
+	FLOAT dummy[2]; 
 } Dx11XMaterial; 
 
 #define SAFE_RELEASE(x)  { if(x) { (x)->Release(); (x)=NULL; } }	// 解放マクロ
@@ -46,7 +47,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// compile vertex shader. 
 	ID3DBlob* pBlobVS = NULL;
 	hr = D3DCompileFromFileWrapper(
-			L"shader\\xfile_notexture.sh",  // file name
+			L"shader\\xfile_basic.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
 			"VS",          // run VS function
@@ -101,7 +102,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// compile pixel shader
 	ID3DBlob* pBlobPS = NULL;
 	hr = D3DCompileFromFileWrapper(
-			L"shader\\xfile_notexture.sh",  // file name
+			L"shader\\xfile_basic.sh",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
 			"PS",          // run VS function
@@ -149,7 +150,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	cBufferDesc.StructureByteStride = 0;
 
 	// for view
-	cBufferDesc.ByteWidth      = sizeof(Dx11XEffectCBuffer);
+	cBufferDesc.ByteWidth      = sizeof(Dx11XMaterial);
 	hr = pd3dDevice->CreateBuffer(&cBufferDesc, NULL, &const_buf4part);
 	if (FAILED(hr)) {
 		return DXTRACE_ERR(L"InitDirect3D pd3dDevice->CreateBuffer", hr);
@@ -184,7 +185,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	D3D11_DEPTH_STENCIL_DESC DepthStencil;
 	DepthStencil.DepthEnable      = TRUE; 
 	DepthStencil.DepthWriteMask   = D3D11_DEPTH_WRITE_MASK_ALL; 
-	DepthStencil.DepthFunc        = D3D11_COMPARISON_ALWAYS; // 手前の物体を描画
+	DepthStencil.DepthFunc        = D3D11_COMPARISON_LESS; // 手前の物体を描画
 	DepthStencil.StencilEnable    = FALSE; // ステンシル・テストなし
 	DepthStencil.StencilReadMask  = 0;     // ステンシル読み込みマスク。
 	DepthStencil.StencilWriteMask = 0;     // ステンシル書き込みマスク。
@@ -267,13 +268,13 @@ HRESULT Dx11XEffect::Update(Dx11Context* _context, Dx11XObject* xobj, Dx11Motion
 	context->VSSetShader(pVertexShader, NULL, 0);
 	// VSに定数バッファを設定
 	context->VSSetConstantBuffers(0, 1, &const_buf);
-	context->VSSetConstantBuffers(2, 1, &const_buf4part);
+	context->VSSetConstantBuffers(1, 1, &const_buf4part);
 
 	// PSにピクセル・シェーダを設定
 	context->PSSetShader(pPixelShader, NULL, 0);
 	// PSに定数バッファを設定
 	context->PSSetConstantBuffers(0, 1, &const_buf);
-	context->PSSetConstantBuffers(2, 1, &const_buf4part);
+	context->PSSetConstantBuffers(1, 1, &const_buf4part);
 
 
 	xobj->GetBufNum(&max); 
@@ -309,7 +310,28 @@ HRESULT Dx11XEffect::Update(Dx11Context* _context, Dx11XObject* xobj, Dx11Motion
 		Dx11XMaterialStandard material; 
 		int sub_mesh_max = xobj->GetNumberOfSubMesh(i); 
 
-		buf_part.bind_pose = xobj->GetBindPose(i); 
+		buf_part.bind_pose = xobj->GetBindPoseFromParent(i); 
+
+		std::string name = xobj->GetName(i); 
+		if(name.find("_particle__") != std::string::npos) {
+			XMMATRIX bp = XMLoadFloat4x4(&buf_part.bind_pose); 
+			XMMATRIX vw = XMLoadFloat4x4(&buf.View); 
+			XMMATRIX wd = XMLoadFloat4x4(&buf.World); 
+			vw = wd * vw; 
+			vw._14 = 0; 
+			vw._24 = 0; 
+			vw._34 = 0; 
+			vw._41 = 0; 
+			vw._42 = 0; 
+			vw._43 = 0; 
+			vw._44 = 1; 
+			XMVECTOR det; 
+			vw = XMMatrixInverse(&det, vw); 
+			bp = vw * bp; 
+			XMStoreFloat4x4(&buf_part.bind_pose, bp); 
+
+		}
+
 		for(j=0;j<sub_mesh_max;j++) {
 			xobj->GetSubMesh(i, j, &submesh); 
 			xobj->GetMaterial(i, submesh.mat_index, &material); 

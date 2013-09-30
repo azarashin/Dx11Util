@@ -74,6 +74,15 @@ typedef struct _Dx11XSubMesh
 	float bounding_box[3][2]; 
 } Dx11XSubMesh; 
 
+typedef struct _Dx11XBone
+{
+	int parent; 
+	XMFLOAT4X4 bind; 
+	XMFLOAT4X4 pose; 
+	XMFLOAT4X4 bindpose; 
+	std::string name; 
+} Dx11XBone; 
+
 typedef struct _Dx11XBufferInfo
 {
 	ID3D11Buffer* vb; 
@@ -112,7 +121,12 @@ public:
 	void GetSubMesh(unsigned int id, unsigned int mat_id, Dx11XSubMesh* sub_mesh); 
 	int GetNumberOfSubMesh(unsigned int id); 
 
+	std::string GetName(unsigned int idx); 
 	XMFLOAT4X4 GetBindPose(unsigned int idx); 
+	XMFLOAT4X4 GetBindPoseFromParent(unsigned int idx); 
+
+private: 
+	XMFLOAT4X4 GetBindPoseFromParent_Bone(unsigned int idx); 
 
 private: 
 	std::string filename; 
@@ -124,6 +138,6 @@ private:
 	std::vector<std::vector<Dx11XMaterialStandard> > material; // [buffer][material]
 	std::vector<std::vector<Dx11XSubMesh> > sub_mesh; // [buffer][sub_mesh]
 
-	std::vector<XMFLOAT4X4> bindpose; 
+	std::vector<Dx11XBone> bones; 
 
 };

@@ -350,7 +350,7 @@ void Dx11XObject::Setup(Dx11Context* _context)
 	i=0; 
 	for(it=tex_map.begin();it!=tex_map.end();it++) {
 		WCHAR filepath[4096];
-		MultiByteToWideChar(CP_UTF8, 0, filename.c_str(), -1, filepath, (int)sizeof(filepath));
+		MultiByteToWideChar(CP_UTF8, 0, it->first.c_str(), -1, filepath, (int)sizeof(filepath));
 		HRESULT hr; 
 		hr = CreateDDSTextureFromFile( pd3dDevice, filepath, NULL, &m_pTexture[i] ); 
 		if (FAILED(hr)) {
@@ -363,7 +363,7 @@ void Dx11XObject::Setup(Dx11Context* _context)
 
 	// animation. 
 	unsigned int num_bones = mpInterface->GetNumBones(); 
-	bindpose.assign(num_bones, XMFLOAT4X4()); 
+	bones.assign(num_bones, Dx11XBone()); 
 	for(i=0;i<num_bones;i++) {
 		IBone* bone = mpInterface->GetBone(i); 
 		std::string bname = bone->GetName(); 
@@ -376,7 +376,11 @@ void Dx11XObject::Setup(Dx11Context* _context)
 		XMMATRIX xmmb = XMLoadFloat4x4(&xmbmat); 
 		XMMATRIX xmmp = XMLoadFloat4x4(&xmpmat); 
 		XMMATRIX xmmbindpose = xmmb * xmmp; 
-		XMStoreFloat4x4(&bindpose[i], xmmbindpose); 
+		bones[i].bind = xmbmat; 
+		bones[i].pose = xmpmat; 
+		XMStoreFloat4x4(&bones[i].bindpose, xmmbindpose); 
+		bones[i].parent = bone->GetParentIndex(); 
+		bones[i].name = bone->GetName(); 
 	}
 
 	unsigned int num_clips = mpInterface->GetNumClips(); 
@@ -401,7 +405,36 @@ void Dx11XObject::Setup(Dx11Context* _context)
 
 XMFLOAT4X4 Dx11XObject::GetBindPose(unsigned int idx)
 {
-	return bindpose[buffer_info[idx].ref_frame]; 
+	return bones[buffer_info[idx].ref_frame].bindpose; 
+}
+
+
+XMFLOAT4X4 Dx11XObject::GetBindPoseFromParent(unsigned int idx)
+{
+	if(bones[buffer_info[idx].ref_frame].parent >= 0) {
+		XMFLOAT4X4  parmat = GetBindPoseFromParent_Bone( bones[buffer_info[idx].ref_frame].parent); 
+		XMMATRIX xm_parmat = XMLoadFloat4x4(&parmat); 
+		XMMATRIX xm_this = XMLoadFloat4x4(&bones[buffer_info[idx].ref_frame].bindpose); 
+		XMMATRIX xm_ret = xm_this * xm_parmat; 
+		XMFLOAT4X4 ret; 
+		XMStoreFloat4x4(&ret, xm_ret); 
+		return ret; 
+	}
+	return bones[buffer_info[idx].ref_frame].bindpose; 
+}
+
+XMFLOAT4X4 Dx11XObject::GetBindPoseFromParent_Bone(unsigned int idx)
+{
+	if(bones[idx].parent >= 0) {
+		XMFLOAT4X4  parmat = GetBindPoseFromParent_Bone( bones[idx].parent); 
+		XMMATRIX xm_parmat = XMLoadFloat4x4(&parmat); 
+		XMMATRIX xm_this = XMLoadFloat4x4(&bones[idx].bindpose); 
+		XMMATRIX xm_ret = xm_this * xm_parmat; 
+		XMFLOAT4X4 ret; 
+		XMStoreFloat4x4(&ret, xm_ret); 
+		return ret; 
+	}
+	return bones[idx].bindpose; 
 }
 
 
@@ -487,4 +520,9 @@ void Dx11XObject::GetSubMesh(unsigned int id, unsigned int mat_id, Dx11XSubMesh*
 int Dx11XObject::GetNumberOfSubMesh(unsigned int id)
 {
 	return sub_mesh[id].size(); 
+}
+
+std::string Dx11XObject::GetName(unsigned int idx)
+{
+	return bones[buffer_info[idx].ref_frame].name; 
 }

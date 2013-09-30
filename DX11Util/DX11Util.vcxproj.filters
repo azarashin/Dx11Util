@@ -89,9 +89,6 @@
     <None Include="ASURA\Math\Bounding.inl">
       <Filter>external\ASURA\Math</Filter>
     </None>
-    <None Include="..\shader\xfile_notexture.sh">
-      <Filter>shader</Filter>
-    </None>
     <None Include="..\shader\capture.sh">
       <Filter>shader</Filter>
     </None>
@@ -102,6 +99,9 @@
       <Filter>shader</Filter>
     </None>
     <None Include="..\shader\hdr_mix.sh">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="..\shader\xfile_basic.sh">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

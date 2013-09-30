@@ -1184,7 +1184,7 @@ void ModelLoaderX::ParseMeshMaterialList(int parent)
 		{
 			continue;
 		}
-		else if ( mToken.Check( "TextureFileName" ) )
+		else if ( mToken.Check( "TextureFilename" ) )
 		{
 			// '{'が出るまでスキップ
 			while( !mToken.IsEnd() )

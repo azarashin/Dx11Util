@@ -19,7 +19,7 @@ void SampleScene07::Setup(Dx11Context* context)
 {
 	left = 0; 
 	max = 300.0f; 
-	text = new Dx11XObject("sample4.x"); 
+	text = new Dx11XObject("wood.x"); 
 	text->Setup(context); 
 
 
@@ -41,12 +41,12 @@ void SampleScene07::Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* _
 
 //	EffectGUIStandardInfo info = {0, 0, 0.125f * w, 0.125f, 
 //		1.0f, 0.5f, 0, 0}; // 完全不透明（1.0f), 色半反転(0,5f)
-	Dx11MotionStandard mot(XMFLOAT3(400, 300, 400)); 
+	Dx11MotionStandard mot(XMFLOAT3(1, 1, 1)); 
 	Dx11CameraStandard cam; 
 	Dx11LensStandard lens; 
 
 //	mot.SetDirection(XMFLOAT3(0, 0, 1000.0), XMFLOAT3(0.57735f, 0.57735f, -0.57735f), XMFLOAT3(0, 1, 0)); 
-	mot.SetDirection(XMFLOAT3(0, 0, 1000.0), XMFLOAT3(cos(pp), 0.57735f, sin(pp)), XMFLOAT3(0, 1, 0)); 
+	mot.SetDirection(XMFLOAT3(0, -3, 7.0), XMFLOAT3(cos(pp), 0, sin(pp)), XMFLOAT3(0, 1, 0)); 
 
 	cam.Setup(); 
 	cam.SetCameraDirection(XMFLOAT3(0, 0, 2000), XMFLOAT3(0, 0, 200), XMFLOAT3(0, 1, 0)); 

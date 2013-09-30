@@ -77,10 +77,10 @@ void SampleScene03::Setup(Dx11Context* context)
 	memcpy(&param2, &param, sizeof(EffectSideBySideInfo)); 
 
 
-	effect = new Dx11EffectSideBySide(640, 480, &param); 
+	effect = new Dx11EffectSideBySide(1920, 1080, &param); 
 	effect->Setup(context); 
 
-	effect_ex = new Dx11EffectSideBySideEx(640, 480, &param2); 
+	effect_ex = new Dx11EffectSideBySideEx(1920, 1080, &param2); 
 	effect_ex->Setup(context); 
 
 	if(act) {
@@ -125,7 +125,7 @@ void SampleScene03::Render(Dx11Context* context, Dx11Camera* camera, Dx11Lens* _
 #endif
 
 
-#if 0
+#if 1
 	effect->Update(context, act, &cam, &lens); 
 #else 
 	effect_ex->Update(context, act, &cam, &lens); 
