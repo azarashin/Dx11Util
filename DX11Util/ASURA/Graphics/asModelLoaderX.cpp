@@ -1321,7 +1321,7 @@ void ModelLoaderX::ParseFrame(int parent)
 	int this_node = static_cast< int >( mBoneCaches.size() ) -1; 
 
 #if 1 // azarashin modified...
-	while(!mToken.Check( "}" ) ) {
+	while(!mToken.Check( "}" ) && !mToken.IsEnd()) {
 
 		if ( mToken.Check( "Frame" ) )
 		{
@@ -1331,6 +1331,7 @@ void ModelLoaderX::ParseFrame(int parent)
 			ParseFrame();
 	#else 
 			ParseFrame(this_node);
+			mToken.Next();
 	#endif 
 		}
 		//　Frameノードが終了の場合
