@@ -38,7 +38,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// compile vertex shader. 
 	ID3DBlob* pBlobVS = NULL;
 	hr = D3DCompileFromFileWrapper(
-			L"shader\\sidebyside_ex.sh",  // file name
+			L"shader\\sidebyside_ex.hlsl",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
 			"VS",          // run VS function
@@ -94,7 +94,7 @@ UINT flagCompile = D3D10_SHADER_ENABLE_STRICTNESS | D3D10_SHADER_PACK_MATRIX_COL
 	// compile pixel shader
 	ID3DBlob* pBlobPS = NULL;
 	hr = D3DCompileFromFileWrapper(
-			L"shader\\sidebyside_ex.sh",  // file name
+			L"shader\\sidebyside_ex.hlsl",  // file name
 			NULL,          // macro definition
 			NULL,          // include file
 			"PS",          // run VS function
